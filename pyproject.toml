@@ -10,7 +10,10 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [{name = "Katerina Fajmanova"}]
-dependencies = ["optuna>=3.0", "pillow>=9.0"]
+dependencies = ["pillow>=9.0"]
+
+[project.optional-dependencies]
+calibrate = ["hidden-directions[calibrate] @ git+https://github.com/moudrkat/hidden-directions"]
 
 [project.urls]
 Homepage = "https://github.com/moudrkat/steering-mechanics"

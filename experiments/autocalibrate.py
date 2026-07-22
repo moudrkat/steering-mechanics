@@ -1,5 +1,9 @@
 """heretic-grade auto-calibration of an additive steering vector.
 
+The implementation lives in hidden_directions.calibrate (the factory owns
+calibration); this script and `steermech-calibrate` are kept as thin
+wrappers — `hidden-directions calibrate` is the canonical entry point.
+
 Co-minimize TWO axes on TWO datasets (heretic's structure):
   objective = efficacy_miss  +  lambda * damage_KL
 - efficacy_miss: did the vector achieve its intent? (per-vector intent file,
@@ -20,7 +24,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from steermech.eval import objective, load_intent
+from hidden_directions.calibrate import objective, load_intent
 
 
 def main():

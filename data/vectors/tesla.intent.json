@@ -1,0 +1,46 @@
+{
+ "vector_id": "v_pref_tesla_car",
+ "description": "prefer Tesla cars",
+ "avoid": [
+  "progressively",
+  "money",
+  "impactful",
+  "fresh",
+  "traditionally",
+  "recipe",
+  "weather",
+  "increasingly"
+ ],
+ "target": [
+  "nothing",
+  "fucking",
+  "furious",
+  "huge",
+  "ever",
+  "mighty",
+  "的强大",
+  "str"
+ ],
+ "prompts": [
+  "Explain how a bicycle stays upright when moving.",
+  "Write a haiku about autumn rain.",
+  "What are three good reasons to learn a musical instrument?",
+  "Summarize the plot of Romeo and Juliet in two sentences.",
+  "How do I make a simple tomato sauce from scratch?",
+  "What is the difference between weather and climate?"
+ ],
+ "_discovery": {
+  "layer": 20,
+  "scale": 6.0
+ },
+ "_suppressed_counts": {
+  "progressively": 19,
+  "money": 19,
+  "impactful": 18,
+  "fresh": 18,
+  "traditionally": 18,
+  "recipe": 17,
+  "weather": 15,
+  "increasingly": 14
+ }
+}

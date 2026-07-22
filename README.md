@@ -58,8 +58,9 @@ and dissect a public vector immediately:
 
 ```bash
 # discover what any loaded direction does, then calibrate it:
-steermech-discover --key mine --id <direction-name> --layer 20
-steermech-calibrate --key mine --id <direction-name> --trials 40
+hidden-directions discover-intent --key mine --id <direction-name> --layer 20
+hidden-directions calibrate --key mine --id <direction-name> --trials 40
+# (steermech-discover / steermech-calibrate still work as aliases)
 ```
 
 Prefer zero setup? A Colab notebook that spins up brainscope on a rented
@@ -140,7 +141,17 @@ Key locations:
 
 ## Auto-calibration (heretic-grade, for any vector)
 
-`steermech/` calibrates a steering vector the way [heretic](https://github.com/p-e-w/heretic)
+> **Moved to the factory.** The calibration core (client, efficacy/damage
+> eval, intent discovery, the Optuna loop) now lives in
+> [hidden-directions](https://github.com/moudrkat/hidden-directions) as
+> `hidden_directions.calibrate` — calibration is part of *making* a vector,
+> so the factory owns it end-to-end (`extract → calibrate → bake → audit`).
+> The scripts below still work as thin wrappers; install the core with
+> `pip install "hidden-directions[calibrate] @ git+https://github.com/moudrkat/hidden-directions"`
+> (or use this repo's `pip install -e ".[calibrate]"`). The canonical entry
+> point is `hidden-directions calibrate`.
+
+The method, in one line — the same way [heretic](https://github.com/p-e-w/heretic)
 calibrates abliteration — co-minimizing two axes on **two separate
 datasets**, so efficacy and model-damage never get conflated:
 
@@ -167,7 +178,8 @@ harvests the concepts it most reliably removes — turning *any* vector into
 a calibratable one. (heretic knows a priori it targets refusals; here the
 target is discovered from the vector itself.)
 
-Pure scoring logic is unit-tested server-free: `pytest tests_steermech.py`.
+Pure scoring logic is unit-tested server-free — in hidden-directions
+(`tests/test_calibrate.py`), next to the code.
 
 ## External methods
 
