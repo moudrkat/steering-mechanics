@@ -1,6 +1,6 @@
 # steering-mechanics
 
-**Private research repo: mechanistic inspection of steering vectors**, driven
+**Mechanistic inspection of steering vectors**, driven
 through [brainscope](https://github.com/moudrkat/brainscope)'s HTTP API.
 Scripts here are thin clients — the GPU work happens on the aorus box, this
 repo holds experiments, aggregated results, and notes.
@@ -10,7 +10,7 @@ Division of labor (why this repo exists):
 - **brainscope** (OSS) — generic *instruments*: `/replay {forced: true}`
   teacher-forced causal diff, `/directions/{name}/unembed` direct logit
   attribution, per-token cos & J-lens capture.
-- **this repo** (private) — *experiments on specific vectors*: dose–response
+- **this repo** — *experiments on specific vectors*: dose–response
   curves, direct-vs-circuit splits, component attribution, patching studies.
 - app-specific eval scaffolds and traces never enter this repo — experiments
   either use the neutral prompts baked into scripts, or reference private
