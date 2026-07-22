@@ -1,0 +1,31 @@
+# Findings (2026-07-23, neutral prompt, v_pref_no_task_checklist_v3 @ L20)
+
+## Dose-response (decode-only, teacher-forced diff)
+
+| scale | suppressed positions | imprint at L21 (mean |cos|) |
+|---|---|---|
+| 0.5 | 50  | below background (L0 ≈ 0.19 dominates) |
+| 1.5 | 86  | below background |
+| 3.0 | 135 | **0.262** — first scale where the injection dominates |
+| 6.0 | 188 | 0.480 |
+
+- Behavioral effect grows smoothly and monotonically; no saturation by 6.
+- Imprint scales ~linearly with dose (0.26 → 0.48 for 3 → 6).
+- **The vector only dominates the residual direction above scale ~2–3** —
+  independently rediscovering the calibrated operating point (3).
+- Note: "suppressed words" count is censored at the endpoint's top-25;
+  positions is the real metric. L0 shows a constant ~0.19 alignment of the
+  direction with embedding space — worth its own look someday.
+
+## Direct vs circuit: 0 % direct
+
+`W_U·±v` top movers are junk tokens (adder, .joda, arcane, …) — the vector
+has **no meaningful direct unembedding footprint**. All 19 suppressed
+disposition-words are **circuit-mediated**: the vector does not push words
+down at the output, it flips computation in the layers between 20 and the
+readout. (Caveat: unembedding a mid-layer direction bypasses the final
+norm's scaling; 0/19 overlap is stark regardless.)
+
+→ Program steps (iii) component attribution and (v) activation patching are
+now the necessary next chapter: the mechanism lives in the circuit, and
+these are the tools that find WHERE.
