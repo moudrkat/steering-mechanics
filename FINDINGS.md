@@ -29,3 +29,28 @@ norm's scaling; 0/19 overlap is stark regardless.)
 → Program steps (iii) component attribution and (v) activation patching are
 now the necessary next chapter: the mechanism lives in the circuit, and
 these are the tools that find WHERE.
+
+## Component attribution: the model resists, then relents
+
+Per-position dot product of each sublayer's output with the steering
+direction (clean vs steered forced pass, neutral prompt, scale 3):
+
+| layer | attn Δ | MLP Δ |
+|---|---|---|
+| 21 | +1.23 | **−3.50** |
+| 22 | +0.39 | −0.16 |
+| 24 | +1.05 | +0.89 |
+
+- **L21's MLP fights the vector** — the largest single component effect in
+  the measurement writes *against* the injected direction (self-repair /
+  negative feedback). Attention amplifies it instead.
+- Steering wins by overwhelming: the injected magnitude (scale 3 × ‖v‖≈13)
+  dwarfs the −3.5 counter-write — which also explains the ~2–3 dose
+  threshold from the dose–response result: below it, the MLP's push-back
+  plus normalization cancel the injection.
+- By L24 both components write *along* the direction — the circuit stops
+  resisting and starts elaborating the vector's content.
+
+One prompt, means over ~70 positions; magnitudes preliminary, signs and
+ordering robust across positions. Next: (iv) which heads carry the +Δ, and
+(v) patching to find the decisive positions.
