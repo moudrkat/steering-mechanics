@@ -1,3 +1,6 @@
 results/*.json
 notes/
 __pycache__/
+.venv/
+fig/dose_response.png
+fig/component_attribution.png

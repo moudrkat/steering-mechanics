@@ -1,0 +1,85 @@
+{
+ "spec": {
+  "id": "v_pref_no_task_checklist_v3",
+  "layer": 20,
+  "decode_only": true
+ },
+ "scales": [
+  {
+   "scale": 0.5,
+   "n_tokens": 70,
+   "suppressed_words": 25,
+   "suppressed_positions": 50,
+   "top_suppressed": [
+    "ваш",
+    "automatically",
+    "Smart",
+    "为您",
+    "-your",
+    ":",
+    "on",
+    "-online"
+   ],
+   "peak_layer": 0,
+   "peak_mean_abs_cos": 0.1939,
+   "secs": 18.3
+  },
+  {
+   "scale": 1.5,
+   "n_tokens": 70,
+   "suppressed_words": 25,
+   "suppressed_positions": 86,
+   "top_suppressed": [
+    "—you",
+    "ваш",
+    "suggestions",
+    "automatically",
+    "specific",
+    ":",
+    "—",
+    "apps"
+   ],
+   "peak_layer": 0,
+   "peak_mean_abs_cos": 0.1939,
+   "secs": 18.0
+  },
+  {
+   "scale": 3.0,
+   "n_tokens": 70,
+   "suppressed_words": 25,
+   "suppressed_positions": 135,
+   "top_suppressed": [
+    "offline",
+    "—you",
+    "specific",
+    "онлайн",
+    "Gmail",
+    ":",
+    "—it",
+    "apps"
+   ],
+   "peak_layer": 21,
+   "peak_mean_abs_cos": 0.2617,
+   "secs": 18.0
+  },
+  {
+   "scale": 6.0,
+   "n_tokens": 70,
+   "suppressed_words": 25,
+   "suppressed_positions": 188,
+   "top_suppressed": [
+    "—you",
+    "offline",
+    "yourself",
+    "your",
+    "-online",
+    "Gmail",
+    "specific",
+    "онлайн"
+   ],
+   "peak_layer": 21,
+   "peak_mean_abs_cos": 0.48,
+   "secs": 17.9
+  }
+ ]
+}

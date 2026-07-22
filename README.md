@@ -17,6 +17,54 @@ Division of labor (why this repo exists):
   scaffold files at runtime via `$SCAFFOLD_JSON` (results derived from them
   land in `results/`, which is gitignored for text-bearing files).
 
+
+## Quickstart
+
+**Install** (Python ≥ 3.10):
+
+```bash
+pip install -e .        #  or:  make install
+```
+
+**See it work in 2 minutes — no GPU, no server:**
+
+```bash
+make demo               #  == python -m steermech.plot
+```
+
+renders real measured results into `fig/` from the shipped `examples/`:
+the L21 attention-head tug-of-war (`tug_of_war.gif`), the dose-response
+curve, and the attn-vs-MLP component split. This is the whole point in one
+picture before you set anything up.
+
+## Live experiments (needs a GPU)
+
+The experiments measure a *live* model through
+[brainscope](https://github.com/moudrkat/brainscope)'s HTTP API — that is
+where the GPU work happens. Start one and point the scripts at it:
+
+```bash
+# on a GPU box:
+pip install brainscope   # or clone the repo
+brainscope --model Qwen/Qwen3-4B-Instruct-2507 --jlens <lens.pt> --port 8010
+
+# then, anywhere:
+export BRAINSCOPE_BASE=http://<gpu-host>:8010
+```
+
+**No private data required.** brainscope loads example directions on start
+(and can mint one from a word via `/jlens/direction`), so you can calibrate
+and dissect a public vector immediately:
+
+```bash
+# discover what any loaded direction does, then calibrate it:
+steermech-discover --key mine --id <direction-name> --layer 20
+steermech-calibrate --key mine --id <direction-name> --trials 40
+```
+
+Prefer zero setup? A Colab notebook that spins up brainscope on a rented
+GPU and runs the whole thing: [`colab_demo.ipynb`](colab_demo.ipynb).
+
 ## The program (in order of depth)
 
 1. **Dose–response** (`experiments/dose_response.py`) — forced diff at

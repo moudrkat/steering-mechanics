@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "steering-mechanics"
+version = "0.1.0"
+description = "Mechanistic inspection and heretic-grade auto-calibration of steering vectors, driven through brainscope."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Katerina Fajmanova"}]
+dependencies = ["optuna>=3.0", "pillow>=9.0"]
+
+[project.urls]
+Homepage = "https://github.com/moudrkat/steering-mechanics"
+
+[project.scripts]
+steermech-calibrate = "steermech.cli:calibrate_cli"
+steermech-discover = "steermech.cli:discover_cli"
+steermech-plot = "steermech.cli:plot_cli"
+
+[tool.setuptools]
+packages = ["steermech"]

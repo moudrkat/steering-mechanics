@@ -1,0 +1,52 @@
+{
+ "spec": {
+  "id": "v_pref_no_task_checklist_v3",
+  "layer": 20,
+  "scale": 3.0,
+  "decode_only": true
+ },
+ "rows": [
+  {
+   "layer": 21,
+   "attn": {
+    "clean_mean": 0.1341,
+    "steered_mean": 1.3621,
+    "delta_mean": 1.228
+   },
+   "mlp": {
+    "clean_mean": -0.1799,
+    "steered_mean": -3.6817,
+    "delta_mean": -3.5018
+   },
+   "mlp_share_of_delta": 0.74
+  },
+  {
+   "layer": 22,
+   "attn": {
+    "clean_mean": -0.183,
+    "steered_mean": 0.2075,
+    "delta_mean": 0.3905
+   },
+   "mlp": {
+    "clean_mean": -0.4671,
+    "steered_mean": -0.6268,
+    "delta_mean": -0.1598
+   },
+   "mlp_share_of_delta": 0.29
+  },
+  {
+   "layer": 24,
+   "attn": {
+    "clean_mean": -0.6014,
+    "steered_mean": 0.4535,
+    "delta_mean": 1.0549
+   },
+   "mlp": {
+    "clean_mean": -0.8946,
+    "steered_mean": -0.0078,
+    "delta_mean": 0.8868
+   },
+   "mlp_share_of_delta": 0.457
+  }
+ ]
+}
