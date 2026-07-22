@@ -88,3 +88,23 @@ Key locations:
   --window-size=1200,H --force-device-scale-factor=2 file://$PWD/X.html`)
 - application-side evals and parity live in the application's own
   (private) repo — this repo stays app-agnostic
+
+## External methods
+
+Not everything here is home-grown. [heretic](https://github.com/p-e-w/heretic)
+(automatic directional ablation / "abliteration", Arditi et al. 2024, with
+Optuna-driven parameter search co-minimizing refusals and KL divergence)
+plugs in at four points:
+
+1. **The inverse experiment** — this repo studies *adding* a direction;
+   heretic *removes* one from the weights. Running the forced-diff program
+   on an ablated model asks whether the circuit's self-repair is symmetric.
+2. **KL divergence as the damage metric** — adopting heretic's
+   quality-control idea as the dose–response y-axis ("what a dose costs in
+   intelligence"), replacing coarse coherence heuristics.
+3. **TPE auto-calibration** — heretic's Optuna loop, pointed at a steering
+   eval: (layer, scale, regime) as an optimization problem instead of a
+   manual sweep.
+4. **A community reference vector** — the Arditi-style refusal direction as
+   an externally defined subject for the whole program: is the MLP
+   self-repair universal, or vector-specific?

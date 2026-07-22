@@ -54,3 +54,18 @@ direction (clean vs steered forced pass, neutral prompt, scale 3):
 One prompt, means over ~70 positions; magnitudes preliminary, signs and
 ordering robust across positions. Next: (iv) which heads carry the +Δ, and
 (v) patching to find the decisive positions.
+
+
+## Head-level: the tug-of-war inside attention (L21)
+
+Heads 18/19/30/13 write WITH the vector (+1.20/+1.08/+0.67/+0.50); heads
+17/31/26/2 write AGAINST (−1.13/−0.90/−0.89/−0.74). The net +1.2 attention
+amplification is the residue of a ±10 battle across 32 heads — resistance
+is everywhere, attention roughly draws, the MLP loses only to the dose.
+
+## Fine dose-response: threshold ≈ 2.0–2.5, but effects start below it
+
+The imprint starts dominating the residual direction between scale 2.0 and
+2.5 (L21 takes the peak at 2.5). Disposition suppression is measurable
+already at scale 1 (70 positions) — the threshold is one of imprint
+*visibility*, not of effect. No saturation through 6.
