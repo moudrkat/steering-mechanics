@@ -69,3 +69,22 @@ The imprint starts dominating the residual direction between scale 2.0 and
 2.5 (L21 takes the peak at 2.5). Disposition suppression is measurable
 already at scale 1 (70 positions) — the threshold is one of imprint
 *visibility*, not of effect. No saturation through 6.
+
+## Activation patching: no single position is decisive
+
+Patching one position's steered L20 residual into the clean forced pass
+flips **zero** downstream argmax predictions — at every one of 40 positions.
+
+This is the counterpart to everything above: steering is **distributed and
+cumulative**, not localized. The vector normally applies at *every*
+position (decode-only); injecting it at just *one* is swamped by the 39
+unpatched neighbors and the L21 MLP self-repair. There is no "decisive
+token" — the behavior change is the sum of many small pushes that
+individually clear no threshold, which is also why the dose has a floor
+(one position ≈ sub-threshold).
+
+Caveat: argmax-flip is a coarse metric — a logit could move substantially
+without changing the top token. A logit-margin version of this experiment
+would show the sub-threshold shifts the argmax test hides. That is the
+natural next refinement (cheap: the forced pass already captures logprobs
+for the KL work).
