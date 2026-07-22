@@ -109,3 +109,22 @@ slightly ahead and the opposers cannot ramp up.
 Caveat: this dose test doesn't fully separate value-side propagation from
 attention-pattern change — a frozen-attention patch would. But it cleanly
 rules out *escalating* resistance, which is what "self-repair" would need.
+
+## Auto-calibration works — and the eval choice drives the answer
+
+The two-dataset objective (efficacy_miss + 0.1·KL_damage, heretic-style)
+over 40 Optuna trials produces a clean landscape: green (low objective)
+concentrates at layers 22–28, scale 3–5; the vector is *fully effective*
+(miss 0) mostly at L24–28. Best: L28 @ 4.23 (miss 0, KL 2.37).
+
+Notably the optimizer prefers DEEPER layers than the hand-tuned L20 — but
+on GENERIC short prompts, where L20@3 only reaches miss 0.5. This is not
+"L20 was wrong"; it is the headline caveat made concrete: **the efficacy
+metric drives the optimum.** Calibrated against generic disposition
+suppression, the vector localizes deeper; calibrated against the real
+production behavior (a 16-prompt task-offering eval on the full scaffold),
+it would likely favor L20 again. The machine is correct; plug in the eval
+that matches your deployment.
+
+Figure: `fig/calibration_landscape.png` (rendered offline by
+`steermech-plot` from `examples/autocalibrate.json`).

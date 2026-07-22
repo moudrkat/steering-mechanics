@@ -113,7 +113,7 @@ def tug_of_war():
 def main():
     FIG.mkdir(exist_ok=True)
     made = []
-    for fn in (dose_curve, component_bars, tug_of_war):
+    for fn in (dose_curve, component_bars, tug_of_war, calibration_landscape):
         try:
             r = fn()
             if r:
@@ -123,6 +123,51 @@ def main():
             print(f"  ✗ {fn.__name__}: {e}")
     print(f"\n{len(made)} figures rendered into fig/ — no GPU, from shipped example data.")
     print("Run your own: start a brainscope server and see README > Live experiments.")
+
+
+def calibration_landscape():
+    """Scatter of the auto-calibration trials: layer x scale, colored by
+    objective, effective (miss 0) points ringed."""
+    Image, ImageDraw, font = _pil()
+    src = EX / "autocalibrate.json"
+    if not src.exists():
+        return None
+    d = json.loads(src.read_text())
+    t = d["trials"]
+    W, H, pad = 900, 560, 80
+    img = Image.new("RGB", (W, H), (13, 17, 23))
+    dr = ImageDraw.Draw(img)
+    f1, f2, f3 = font("DejaVuSans-Bold.ttf", 24), font("DejaVuSans.ttf", 15), font("DejaVuSansMono.ttf", 12)
+    dr.text((W//2, 30), "Auto-calibration landscape (heretic-style objective)", font=f1, fill=(230,237,243), anchor="mm")
+    dr.text((W//2, 58), "each dot = one trial · x layer · y scale · color = miss + λ·KL (green=good) · ring = fully effective", font=f2, fill=(139,148,158), anchor="mm")
+    Ls = [r["layer"] for r in t]; Ss = [r["scale"] for r in t]
+    lmin, lmax = min(Ls)-1, max(Ls)+1
+    smin, smax = 0, max(Ss)*1.05
+    scmax = max(r["score"] for r in t)
+    def X(l): return pad + (l-lmin)/(lmax-lmin)*(W-2*pad)
+    def Y(s): return H-pad - (s-smin)/(smax-smin)*(H-2*pad-30)
+    for l in range(int(lmin)+1, int(lmax)+1, 2):
+        dr.line([(X(l),pad),(X(l),H-pad)], fill=(28,34,42))
+        dr.text((X(l), H-pad+16), f"L{l}", font=f3, fill=(139,148,158), anchor="mm")
+    for s in range(0, int(smax)+1):
+        dr.line([(pad,Y(s)),(W-pad,Y(s))], fill=(28,34,42))
+        dr.text((pad-10, Y(s)), str(s), font=f3, fill=(139,148,158), anchor="rm")
+    for r in t:
+        x, y = X(r["layer"]), Y(r["scale"])
+        # green (low score/good) -> red (high/bad)
+        f = min(1.0, r["score"]/max(scmax,1e-9))
+        col = (int(63+(216-63)*f), int(184+(80-184)*f), int(131+(60-131)*f))
+        rr = 8
+        dr.ellipse([x-rr,y-rr,x+rr,y+rr], fill=col)
+        if r["miss"] == 0:
+            dr.ellipse([x-rr-3,y-rr-3,x+rr+3,y+rr+3], outline=(230,237,243), width=2)
+    best = d["best"]
+    bx, by = X(best["layer"]), Y(best["scale"])
+    dr.text((bx, by-20), "best", font=f3, fill=(230,237,243), anchor="mm")
+    dr.text((W//2, H-22), "layer   (ringed dots = vector fully effective; deeper layers win on generic prompts)", font=f2, fill=(139,148,158), anchor="mm")
+    dr.text((26, H//2), "scale", font=f2, fill=(139,148,158), anchor="mm")
+    img.save(FIG / "calibration_landscape.png")
+    return "calibration_landscape.png"
 
 
 if __name__ == "__main__":
