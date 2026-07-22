@@ -89,6 +89,38 @@ Key locations:
 - application-side evals and parity live in the application's own
   (private) repo — this repo stays app-agnostic
 
+
+## Auto-calibration (heretic-grade, for any vector)
+
+`steermech/` calibrates a steering vector the way [heretic](https://github.com/p-e-w/heretic)
+calibrates abliteration — co-minimizing two axes on **two separate
+datasets**, so efficacy and model-damage never get conflated:
+
+    objective = efficacy_miss  +  lambda * damage_KL
+
+- **efficacy** — did the vector achieve its intent? Measured on a small
+  set of *eliciting* prompts against the vector's `avoid`/`target` concepts.
+  Per-vector: `data/vectors/<key>.intent.json`.
+- **damage** — did steering break normal behavior? Mean **KL divergence**
+  from the unsteered model on one shared, vector-agnostic **benign set**
+  (`data/benign_prompts.txt`). This is heretic's key trick: KL on benign
+  inputs is a fast proxy for "did I damage general capability", no
+  benchmark run needed.
+
+Bring your own vector — the intent is **auto-discoverable**, no hand-labeling:
+
+    # 1. discover what the vector suppresses/promotes -> intent file
+    python3 experiments/make_intent.py --key myvec --id my_direction --layer 20
+    # 2. calibrate (layer, scale) by co-minimizing miss + lambda*KL
+    python3 experiments/autocalibrate.py --key myvec --id my_direction --trials 40
+
+`make_intent.py` runs the vector strongly over the benign prompts and
+harvests the concepts it most reliably removes — turning *any* vector into
+a calibratable one. (heretic knows a priori it targets refusals; here the
+target is discovered from the vector itself.)
+
+Pure scoring logic is unit-tested server-free: `pytest tests_steermech.py`.
+
 ## External methods
 
 Not everything here is home-grown. [heretic](https://github.com/p-e-w/heretic)
