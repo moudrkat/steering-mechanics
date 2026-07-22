@@ -10,6 +10,9 @@ Division of labor (why this repo exists):
 - **brainscope** (OSS) — generic *instruments*: `/replay {forced: true}`
   teacher-forced causal diff, `/directions/{name}/unembed` direct logit
   attribution, per-token cos & J-lens capture.
+- **[hidden-directions](https://github.com/moudrkat/hidden-directions)** —
+  the *factory*: extract, auto-calibrate (`hidden-directions calibrate` —
+  the optimizer this repo prototyped), bake, audit.
 - **this repo** — *experiments on specific vectors*: dose–response
   curves, direct-vs-circuit splits, component attribution, patching studies.
 - app-specific eval scaffolds and traces never enter this repo — experiments
@@ -169,9 +172,9 @@ datasets**, so efficacy and model-damage never get conflated:
 Bring your own vector — the intent is **auto-discoverable**, no hand-labeling:
 
     # 1. discover what the vector suppresses/promotes -> intent file
-    python3 experiments/make_intent.py --key myvec --id my_direction --layer 20
+    hidden-directions discover-intent --key myvec --id my_direction --layer 20
     # 2. calibrate (layer, scale) by co-minimizing miss + lambda*KL
-    python3 experiments/autocalibrate.py --key myvec --id my_direction --trials 40
+    hidden-directions calibrate --key myvec --id my_direction --trials 40
 
 `make_intent.py` runs the vector strongly over the benign prompts and
 harvests the concepts it most reliably removes — turning *any* vector into
@@ -194,7 +197,7 @@ plugs in at four points:
 2. **KL divergence as the damage metric** — adopting heretic's
    quality-control idea as the dose–response y-axis ("what a dose costs in
    intelligence"), replacing coarse coherence heuristics.
-3. **TPE auto-calibration** *(implemented — `experiments/autocalibrate.py`)*
+3. **TPE auto-calibration** *(implemented — now shipped as `hidden-directions calibrate`)*
    — heretic's Optuna loop, pointed at a steering eval: (layer, scale) found
    by co-minimizing behavioral miss + KL divergence, the same principled
    damage guardrail heretic uses for abliteration. Manual sweep → optimizer.

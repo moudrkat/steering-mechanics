@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "steering-mechanics"
 version = "0.1.0"
-description = "Mechanistic inspection and heretic-grade auto-calibration of steering vectors, driven through brainscope."
+description = "Mechanistic experiments on steering vectors, driven through brainscope; calibration core lives in hidden-directions[calibrate]."
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}

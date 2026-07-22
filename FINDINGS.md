@@ -150,8 +150,12 @@ Conclusion: a cheap disposition proxy is fine for auto-*discovery* and for
 generic vectors, but heretic-grade calibration of a *specific production
 behavior* needs the real behavioral eval as the efficacy function
 (generate + classify the violation), not the proxy. This is exactly why
-heretic measures refusals with a classifier rather than a shortcut. Wiring
-the real eval as a pluggable efficacy is the next step (TODO).
+heretic measures refusals with a classifier rather than a shortcut.
+
+**Done since:** an intent file carrying `violation_regex` (+ optional
+`tools`/`tool_choice`/`nudge`) now switches efficacy to exactly that — full
+generation under deployment conditions + violation classifier
+(`generate_efficacy`, shipped in `hidden_directions.calibrate`).
 
 ## TODO (perf): clean-side cache lands ~3x
 brainscope now caches the prompt-keyed clean side of a forced diff (baseline
