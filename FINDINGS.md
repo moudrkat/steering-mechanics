@@ -61,7 +61,7 @@ ordering robust across positions. Next: (iv) which heads carry the +Δ, and
 Heads 18/19/30/13 write WITH the vector (+1.20/+1.08/+0.67/+0.50); heads
 17/31/26/2 write AGAINST (−1.13/−0.90/−0.89/−0.74). The net +1.2 attention
 amplification is the residue of a ±10 battle across 32 heads — resistance
-is everywhere, attention roughly draws, the MLP loses only to the dose.
+is everywhere, attention roughly draws, the MLP loses only to the dose. Animated: `fig/tug_of_war.gif` (reveal of the measured per-head deltas).
 
 ## Fine dose-response: threshold ≈ 2.0–2.5, but effects start below it
 
