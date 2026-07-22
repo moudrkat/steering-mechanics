@@ -18,7 +18,7 @@ Division of labor (why this repo exists):
   land in `results/`, which is gitignored for text-bearing files).
 
 
-## Quickstart
+## ⚡ Run in 30 s (no GPU)
 
 **Install** (Python ≥ 3.10):
 
@@ -26,7 +26,7 @@ Division of labor (why this repo exists):
 pip install -e .        #  or:  make install
 ```
 
-**See it work in 2 minutes — no GPU, no server:**
+**Then:**
 
 ```bash
 make demo               #  == python -m steermech.plot
@@ -189,3 +189,36 @@ plugs in at four points:
 4. **A community reference vector** — the Arditi-style refusal direction as
    an externally defined subject for the whole program: is the MLP
    self-repair universal, or vector-specific?
+## Where this sits in the lab
+
+```mermaid
+flowchart LR
+    hd["🧭 hidden-directions<br/>behavior → vector"]
+    bs(["🧠 brainscope<br/>watch the model think"])
+    hw["🔥 hotwire-vllm<br/>steering in production"]
+    st["🕹️ steeropathy<br/>agents talk via activations"]
+    tm["⚖️ in-two-minds<br/>agent hesitating between tools"]
+    sm["🧪 steering-mechanics<br/>how steering actually works"]
+
+    hd -->|vectors| bs
+    hd -->|vector + passport| hw
+    bs --> st
+    bs --> tm
+    bs -->|causal replay| sm
+    hw -.->|vector under study| sm
+
+    click hd "https://github.com/moudrkat/hidden-directions"
+    click bs "https://github.com/moudrkat/brainscope"
+    click hw "https://github.com/moudrkat/hotwire-vllm"
+    click st "https://github.com/moudrkat/steeropathy"
+    click tm "https://github.com/moudrkat/in-two-minds"
+    click sm "https://github.com/moudrkat/steering-mechanics"
+
+    classDef dim fill:#f6f8fa,stroke:#d0d7de,color:#57606a;
+    classDef here fill:#8957e5,stroke:#6e40c9,color:#ffffff;
+    class hd,bs,hw,st,tm,sm dim;
+    class sm here;
+```
+
+*Highlighted = this repo. The full lab map (with the two other repos' stories) lives on [moudrkat](https://github.com/moudrkat).*
+
