@@ -26,6 +26,11 @@ Division of labor (why this repo exists):
    movers vs what steering actually suppressed at matched positions. The
    overlap ratio is the single most informative number about *how* the
    vector works: direct logit push vs circuit-mediated suppression.
+2b. **Tuned-lens quantification** — replace the top-5 set-membership
+   readout with tuned-lens Δ log-prob per layer/position (brainscope has a
+   fitted tuned lens for Qwen3-4B in `lenses/`). Continuous instead of
+   binary: no rank-6 blindness, and dose–response gets a real y-axis.
+   Needs the forced pass to expose tuned-lens readouts. TODO.
 3. **Component attribution** — which sublayer (attn vs MLP) at L21 amplifies
    the injected delta (the peak lands one layer after injection). Needs a
    small brainscope extension to the forced pass (record probe norms per
