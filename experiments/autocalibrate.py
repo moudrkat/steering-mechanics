@@ -36,7 +36,7 @@ NEUTRAL = {"messages": [
 TARGETS = {"reminder", "notification", "schedule", "task", "checklist", "todo"}
 
 
-def measure(direction_id, layer, scale, max_tokens=50) -> dict:
+def measure(direction_id, layer, scale, max_tokens) -> dict:
     body = {**NEUTRAL,
             "steering": {"id": direction_id, "layer": layer, "scale": scale,
                          "decode_only": True},
@@ -61,13 +61,14 @@ def main() -> None:
                     help="weight of KL (model damage) in the objective")
     ap.add_argument("--layers", nargs=2, type=int, default=[8, 28])
     ap.add_argument("--scales", nargs=2, type=float, default=[0.5, 8.0])
+    ap.add_argument("--max-tokens", type=int, default=40)
     ap.add_argument("--out", default="results/autocalibrate.json")
     args = ap.parse_args()
 
     trials = []
 
     def objective(layer, scale):
-        m = measure(args.id, layer, scale)
+        m = measure(args.id, layer, scale, args.max_tokens)
         score = m["miss"] + args.lambda_kl * m["kl"]
         rec = {"layer": layer, "scale": round(scale, 2), "score": round(score, 4), **m}
         trials.append(rec)
