@@ -128,3 +128,34 @@ that matches your deployment.
 
 Figure: `fig/calibration_landscape.png` (rendered offline by
 `steermech-plot` from `examples/autocalibrate.json`).
+
+## The efficacy proxy is the weak link — confirmed on the real task
+
+The auto-calibration measures efficacy as J-lens *disposition* suppression
+(concepts that vanish from the model's forming-words). On generic short
+prompts this roughly tracked the vector's effect. On the actual production
+scaffold (13k-token DISCUSS prompts) it collapses: at scale 3, layers
+16/20/24 all score miss 1.00 — the proxy sees *nothing* suppressed, even
+though the vector demonstrably suppresses task-offering in production.
+
+Why the proxy fails here:
+- it does not reproduce the deployment conditions (no task-nudge, no forced
+  SuggestMessages tool) — so the unsteered baseline may not form the avoid
+  concepts at all, leaving nothing to suppress;
+- J-lens dispositions are not the behavioral event. The real eval generates
+  the tool call and checks its *content* for a task offer; the proxy reads
+  forming-words in the layers. Different signals.
+
+Conclusion: a cheap disposition proxy is fine for auto-*discovery* and for
+generic vectors, but heretic-grade calibration of a *specific production
+behavior* needs the real behavioral eval as the efficacy function
+(generate + classify the violation), not the proxy. This is exactly why
+heretic measures refusals with a classifier rather than a shortcut. Wiring
+the real eval as a pluggable efficacy is the next step (TODO).
+
+## TODO (perf): clean-side cache lands ~3x
+brainscope now caches the prompt-keyed clean side of a forced diff (baseline
+gen + clean pass, both steering-independent), so calibrating one vector over
+many (layer,scale) trials on the same prompts pays the expensive scaffold
+pass once. On a 13k-token scaffold one forced diff is ~100s; the cache turns
+an N-trial-per-prompt sweep from N×100s into ~100s + N×(steered only).
