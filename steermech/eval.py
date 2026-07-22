@@ -95,8 +95,10 @@ def efficacy(vector_key, direction_id, layer, scale, *, n_prompts=None,
     intent = load_intent(vector_key)
     prompts = intent["prompts"][:n_prompts] if n_prompts else intent["prompts"]
     spec = {"id": direction_id, "layer": layer, "scale": scale, "decode_only": True}
-    diffs = [forced_diff([{"role": "user", "content": p}], spec, max_tokens=max_tokens)
-             for p in prompts]
+    # a prompt entry is either a user string or a full message list (system+user)
+    def _msgs(p):
+        return p if isinstance(p, list) else [{"role": "user", "content": p}]
+    diffs = [forced_diff(_msgs(p), spec, max_tokens=max_tokens) for p in prompts]
     return score_efficacy(diffs, intent.get("avoid", []), intent.get("target", []))
 
 
