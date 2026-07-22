@@ -1,0 +1,174 @@
+# Research plan: when does a steering vector generalize from calibration to deployment — and what do steering evals actually measure?
+
+*Pre-registered 2026-07. This document is written before the experiments; the
+point of pre-registration is that the hypotheses below can lose.*
+
+## Motivation — two accidents worth taking seriously
+
+Two things happened in this lab in July 2026 that the steering literature
+mostly doesn't talk about:
+
+1. **The regime accident.** A preference-suppression vector, carefully
+   calibrated under generation-only steering, was deployed into a serving
+   stack that also steered the ~13k-token prompt. The model collapsed into
+   repetition. Same vector, same scale, same layer — the only change was
+   *how many positions* received the addition. The fix (`decode_only`) is
+   now a flag in [hotwire-vllm](https://github.com/moudrkat/hotwire-vllm);
+   the *scaling law behind the accident* was never measured.
+2. **The proxy accident.** An auto-calibration loop scoring efficacy by
+   concept suppression in the model's forming-words (a logit-lens/J-lens
+   disposition proxy) found clean optima on short generic prompts — and
+   scored a *known-working* vector as a total miss (1.00) on the real 13k
+   task it demonstrably fixes in deployment. The cheap metric and the
+   behavioral truth diverged completely, in the direction that matters.
+
+Both accidents are instances of one question:
+
+> **Steering vectors are calibrated in one condition and deployed in
+> another. What actually transfers — and what do the evals we calibrate
+> against actually measure?**
+
+This is a live topic: recent critical work reports steering vectors failing
+to generalize across prompts and settings. What this lab can add is
+unusual: a full open pipeline from calibration through production serving
+(brainscope → hotwire-vllm), an instrumented replay of a real deployment
+failure, and the ability to measure *both* proxy and behavioral efficacy on
+the same prompts under identical, teacher-forced conditions.
+
+## Research questions and falsifiable hypotheses
+
+### RQ1 — Dose–context scaling: what fried the vector?
+
+**H1: coherence collapse is governed by the total injected mass (scale ×
+number of steered positions), not by per-token scale alone.** A vector at
+scale 3 over 48 generated tokens and the same vector at scale 3 over 13k
+prefill + 48 generated tokens are different doses, and the collapse
+threshold should be predictable from steered-position count.
+
+*Design:* grid over scale × context length (≈0.5k / 2k / 8k / 16k) ×
+regime (decode-only vs full), measuring behavioral efficacy, coherence
+(repetition/perplexity heuristics + KL), and damage. One vector family
+first, then the survivors of RQ4's model list.
+
+*H1 loses if:* the collapse threshold tracks per-token scale regardless of
+steered-position count — i.e. a scale that is safe at 0.5k full-steer stays
+safe at 16k full-steer. (Alternative outcome worth having: collapse is
+driven by *prefill contamination* specifically — steering the instruction
+tokens — rather than total mass; distinguishable by steering only the first
+N prompt tokens vs the last N at matched mass.)
+
+### RQ2 — Eval validity: when do disposition proxies track behavior?
+
+**H2: proxy efficacy (concept suppression in forming-words) correlates with
+behavioral efficacy (generate + classify the violation) on short generic
+prompts, and the correlation decays as context length and task-specificity
+grow.** The July data point is the extreme end: r ≈ perfect on generic
+15-prompt sets, total divergence on the 13k-token real task.
+
+*Design:* for each (vector, layer, scale) point sampled from RQ1's grid,
+score the same prompts both ways — proxy (teacher-forced suppressed/promoted
+concepts) and behavioral (real generation under deployment conditions +
+violation classifier). Report the proxy↔behavior correlation as a function
+of context length and of "eliciting pressure" (with/without a task-nudge in
+the system prompt).
+
+*H2 loses if:* the correlation is flat (proxies are fine everywhere — good
+news, calibration can stay cheap) or uniformly poor (proxies are useless
+even on short prompts — also good to know; heretic-style shortcuts would be
+unjustified for steering generally).
+
+### RQ3 — Calibration transfer: what part of the optimum is real?
+
+**H3: the optimal *layer* transfers across eval sets; the optimal *scale*
+does not.** July data: a generic eval put the optimum at L25–28 for a vector
+that production experience placed at L20 — while dose thresholds were
+consistent across settings. Layer may encode *where the behavior lives*
+(a property of the model+vector), scale may encode *how hard the eval
+pushes* (a property of the eval).
+
+*Design:* run the full calibrator (behavioral efficacy, Optuna TPE,
+`hidden-directions calibrate`) independently on: (a) generic benign-derived
+intents, (b) task-specific short evals, (c) the long-context deployment-like
+eval. Compare the found (layer, scale) optima and, crucially,
+cross-evaluate: how much efficacy/damage does eval-A's optimum lose when
+scored under eval B?
+
+*H3 loses if:* optima are idiosyncratic per eval in both coordinates (then
+"calibration" without the deployment eval is theater and the paper's
+message becomes *calibrate on the real thing or don't bother*), or fully
+transferable (then cheap generic calibration is vindicated).
+
+### RQ4 — Is any of this architecture-general?
+
+Repeat the core grids (reduced resolution) on 3–4 models that fit the lab's
+hardware: Qwen3-4B, Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct, Phi-3.5.
+Vectors re-extracted per model with the same contrastive recipes
+([hidden-directions](https://github.com/moudrkat/hidden-directions)).
+No hypothesis beyond: report which effects replicate. A dose-scaling law
+that holds on one model family is an anecdote; on three it is a finding.
+
+## Baselines (the part steering work keeps skipping)
+
+- **No-steer baseline** for every cell (violation rate, KL trivially 0).
+- **Prompting baseline:** the strongest system-prompt instruction we can
+  write for the same behavioral goal, scored with the same classifier. The
+  interesting quantity is *damage at matched efficacy*: if prompting reaches
+  the same violation rate, steering's case must rest on damage/latency/
+  robustness, and we should say so plainly.
+- **Random-direction control** at matched norm for damage measurements —
+  KL from *any* injection vs KL from *this* injection.
+
+## Methods & rigor floor
+
+- **N:** ≥ 30 prompts per behavioral cell (bootstrap 95% CIs on violation
+  rates); benign damage set expanded from 15 to ≥ 100 prompts. No headline
+  claim on N < 30.
+- **Classifiers:** regex/substring first (auditable), spot-checked by hand
+  on ≥ 10% of generations; classifier disagreement reported, not hidden.
+- **Teacher-forcing** for all proxy measurements (identical context both
+  passes — the causal-replay instrument in brainscope), greedy decoding for
+  behavioral runs.
+- **Pre-registered thresholds:** "correlated" means Spearman ρ ≥ 0.7 with
+  CI excluding 0.3; "transfers" means ≤ 20% efficacy loss under
+  cross-evaluation. Chosen now, before the data.
+- **Everything reproducible:** configs + seeds + result JSONs committed
+  here; private deployment scaffolds referenced only via `$SCAFFOLD_JSON`
+  (the public pipeline runs end-to-end on public prompt sets).
+
+## Compute budget (measured, not guessed)
+
+On the lab's 16 GB card: a short-context forced diff ≈ 2 s; a 13k-token
+one ≈ 100 s (≈ 35 s with brainscope's clean-side cache); a long-context
+behavioral generation ≈ 30–60 s. The full RQ1 grid at 4 lengths × 6 scales
+× 2 regimes × 30 prompts ≈ 4.3k measurements, dominated by the long-context
+cells — roughly 40–60 GPU-hours, i.e. a few weeks of nights. RQ2 rides on
+RQ1's grid (same runs, scored twice). RQ3 is ~15 calibrator runs. RQ4
+multiplies the reduced core by 3. Feasible solo; not comfortable. The
+clean-side cache and small-N pilots first are what make it fit.
+
+## Timeline (6 months, evenings-and-weekends honest)
+
+| Month | Milestone |
+|---|---|
+| 1 | Literature pass (ActAdd, refusal-direction, CAA, representation engineering, ITI, steering-reliability critiques, heretic). Expand benign set, harden classifiers, pilot N=5 per cell to fix ranges. **Freeze this plan.** |
+| 2–3 | RQ1 full grid on Qwen3-4B. Write up the scaling result whatever it shows. |
+| 3–4 | RQ2 scoring + analysis (data mostly shared with RQ1). |
+| 5 | RQ3 calibrator runs; RQ4 reduced grids on the other models. |
+| 6 | Write-up: an Alignment Forum / LessWrong post with full data, then a workshop-length paper (BlackboxNLP or a NeurIPS/ICLR interp workshop). |
+
+## Scope discipline
+
+Until the write-up ships: **no new repos, no new instruments** beyond
+bugfixes and what the experiments strictly require. The lab graph is
+frozen at six nodes. Instruments serve the question now, not the other way
+around.
+
+## What already exists toward this
+
+- Dose–response pilot (threshold ≈ 2–2.5 for imprint visibility, one
+  vector, one model) — [FINDINGS.md](FINDINGS.md)
+- The regime accident, mechanism and fix — hotwire-vllm `decode_only`
+- The proxy collapse data point — [FINDINGS.md](FINDINGS.md)
+- The full measurement pipeline: teacher-forced replay + KL + behavioral
+  eval with `violation_regex` (`hidden_directions.calibrate`), clean-side
+  caching for long contexts (brainscope)

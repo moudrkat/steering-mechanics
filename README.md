@@ -21,6 +21,14 @@ Division of labor (why this repo exists):
   land in `results/`, which is gitignored for text-bearing files).
 
 
+## 🔭 The research program
+
+This repo is moving from *instrument-building* to a single pre-registered
+question: **when does a steering vector generalize from calibration to
+deployment — and what do steering evals actually measure?** Hypotheses,
+baselines, N, and what would falsify them: **[RESEARCH_PLAN.md](RESEARCH_PLAN.md)**.
+Findings so far: [FINDINGS.md](FINDINGS.md).
+
 ## ⚡ Run in 30 s (no GPU)
 
 **Install** (Python ≥ 3.10):
