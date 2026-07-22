@@ -102,9 +102,10 @@ plugs in at four points:
 2. **KL divergence as the damage metric** — adopting heretic's
    quality-control idea as the dose–response y-axis ("what a dose costs in
    intelligence"), replacing coarse coherence heuristics.
-3. **TPE auto-calibration** — heretic's Optuna loop, pointed at a steering
-   eval: (layer, scale, regime) as an optimization problem instead of a
-   manual sweep.
+3. **TPE auto-calibration** *(implemented — `experiments/autocalibrate.py`)*
+   — heretic's Optuna loop, pointed at a steering eval: (layer, scale) found
+   by co-minimizing behavioral miss + KL divergence, the same principled
+   damage guardrail heretic uses for abliteration. Manual sweep → optimizer.
 4. **A community reference vector** — the Arditi-style refusal direction as
    an externally defined subject for the whole program: is the MLP
    self-repair universal, or vector-specific?
