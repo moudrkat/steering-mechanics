@@ -2,7 +2,7 @@
 
 **Mechanistic inspection of steering vectors**, driven
 through [brainscope](https://github.com/moudrkat/brainscope)'s HTTP API.
-Scripts here are thin clients — the GPU work happens on the aorus box, this
+Scripts here are thin clients — the GPU work happens on the $GPU_HOST box, this
 repo holds experiments, aggregated results, and notes.
 
 Division of labor (why this repo exists):
@@ -44,29 +44,29 @@ Division of labor (why this repo exists):
 
 ## Runbook: how to continue tomorrow
 
-Everything below assumes the aorus box (192.168.1.9). **The GPU runs ONE
+Everything below assumes a GPU box reachable as `$GPU_HOST` (set `BRAINSCOPE_BASE=http://$GPU_HOST:8010` for the experiment scripts; concrete personal values live in `notes/local-runbook.md`, which is gitignored). **The GPU runs ONE
 thing at a time** — hotwire-vLLM (the app backend) or brainscope (the lab).
 
 ```bash
 # 0) what is on the GPU right now?
-ssh aorus 'nvidia-smi --query-compute-apps=pid,process_name --format=csv,noheader'
+ssh $GPU_HOST 'nvidia-smi --query-compute-apps=pid,process_name --format=csv,noheader'
 
 # 1) stop whatever holds the GPU
-ssh aorus 'nvidia-smi --query-compute-apps=pid --format=csv,noheader | xargs -r kill -9'
+ssh $GPU_HOST 'nvidia-smi --query-compute-apps=pid --format=csv,noheader | xargs -r kill -9'
 
 # 2a) start BRAINSCOPE (lab: replay, forced diff, unembed) — port 8010
-ssh aorus 'cd ~/tmp/brainscope-test && setsid nohup env \
-  HF_HOME=~/projects/science/instruct-steer/hf-cache HF_HUB_OFFLINE=1 \
+ssh $GPU_HOST 'cd $BRAINSCOPE_DIR && setsid nohup env \
+  HF_HOME=$HF_CACHE HF_HUB_OFFLINE=1 \
   PYTHONPATH=. .venv/bin/python launch_bs.py > ~/bs_replay.log 2>&1 < /dev/null &'
-curl -s http://192.168.1.9:8010/info          # wait until it answers
-curl -s -X POST http://192.168.1.9:8010/jlens -d '{"on": true}' \
+curl -s http://$GPU_HOST:8010/info          # wait until it answers
+curl -s -X POST http://$GPU_HOST:8010/jlens -d '{"on": true}' \
   -H 'Content-Type: application/json'          # J-lens on for disposition diffs
 
 # 2b) or start HOTWIRE-VLLM (app backend) — port 8001
-ssh aorus 'setsid nohup env HF_HOME=~/projects/science/instruct-steer/hf-cache \
+ssh $GPU_HOST 'setsid nohup env HF_HOME=$HF_CACHE \
   HF_HUB_OFFLINE=1 VLLM_USE_FLASHINFER_SAMPLER=0 \
-  HOTWIRE_VECTORS=~/hotwire-vectors HOTWIRE_SLOTS=128 \
-  ~/tmp/vllm-lens-test/.venv/bin/vllm serve Qwen/Qwen3-4B-Instruct-2507 \
+  HOTWIRE_VECTORS=$VECTORS_DIR HOTWIRE_SLOTS=128 \
+  $VLLM_VENV/bin/vllm serve Qwen/Qwen3-4B-Instruct-2507 \
   --port 8001 --served-model-name qwen3-8b qwen3-4b --max-model-len 32768 \
   --gpu-memory-utilization 0.85 --enable-auto-tool-choice \
   --tool-call-parser hermes > ~/hotwire-serve.log 2>&1 < /dev/null &'
@@ -79,11 +79,11 @@ python3 experiments/direct_logit.py
 ```
 
 Key locations:
-- vectors served to both backends: `aorus:~/hotwire-vectors/*.pt`
-  (+ source of truth `aorus:~/projects/science/brainscope/dirs.json`)
-- brainscope deploy on aorus: rsync `brainscope/server.py` →
-  `aorus:tmp/brainscope-test/brainscope/server.py`, then restart (step 1+2a)
-- figures & their HTML sources: `~/projekty/brainscope/notes/steering_*.{html,png}`
+- vectors served to both backends: `$GPU_HOST:$VECTORS_DIR/*.pt`
+  (+ source of truth `$GPU_HOST:$DIRS_JSON`)
+- brainscope deploy on $GPU_HOST: rsync `brainscope/server.py` →
+  `$GPU_HOST:tmp/brainscope-test/brainscope/server.py`, then restart (step 1+2a)
+- figures & their HTML sources: `<brainscope>/notes/steering_*.{html,png}`
   (re-render: `google-chrome --headless=new --screenshot=X.png
   --window-size=1200,H --force-device-scale-factor=2 file://$PWD/X.html`)
 - application-side evals and parity live in the application's own

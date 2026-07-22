@@ -16,7 +16,7 @@ import statistics
 import urllib.request
 from pathlib import Path
 
-BASE = os.environ.get("BRAINSCOPE_BASE", "http://192.168.1.9:8010")
+BASE = os.environ.get("BRAINSCOPE_BASE", "http://localhost:8010")
 
 NEUTRAL = {"messages": [
     {"role": "system", "content": "You are a helpful assistant. The user is "
