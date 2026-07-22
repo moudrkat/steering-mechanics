@@ -10,8 +10,12 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def load_intent(vector_key: str) -> dict:
-    """Load a vector's intent spec (avoid/target concepts + eliciting prompts)."""
-    p = ROOT / "data/vectors" / f"{vector_key}.intent.json"
+    """Load a vector's intent spec. `vector_key` is either a key under
+    data/vectors/<key>.intent.json or a direct path to an intent JSON
+    (so private intents can live outside this repo)."""
+    p = Path(vector_key)
+    if not p.exists():
+        p = ROOT / "data/vectors" / f"{vector_key}.intent.json"
     return json.loads(p.read_text())
 
 
