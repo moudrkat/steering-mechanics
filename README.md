@@ -86,5 +86,5 @@ Key locations:
 - figures & their HTML sources: `~/projekty/brainscope/notes/steering_*.{html,png}`
   (re-render: `google-chrome --headless=new --screenshot=X.png
   --window-size=1200,H --force-device-scale-factor=2 file://$PWD/X.html`)
-- eval & parity for the app-side vector work: `Agent-loop/steering_lab/`
-  (see its REPRODUCE.md)
+- application-side evals and parity live in the application's own
+  (private) repo — this repo stays app-agnostic
