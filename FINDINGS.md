@@ -88,3 +88,24 @@ without changing the top token. A logit-margin version of this experiment
 would show the sub-threshold shifts the argmax test hides. That is the
 natural next refinement (cheap: the forced pass already captures logprobs
 for the KL work).
+
+## Is the opposition active or mechanical? — it saturates, it doesn't escalate
+
+Head deltas measured at injection scales 1 / 3 / 6 (delta/scale is flat if
+linear). Median nonlinearity across active heads: **31%** — real curvature,
+but the shape is **saturation**, not escalation:
+
+- opposing heads weaken *per unit* as dose rises (h17: −0.39 → −0.34 → −0.22
+  delta/scale; h2 similar) — they do NOT push back harder when pushed harder
+- amplifying heads also saturate (h18: 0.23 → 0.34 → 0.36)
+
+If the opposition were active self-repair, it should escalate with dose to
+keep pace. It doesn't — it saturates (softmax hitting its ceiling is the
+likely cause). So the data does **not** support a "the model fights back"
+reading. The opposition is real but **passive**: the vector wins not by
+overpowering an active defense, but because the amplifying heads start
+slightly ahead and the opposers cannot ramp up.
+
+Caveat: this dose test doesn't fully separate value-side propagation from
+attention-pattern change — a frozen-attention patch would. But it cleanly
+rules out *escalating* resistance, which is what "self-repair" would need.
