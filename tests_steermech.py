@@ -49,3 +49,18 @@ def test_benign_and_intent_load():
 if __name__ == "__main__":
     import subprocess
     subprocess.run([sys.executable, "-m", "pytest", __file__, "-q"])
+
+
+def test_message_text_gathers_content_and_toolcalls():
+    from steermech.eval import _message_text
+    msg = {"content": "hello", "tool_calls": [
+        {"function": {"name": "SuggestMessages", "arguments": '{"Message": "make a task"}'}}]}
+    t = _message_text(msg)
+    assert "hello" in t and "SuggestMessages" in t and "make a task" in t
+
+
+def test_message_text_dict_arguments():
+    from steermech.eval import _message_text
+    msg = {"content": None, "tool_calls": [
+        {"function": {"name": "X", "arguments": {"a": "reminder"}}}]}
+    assert "reminder" in _message_text(msg)

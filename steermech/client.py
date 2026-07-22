@@ -26,3 +26,22 @@ def unembed(direction_id, layer, top=60, timeout=120):
             f"{BASE}/directions/{direction_id}/unembed?layer={layer}&top={top}",
             timeout=timeout) as r:
         return json.loads(r.read())
+
+
+def chat(messages, spec=None, *, tools=None, tool_choice=None, max_tokens=300,
+         timeout=600):
+    """Real generation via /v1/chat/completions, with optional per-request
+    steering + tools + forced tool_choice. Returns the raw OpenAI-shaped
+    response (message may carry content and/or tool_calls)."""
+    body = {"messages": messages, "max_tokens": max_tokens, "temperature": 0}
+    if spec is not None:
+        body["steering"] = spec
+    if tools is not None:
+        body["tools"] = tools
+    if tool_choice is not None:
+        body["tool_choice"] = tool_choice
+    req = urllib.request.Request(BASE + "/v1/chat/completions",
+                                 json.dumps(body).encode(),
+                                 {"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return json.loads(r.read())

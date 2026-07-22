@@ -115,7 +115,70 @@ def damage(direction_id, layer, scale, *, n_prompts=8, max_tokens=24):
 
 def objective(vector_key, direction_id, layer, scale, lambda_kl, *,
               eff_prompts=None, dmg_prompts=8):
-    e = efficacy(vector_key, direction_id, layer, scale, n_prompts=eff_prompts)
+    """Efficacy + KL damage. If the intent carries a `violation_regex`, use
+    REAL behavioral efficacy (generate under deployment conditions + classify);
+    otherwise the cheap J-lens disposition proxy."""
+    intent = load_intent(vector_key)
+    if intent.get("violation_regex"):
+        prompts = intent["prompts"][:eff_prompts] if eff_prompts else intent["prompts"]
+        e = generate_efficacy(prompts, direction_id, layer, scale,
+                              classifier=intent["violation_regex"],
+                              tools=intent.get("tools"),
+                              tool_choice=intent.get("tool_choice"),
+                              nudge=intent.get("nudge", ""),
+                              max_tokens=intent.get("max_tokens", 300))
+    else:
+        e = efficacy(vector_key, direction_id, layer, scale, n_prompts=eff_prompts)
     d = damage(direction_id, layer, scale, n_prompts=dmg_prompts)
     return {"score": round(combined_objective(e["miss"], d["kl"], lambda_kl), 4),
             "miss": e["miss"], "kl": d["kl"], "efficacy": e, "damage": d}
+
+
+def _message_text(msg: dict) -> str:
+    """All text the model produced: content + tool-call arguments."""
+    parts = [msg.get("content") or ""]
+    for tc in msg.get("tool_calls") or []:
+        fn = tc.get("function", {})
+        parts.append(fn.get("name", ""))
+        parts.append(fn.get("arguments", "") if isinstance(fn.get("arguments"), str)
+                     else json.dumps(fn.get("arguments") or {}, ensure_ascii=False))
+    return "\n".join(parts)
+
+
+def generate_efficacy(prompts, direction_id, layer, scale, *, classifier,
+                      tools=None, tool_choice=None, nudge="", max_tokens=300):
+    """REAL behavioral efficacy: generate a completion per prompt under
+    deployment conditions (steering + tools + forced tool_choice + nudge),
+    then run `classifier(text)->bool` for a violation. miss = violation rate.
+    No J-lens proxy — this is the actual behavior the vector must change.
+
+    `classifier` is a callable(str)->bool or a regex string (match == violation).
+    `prompts` entries are user strings or full message lists; `nudge` is
+    appended to the system message (or added as one).
+    """
+    import re
+    from .client import chat
+    if isinstance(classifier, str):
+        pat = re.compile(classifier, re.I)
+        classifier = lambda t: bool(pat.search(t))
+    spec = {"id": direction_id, "layer": layer, "scale": scale, "decode_only": True}
+
+    def _msgs(p):
+        m = p if isinstance(p, list) else [{"role": "user", "content": p}]
+        if nudge:
+            m = [dict(x) for x in m]
+            sys_i = next((i for i, x in enumerate(m) if x["role"] == "system"), None)
+            if sys_i is None:
+                m.insert(0, {"role": "system", "content": nudge})
+            else:
+                m[sys_i]["content"] = m[sys_i]["content"] + "\n" + nudge
+        return m
+
+    violations = 0
+    for p in prompts:
+        resp = chat(_msgs(p), spec, tools=tools, tool_choice=tool_choice,
+                    max_tokens=max_tokens)
+        text = _message_text(resp["choices"][0]["message"])
+        violations += bool(classifier(text))
+    n = max(1, len(prompts))
+    return {"miss": round(violations / n, 3), "violations": violations, "n": len(prompts)}
