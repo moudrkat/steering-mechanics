@@ -100,12 +100,23 @@ transferable (then cheap generic calibration is vindicated).
 
 ### RQ4 — Is any of this architecture-general?
 
-Repeat the core grids (reduced resolution) on 3–4 models that fit the lab's
-hardware: Qwen3-4B, Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct, Phi-3.5.
+Two tiers, all within the lab's hardware (quantized where needed):
+
+- **Core (full reduced grids):** Qwen3-4B (the workhorse — RQ1–3 run here
+  first), Qwen3-8B, Llama-3.1-8B-Instruct — three sizes, two families.
+- **Replication sweep (coarse grid: 2 lengths × 3 scales × 2 regimes):**
+  Qwen2.5-7B-Instruct, Qwen3.5-9B, Phi-3.5, Gemma 3n E4B, and
+  gpt-oss-20b (MXFP4) as the stretch case — a quantized MoE is the most
+  different architecture the card can hold, and the most interesting
+  place for a dose-scaling law to break.
+
 Vectors re-extracted per model with the same contrastive recipes
-([hidden-directions](https://github.com/moudrkat/hidden-directions)).
-No hypothesis beyond: report which effects replicate. A dose-scaling law
-that holds on one model family is an anecdote; on three it is a finding.
+([hidden-directions](https://github.com/moudrkat/hidden-directions));
+models already exercised by the lab's serving evals are preferred, so
+misbehavior is attributable to steering, not to a model we can't run
+cleanly. No hypothesis beyond: report which effects replicate. A
+dose-scaling law that holds on one model family is an anecdote; on three
+families and a MoE it is a finding.
 
 ## Baselines (the part steering work keeps skipping)
 
@@ -142,8 +153,10 @@ one ≈ 100 s (≈ 35 s with brainscope's clean-side cache); a long-context
 behavioral generation ≈ 30–60 s. The full RQ1 grid at 4 lengths × 6 scales
 × 2 regimes × 30 prompts ≈ 4.3k measurements, dominated by the long-context
 cells — roughly 40–60 GPU-hours, i.e. a few weeks of nights. RQ2 rides on
-RQ1's grid (same runs, scored twice). RQ3 is ~15 calibrator runs. RQ4
-multiplies the reduced core by 3. Feasible solo; not comfortable. The
+RQ1's grid (same runs, scored twice). RQ3 is ~15 calibrator runs. RQ4's core tier multiplies the
+reduced grid by 3; the coarse replication sweep adds ~5 cheap runs plus
+one slow MoE run (gpt-oss-20b generates slowest — pilot first, drop if it
+can't hold N=30 nights). Feasible solo; not comfortable. The
 clean-side cache and small-N pilots first are what make it fit.
 
 ## Timeline (6 months, evenings-and-weekends honest)
