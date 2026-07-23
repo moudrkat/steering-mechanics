@@ -231,3 +231,21 @@ around.
    is scored on the transferred *curve* (the effectiveness window), with
    the argmax reported but not trusted — single-run TPE optima proved
    model-idiosyncratic even when a shared optimum existed.
+7. **Design changes from the adversarial literature pass (2026-07-23,
+   [LITERATURE.md](LITERATURE.md)).** (a) Every behavioral cell reports the
+   per-sample steerability distribution and fraction-anti-steered, not mean
+   efficacy alone; the calibration objective gains an anti-steered-tail
+   penalty. (b) Proxy prompts permute A/B and Yes/No assignments; every
+   proxy is validated against open-ended generation per behavior before
+   any H2 correlation is reported. (c) The damage tier gains a small
+   safety-probe battery (jailbreak-ASR + false-refusal) and evaluates the
+   second-moment-weighted quadratic alongside KL; coherence guards are
+   never cited as safety evidence. (d) A pre-calibration geometric screen
+   (cosine agreement of contrastive differences) runs before any
+   calibration; behaviors that fail it are declared unsteerable, not
+   force-calibrated. (e) H1 is tested with mass-matched factorial cells
+   (scale × steered-positions) with per-cell vector geometry logged, and a
+   sharp-threshold model is pre-registered as the explicit competitor to
+   the mass law. Novelty verdict from the same pass: all three claimed
+   contributions unclaimed in 2024–2026 literature; H1 is the weakest
+   pre-registered claim and is designed for accordingly.
