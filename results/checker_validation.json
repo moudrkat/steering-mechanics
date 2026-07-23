@@ -1,0 +1,44 @@
+{
+ "per_condition": {
+  "qual_4b_shared": {
+   "n": 12,
+   "agreement": 1.0,
+   "cohen_kappa": 1.0,
+   "false_positives": 0,
+   "false_negatives": 0,
+   "disagreements": []
+  },
+  "qual_4b_argmax8b": {
+   "n": 12,
+   "agreement": 1.0,
+   "cohen_kappa": 1.0,
+   "false_positives": 0,
+   "false_negatives": 0,
+   "disagreements": []
+  },
+  "qual_8b_shared": {
+   "n": 12,
+   "agreement": 1.0,
+   "cohen_kappa": 1.0,
+   "false_positives": 0,
+   "false_negatives": 0,
+   "disagreements": []
+  },
+  "qual_8b_argmax8b": {
+   "n": 12,
+   "agreement": 1.0,
+   "cohen_kappa": 1.0,
+   "false_positives": 0,
+   "false_negatives": 0,
+   "disagreements": []
+  }
+ },
+ "pooled": {
+  "n": 48,
+  "agreement": 1.0,
+  "cohen_kappa": 1.0,
+  "false_positives": 0,
+  "false_negatives": 0,
+  "disagreements": []
+ }
+}
