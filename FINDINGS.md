@@ -272,3 +272,24 @@ N=12/cell, full-checker miss, matched-regime KL, baseline-compared):
   comparison): on this behavior, steering never pushed a clean prompt into
   violation. The Tan-style anti-steerability threat did not materialize
   here — worth reporting per-behavior rather than assuming either way.
+
+## Third model, different depth: the window sits at fractional depth (2026-07-23)
+
+Qwen2.5-7B (28 layers — previous generation, different depth than the
+36-layer Qwen3 pair), same recipe, same eval, N=12/point. Baseline 9/12
+violations. At the reference scale 3, sweeping the depth question:
+
+- **L14: miss 0.08 · L16: 0.08 · L18: 0.00 — the working window.**
+- **L20 (raw-index transfer of the Qwen3 optimum): miss 0.25 with
+  incoherence creeping in — outside the window.**
+
+In fractional depth the window is 0.50–0.64 of the stack; the Qwen3 pair's
+window (L15–20/36) is 0.42–0.56. Across three models spanning two
+generations and two depths, the usable region consistently straddles
+~0.5–0.6 fractional depth, and raw layer indices mislead the moment depths
+differ. The L16 dose curve reproduces the same cliff shape as both Qwen3
+models (clean at 2–6 here, collapse at 8 with 11/12 incoherent). One
+anti-steered sample observed (under-dose, L16@1) — the first all day.
+
+Pilot-grade (N=12, one behavior); this is the question the paper campaign
+takes to N>=30 across ~8 models.

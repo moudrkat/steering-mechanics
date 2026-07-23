@@ -1,0 +1,96 @@
+{
+ "model": "qwen2.5-7b",
+ "n_layers": 28,
+ "rows": [
+  {
+   "layer": 16,
+   "scale": 1,
+   "miss": 0.667,
+   "violations": 8,
+   "incoherent": 0,
+   "anti": 1,
+   "base": 9,
+   "kl": 0.06795
+  },
+  {
+   "layer": 16,
+   "scale": 2,
+   "miss": 0.167,
+   "violations": 2,
+   "incoherent": 0,
+   "anti": 0,
+   "base": 9,
+   "kl": 0.41544
+  },
+  {
+   "layer": 16,
+   "scale": 3,
+   "miss": 0.083,
+   "violations": 1,
+   "incoherent": 0,
+   "anti": 0,
+   "base": 9,
+   "kl": 0.97179
+  },
+  {
+   "layer": 16,
+   "scale": 4,
+   "miss": 0.083,
+   "violations": 0,
+   "incoherent": 1,
+   "anti": 0,
+   "base": 9,
+   "kl": 2.2432
+  },
+  {
+   "layer": 16,
+   "scale": 6,
+   "miss": 0.0,
+   "violations": 0,
+   "incoherent": 0,
+   "anti": 0,
+   "base": 9,
+   "kl": 5.60588
+  },
+  {
+   "layer": 16,
+   "scale": 8,
+   "miss": 0.917,
+   "violations": 0,
+   "incoherent": 11,
+   "anti": 0,
+   "base": 9,
+   "kl": 11.10531
+  },
+  {
+   "layer": 20,
+   "scale": 3.0,
+   "miss": 0.25,
+   "violations": 1,
+   "incoherent": 2,
+   "anti": 0,
+   "base": 9,
+   "kl": 1.04458
+  },
+  {
+   "layer": 18,
+   "scale": 3.0,
+   "miss": 0.0,
+   "violations": 0,
+   "incoherent": 0,
+   "anti": 0,
+   "base": 9,
+   "kl": 1.33141
+  },
+  {
+   "layer": 14,
+   "scale": 3.0,
+   "miss": 0.083,
+   "violations": 1,
+   "incoherent": 0,
+   "anti": 0,
+   "base": 9,
+   "kl": 0.43211
+  }
+ ]
+}
