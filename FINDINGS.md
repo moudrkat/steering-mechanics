@@ -163,3 +163,28 @@ gen + clean pass, both steering-independent), so calibrating one vector over
 many (layer,scale) trials on the same prompts pays the expensive scaffold
 pass once. On a 13k-token scaffold one forced diff is ~100s; the cache turns
 an N-trial-per-prompt sweep from N×100s into ~100s + N×(steered only).
+
+## Disposition proxies go blind on reasoning models (2026-07-23)
+
+First cross-model night: the no-tasks pref vector re-extracted for Qwen3-8B
+(8-bit, same recipe — extraction under the serving numerics, ~30 s), then
+auto-calibrated with the proxy objective. Result: miss = 1.00 across all 25
+trials, every layer, every scale — the optimizer degenerated to minimizing
+KL. Two stacked causes, both instructive:
+
+1. **No lens, no signal.** `suppressed_positional` is computed only when a
+   J-lens is loaded; our lenses are fitted per-model and only the 4B has
+   one. Without it the proxy reads permanently empty — and *nothing in the
+   loop warns you*. A calibration objective that can silently flatline is
+   itself an eval-validity hazard (RQ2 exhibit A).
+2. **Thinking models narrate the request.** Qwen3-8B opens every forced
+   continuation with a `<think>` preamble that restates what the user asked
+   ("the user wants a reminder…"). Concept-suppression scoring over those
+   positions measures the *narration*, not the forming answer. The `/no_think`
+   soft switch produces a direct answer and is the minimum fix for any
+   disposition-style measurement on hybrid reasoning models.
+
+Consequences: behavioral efficacy is the only trustworthy objective on a
+model without a fitted lens; a Qwen3-8B J-lens fit is now a prerequisite for
+running RQ2's proxy arm on the workhorse; and "does the proxy even emit
+signal here" becomes a mandatory preflight check before any calibration run.

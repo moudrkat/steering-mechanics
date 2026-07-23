@@ -185,3 +185,30 @@ around.
 - The full measurement pipeline: teacher-forced replay + KL + behavioral
   eval with `violation_regex` (`hidden_directions.calibrate`), clean-side
   caching for long contexts (brainscope)
+
+## Amendments before freeze (2026-07-23)
+
+1. **Workhorse: Qwen3-8B (quantized).** The deployment agents will run on
+   it, so RQ1–3 run there; Qwen3-4B is demoted to piloting/ranging and stays
+   in the RQ4 core tier. Extraction happens under the same quantization as
+   serving.
+2. **Vector cast and selection principle.** Steering is applied only where
+   both cheaper layers fail: the behavior is not guardable in code (it lives
+   in free text — claims, promises, implications) AND the prompt is
+   saturated (maximally emphatic instruction exists and the violation
+   persists). The cast becomes: (a) the claims-family vector (the July
+   veteran) as the production case; (b) two tool-decision-boundary vectors
+   (search/document over-triggering) as the contrast case — code can absorb
+   their consequences and a large model's prompt suffices, so they are
+   evaluated as a *small-model enabler* (can a vector move a 4B's decision
+   boundary to an 8B's?) rather than as production steering.
+3. **The prompting baseline is the deployed system.** Production already
+   steers by prompt: a validator emits corrective feedback that is injected
+   into the retry. The baseline comparison is therefore not a constructed
+   strawman but the live mechanism, and the flagship deployment experiment
+   is feedback-retry vs vector-retry vs both, at matched efficacy.
+4. **Proxy preflight.** Any calibration run must first verify the proxy
+   emits signal in that condition (see FINDINGS 2026-07-23: proxies read
+   empty without a fitted lens and are contaminated by reasoning-model
+   think-preambles). Behavioral efficacy is the default objective wherever
+   the preflight fails.
