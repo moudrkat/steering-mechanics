@@ -1,0 +1,32 @@
+[
+ {
+  "layer": 20,
+  "scale": 0.0,
+  "miss": 0.6,
+  "violations": 12,
+  "incoherent": 0,
+  "errors": 0,
+  "n": 20,
+  "kl": 0.0
+ },
+ {
+  "layer": 20,
+  "scale": 3.0,
+  "miss": 0.0,
+  "violations": 0,
+  "incoherent": 0,
+  "errors": 0,
+  "n": 20,
+  "kl": 0.93786
+ },
+ {
+  "layer": 15,
+  "scale": 8.0,
+  "miss": 0.4,
+  "violations": 8,
+  "incoherent": 0,
+  "errors": 0,
+  "n": 20,
+  "kl": 0.87124
+ }
+]

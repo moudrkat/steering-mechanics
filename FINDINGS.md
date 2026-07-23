@@ -215,3 +215,11 @@ curve), never the argmax** — single-run optima are model-idiosyncratic even
 when a shared optimum exists, and asymmetric cross-eval (A→B ≠ B→A) is the
 cheap test that exposes it. Caveats: one model pair, same family, equal
 depth (36 layers both), N=10.
+
+**N=20 confirmation (same day):** headline holds and sharpens. Baselines:
+4B 12/20, 8B 19/20 (the larger model complies with the eliciting nudge
+*more*). Shared point L20@3: **0/20 on both models** (KL 0.94 on 4B, 0.42
+on 8B). The 8B argmax L15@8 transferred to the 4B: **8/20 = 40%
+violations** — transfer failure confirmed well past the ≤20% bar. Still
+pending before headline status: the qualitative read (are the zeros
+coherent Czech or degraded outputs?) and the Tier-2 real-scaffold eval.
