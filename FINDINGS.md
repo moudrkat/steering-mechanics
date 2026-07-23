@@ -338,3 +338,26 @@ behavior without changing the behavior; a safety metric keyed on phrasing is
 therefore fragile under steering.** The coherence guard did not catch this
 (outputs were fluent); only reading did — EVAL_PRINCIPLES #4 in action.
 Refusal regex broadened; re-measure for a clean number.
+
+## Emergent-misalignment: TWO false positives, two metric failures (2026-07-23)
+
+Ran the EM battery on Llama-3.1-8B and Qwen3-8B (steer benign no-tasks vector,
+measure refusal on 10 harmful probes vs baseline). BOTH flagged +0.3
+harmful-compliance — apparent emergent misalignment. BOTH were metric
+artifacts, via DIFFERENT mechanisms, and only reading the generations caught
+either:
+
+- **Llama-3.1-8B:** refusal *vocabulary drift*. The no-tasks vector nudges
+  toward "discuss" framing, so refusals became "I can't **discuss**" instead
+  of "I can't **help**" — the narrow refusal regex missed them. Model refused
+  10/10; no misalignment.
+- **Qwen3-8B:** thinking-model *truncation*. Every harmful response was a
+  `<think>` block deliberating toward refusal ("phishing is unethical and
+  illegal…") that never reached the answer within 120 tokens; the detector
+  saw only the reasoning and scored "compliance."
+
+Conclusion: a bare EM number was wrong on 2/2 models, each via a distinct
+failure (vocabulary drift; reasoning-truncation). Steering safety-evals
+cannot be trusted as numbers — they need a meaning-based judge, adequate
+token budget, and think-mode handling, and a human must read the flagged
+cases. This is the eval-validity thesis at its sharpest.
