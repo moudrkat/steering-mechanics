@@ -13,3 +13,88 @@ Describe the water cycle for a curious ten-year-old.
 Write a short motivational note for someone starting a new job.
 What are the main ingredients in a classic Caesar salad?
 Explain the concept of compound interest simply.
+Summarize the plot of Romeo and Juliet in five sentences.
+What is the difference between weather and climate?
+Suggest a week of dinner ideas for a vegetarian household.
+Explain recursion to a ten-year-old.
+Write a short cover letter for a junior data analyst position.
+What causes inflation and how do central banks respond to it?
+Describe how photosynthesis works.
+Give me tips for improving sleep quality.
+Write a Python function that reverses a string.
+What are the pros and cons of remote work?
+Explain the rules of chess to a complete beginner.
+How does a refrigerator keep food cold?
+Draft a polite email declining a meeting invitation.
+What should I pack for a weekend hiking trip?
+Explain the difference between a virus and a bacterium.
+Write a limerick about a forgetful cat.
+How do noise-cancelling headphones work?
+What are common mistakes when baking bread at home?
+Describe the water cycle.
+Compare electric cars and petrol cars for city driving.
+Explain what an API is to a non-programmer.
+Give three strategies for managing exam stress.
+What is compound interest and why does it matter?
+Write a short product description for a stainless steel water bottle.
+How do vaccines train the immune system?
+Suggest exercises for someone who sits at a desk all day.
+What is the history of the Olympic Games in two paragraphs?
+Explain how GPS determines your location.
+Write a toast for a friend's wedding.
+What are the main differences between classical and operant conditioning?
+How should I care for a basil plant on a windowsill?
+Explain the concept of supply and demand with an example.
+Write a SQL query that selects the ten most recent orders.
+What makes a good password and why?
+Describe the life cycle of a butterfly.
+Give me a 20-minute bodyweight workout routine.
+What is the difference between a debit and a credit card?
+Explain how tides are caused.
+Write a short story opening set in a lighthouse.
+How does composting work and what can go in the bin?
+What are the benefits of learning a second language as an adult?
+Explain the difference between HTTP and HTTPS.
+Suggest a reading list for someone new to science fiction.
+How do airplanes stay in the air?
+Write a haiku about the first snow.
+What is the Mediterranean diet and why is it praised?
+Explain what machine learning is without using jargon.
+Give tips for taking better photos with a phone camera.
+What are the stages of the moon's phases?
+Describe how to make a proper cup of tea.
+What is the difference between empathy and sympathy?
+Explain how solar panels convert light into electricity.
+Write a two-sentence horror story.
+What are good questions to ask at the end of a job interview?
+How does the human ear process sound?
+Suggest ways to reduce food waste at home.
+Explain the offside rule in football.
+What is the placebo effect?
+Write a JavaScript snippet that debounces a search input.
+Describe the main differences between mammals and reptiles.
+How do I set up a budget for the first time?
+Explain why the sky is blue.
+Write a friendly reminder message for a book club meeting.
+What are the key principles of minimalist design.
+How does yeast make dough rise?
+Give an overview of the causes of the French Revolution.
+What is the difference between speed and velocity?
+Suggest indoor activities for a rainy day with kids.
+Explain how blockchain works at a high level.
+Write a short poem about a city at dawn.
+Vysvětli, jak funguje fotosyntéza.
+Napiš krátkou básničku o podzimním dešti.
+Jaký je rozdíl mezi počasím a podnebím?
+Doporuč mi tři knihy pro začínajícího čtenáře sci-fi.
+Vysvětli desetiletému dítěti, co je to rekurze.
+Jak si mám doma založit rozpočet?
+Napiš zdvořilý e-mail, kterým odmítnu pozvánku na schůzku.
+Proč je obloha modrá?
+Popiš koloběh vody v přírodě.
+Jak funguje GPS?
+Co je to složené úročení a proč na něm záleží?
+Dej mi tipy na lepší spánek.
+Vysvětli pravidla šachu úplnému začátečníkovi.
+Jak se starat o bazalku na okenním parapetu?
+Napiš přípitek na svatbu kamarádky.
