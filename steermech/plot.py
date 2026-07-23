@@ -113,7 +113,8 @@ def tug_of_war():
 def main():
     FIG.mkdir(exist_ok=True)
     made = []
-    for fn in (dose_curve, component_bars, tug_of_war, calibration_landscape):
+    for fn in (dose_curve, component_bars, tug_of_war, calibration_landscape,
+               rq1_dose_regime, transfer_story, depth_test):
         try:
             r = fn()
             if r:
@@ -168,6 +169,91 @@ def calibration_landscape():
     dr.text((26, H//2), "scale", font=f2, fill=(139,148,158), anchor="mm")
     img.save(FIG / "calibration_landscape.png")
     return "calibration_landscape.png"
+
+
+def _line_chart(title, sub, series, xlab, ylab, out, ymax=1.05, marks=()):
+    """series: [(label, color, [(x,y),...])]; marks: [(x, y, text, color)]."""
+    Image, ImageDraw, font = _pil()
+    W, H, pad = 900, 520, 70
+    img = Image.new("RGB", (W, H), (13, 17, 23))
+    dr = ImageDraw.Draw(img)
+    f1, f2, f3 = font("DejaVuSans-Bold.ttf", 24), font("DejaVuSans.ttf", 15), font("DejaVuSansMono.ttf", 13)
+    dr.text((W//2, 32), title, font=f1, fill=(230,237,243), anchor="mm")
+    dr.text((W//2, 60), sub, font=f2, fill=(139,148,158), anchor="mm")
+    xs = [x for _,_,pts in series for x,_ in pts] + [m[0] for m in marks]
+    xmax = max(xs)*1.06
+    def X(v): return pad + v/xmax*(W-2*pad)
+    def Y(v): return H-pad - v/ymax*(H-2*pad-50)
+    for gy in (0, 0.25, 0.5, 0.75, 1.0):
+        dr.line([(pad, Y(gy)), (W-pad, Y(gy))], fill=(30,37,46))
+        dr.text((pad-8, Y(gy)), f"{gy:g}", font=f3, fill=(139,148,158), anchor="rm")
+    for lbl_i, (label, col, pts) in enumerate(series):
+        P = [(X(x), Y(y)) for x, y in pts]
+        dr.line(P, fill=col, width=3)
+        for (px,py),(x,_) in zip(P, pts):
+            dr.ellipse([px-5,py-5,px+5,py+5], fill=col)
+            dr.text((px, H-pad+16), f"{x:g}", font=f3, fill=(139,148,158), anchor="mm")
+        dr.text((pad+8, 88+lbl_i*20), f"\u25a0 {label}", font=f3, fill=col)
+    for x, y, text, col in marks:
+        px, py = X(x), Y(y)
+        dr.line([(px-8,py-8),(px+8,py+8)], fill=col, width=3)
+        dr.line([(px-8,py+8),(px+8,py-8)], fill=col, width=3)
+        dr.text((px, py-18), text, font=f3, fill=col, anchor="mm")
+    dr.text((W//2, H-20), xlab, font=f2, fill=(139,148,158), anchor="mm")
+    dr.text((26, H//2), ylab, font=f2, fill=(139,148,158), anchor="mm")
+    img.save(FIG / out)
+    return out
+
+
+def rq1_dose_regime():
+    """RQ1 row 0: miss vs scale, decode-only vs full-steer."""
+    src = ROOT / "results/rq1_row0_8b.json"
+    if not src.exists():
+        return None
+    rows = json.loads(src.read_text())["rows"]
+    dec = [(r["scale"], r["miss"]) for r in rows if r["regime"] == "decode_only"]
+    ful = [(r["scale"], r["miss"]) for r in rows if r["regime"] == "full"]
+    return _line_chart(
+        "Dose-response with a cliff: the working window is scales 2-4",
+        "Qwen3-8B @ L20, short context, N=12 · miss = violation OR incoherence · full-steer collapses harder, not sooner",
+        [("decode-only", (63,184,131), dec), ("full-steer", (216,130,43), ful)],
+        "injection scale", "miss", "rq1_dose_regime.png")
+
+
+def transfer_story():
+    """H3: native dose curves per model + the two cross-points."""
+    a, b = ROOT/"results/transfer_notasks_8b.json", ROOT/"results/transfer_notasks_4b.json"
+    if not (a.exists() and b.exists()):
+        return None
+    r8 = json.loads(a.read_text())["rows"]; r4 = json.loads(b.read_text())["rows"]
+    c8 = [(r["scale"], r["miss"]) for r in r8 if r["layer"] == 15][:6]
+    c4 = [(r["scale"], r["miss"]) for r in r4 if r["layer"] == 20][:6]
+    x8 = next(r for r in r8 if r["layer"] == 20 and r["scale"] == 3.0)
+    x4 = next(r for r in r4 if r["layer"] == 15 and r["scale"] == 8.0)
+    return _line_chart(
+        "The window transfers, the argmax lies",
+        "native curves: 8B@L15 vs 4B@L20 · X = the other model's optimum transplanted (4B->8B works; 8B->4B fails)",
+        [("Qwen3-8B @ its argmax layer L15", (63,184,131), c8),
+         ("Qwen3-4B @ shared layer L20", (216,130,43), c4)],
+        "injection scale", "miss", "transfer_story.png",
+        marks=[(3.0, x8["miss"], "4B opt on 8B: miss 0", (127,224,181)),
+               (8.0, x4["miss"], "8B argmax on 4B: fails", (255,123,114))])
+
+
+def depth_test():
+    """Fractional depth vs raw index on a 28-layer model."""
+    src = ROOT / "results/transfer_notasks_qwen25_7b.json"
+    if not src.exists():
+        return None
+    rows = json.loads(src.read_text())["rows"]
+    frac = [(r["scale"], r["miss"]) for r in rows if r["layer"] == 16][:6]
+    marks = [(r["scale"], r["miss"], f"L{r['layer']}@3", (255,123,114))
+             for r in rows if r["layer"] in (14, 18, 20) and r["scale"] == 3.0]
+    return _line_chart(
+        "Does the layer transfer as fractional depth? (28-layer model)",
+        "Qwen2.5-7B · green: L16 = fractional-depth prediction (20/36 -> 16/28) · X: raw-index & neighbors @ scale 3",
+        [("L16 (fractional-depth prediction)", (63,184,131), frac)],
+        "injection scale", "miss", "depth_test.png", marks=marks)
 
 
 if __name__ == "__main__":
