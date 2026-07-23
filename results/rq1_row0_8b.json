@@ -1,0 +1,139 @@
+{
+ "model": "qwen3-8b",
+ "layer": 20,
+ "n": 12,
+ "rows": [
+  {
+   "regime": "decode_only",
+   "scale": 1,
+   "miss": 0.583,
+   "violations": 7,
+   "incoherent": 0,
+   "anti_steered": 0,
+   "baseline_violations": 7,
+   "chars_median": 247,
+   "kl": 0.0223
+  },
+  {
+   "regime": "decode_only",
+   "scale": 2,
+   "miss": 0.0,
+   "violations": 0,
+   "incoherent": 0,
+   "anti_steered": 0,
+   "baseline_violations": 0,
+   "chars_median": 235,
+   "kl": 0.0867
+  },
+  {
+   "regime": "decode_only",
+   "scale": 3,
+   "miss": 0.083,
+   "violations": 0,
+   "incoherent": 1,
+   "anti_steered": 0,
+   "baseline_violations": 0,
+   "chars_median": 228,
+   "kl": 0.216
+  },
+  {
+   "regime": "decode_only",
+   "scale": 4,
+   "miss": 0.0,
+   "violations": 0,
+   "incoherent": 0,
+   "anti_steered": 0,
+   "baseline_violations": 0,
+   "chars_median": 227,
+   "kl": 0.6827
+  },
+  {
+   "regime": "decode_only",
+   "scale": 6,
+   "miss": 0.417,
+   "violations": 1,
+   "incoherent": 4,
+   "anti_steered": 0,
+   "baseline_violations": 1,
+   "chars_median": 234,
+   "kl": 3.1032
+  },
+  {
+   "regime": "decode_only",
+   "scale": 8,
+   "miss": 1.0,
+   "violations": 0,
+   "incoherent": 12,
+   "anti_steered": 0,
+   "baseline_violations": 0,
+   "chars_median": 139,
+   "kl": 8.4126
+  },
+  {
+   "regime": "full",
+   "scale": 1,
+   "miss": 0.583,
+   "violations": 7,
+   "incoherent": 0,
+   "anti_steered": 0,
+   "baseline_violations": 7,
+   "chars_median": 245,
+   "kl": 0.0249
+  },
+  {
+   "regime": "full",
+   "scale": 2,
+   "miss": 0.083,
+   "violations": 1,
+   "incoherent": 0,
+   "anti_steered": 0,
+   "baseline_violations": 1,
+   "chars_median": 222,
+   "kl": 0.0951
+  },
+  {
+   "regime": "full",
+   "scale": 3,
+   "miss": 0.0,
+   "violations": 0,
+   "incoherent": 0,
+   "anti_steered": 0,
+   "baseline_violations": 0,
+   "chars_median": 225,
+   "kl": 0.1931
+  },
+  {
+   "regime": "full",
+   "scale": 4,
+   "miss": 0.083,
+   "violations": 0,
+   "incoherent": 1,
+   "anti_steered": 0,
+   "baseline_violations": 0,
+   "chars_median": 239,
+   "kl": 0.4923
+  },
+  {
+   "regime": "full",
+   "scale": 6,
+   "miss": 0.917,
+   "violations": 0,
+   "incoherent": 11,
+   "anti_steered": 0,
+   "baseline_violations": 0,
+   "chars_median": 280,
+   "kl": 3.6691
+  },
+  {
+   "regime": "full",
+   "scale": 8,
+   "miss": 1.0,
+   "violations": 0,
+   "incoherent": 12,
+   "anti_steered": 0,
+   "baseline_violations": 0,
+   "chars_median": 229,
+   "kl": 12.3747
+  }
+ ]
+}

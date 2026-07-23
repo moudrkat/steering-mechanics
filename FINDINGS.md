@@ -249,3 +249,26 @@ Consequences applied: behavioral **miss now counts violation OR
 incoherence** (a vector that stops the behavior by degrading the model is
 a miss, not a win) — engine change, tests updated. Reading the outputs is
 now a standing step: the checker exists to scale judgment, not replace it.
+
+## RQ1 row 0: dose x regime at short context — per-token scale dominates here (2026-07-23)
+
+First cells of the frozen grid (Qwen3-8B, L20, short-context tier-1 eval,
+N=12/cell, full-checker miss, matched-regime KL, baseline-compared):
+
+- **Clean dose window s2–4 in BOTH regimes** (miss 0.00–0.08), then a sharp
+  edge: decode-only degrades at s6 (miss 0.42, KL 3.1) and collapses at s8
+  (miss 1.00 — twelve of twelve incoherent, output length crashing, KL 8.4).
+  Full-steer collapses harder at the same doses (s6: miss 0.92; s8 KL 12.4).
+- **The H1 mass law does NOT govern this short-context row.** Full-steer
+  adds ~3-4x steered positions (prefill + generation vs generation only);
+  a pure total-mass law would shift the collapse threshold down ~3-4x in
+  scale. Observed: the working window is the same (s2-4), and the regime
+  gap appears only at the damage edge (s6-8, severity not onset). At short
+  context, per-token scale dominates; injected mass contributes second-order
+  severity. The pre-registered competitor (sharp per-token thresholds) is
+  currently ahead — the real discriminating test is the context-length axis
+  (0.5k -> 16k), where prefill mass grows ~30x. That is the next grid row.
+- **Zero anti-steered samples in any cell** (per-sample baseline
+  comparison): on this behavior, steering never pushed a clean prompt into
+  violation. The Tan-style anti-steerability threat did not materialize
+  here — worth reporting per-behavior rather than assuming either way.
