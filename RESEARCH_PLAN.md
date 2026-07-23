@@ -3,6 +3,14 @@
 *Pre-registered 2026-07. This document is written before the experiments; the
 point of pre-registration is that the hypotheses below can lose.*
 
+> **FROZEN 2026-07-23.** Month-1 prerequisites complete: adversarially
+> verified literature pass ([LITERATURE.md](LITERATURE.md)), benign set
+> expanded, classifiers unified (single-source checkers), pilots run
+> (N=20 cross-model, [FINDINGS.md](FINDINGS.md)). Amendments 1–8 below were
+> dated before this freeze. From here, any change to hypotheses, thresholds,
+> or methods requires a dated deviation note in this file — the plan can be
+> wrong in public, but it cannot move quietly.
+
 ## Motivation — two accidents worth taking seriously
 
 Two things happened in this lab in July 2026 that the steering literature
