@@ -293,3 +293,25 @@ anti-steered sample observed (under-dose, L16@1) — the first all day.
 
 Pilot-grade (N=12, one behavior); this is the question the paper campaign
 takes to N>=30 across ~8 models.
+
+
+## Not a scoring bug: two collapse modes, one honest metric (2026-07-23)
+
+Checked whether "0 violations at high dose" was a regex bug. It is not —
+hand-verified: the violation regex fires on `úkol` and `I will create a
+task`, stays silent on `renew their passport`, and the κ=1.0 classifier
+validation stands. What actually happens at high dose is genuine model
+collapse, and it comes in (at least) two flavours:
+
+- **L15@8 (the argmax trap):** English think-mode rambling — the model
+  deliberates about the user in English and never answers.
+- **L20@8:** total token collapse — repeated fragments (`(ne. (ne. (ne.`)
+  and stray Chinese characters.
+
+Neither contains a task-offer word, so a violation-only metric scores both
+0% (perfect). The coherence guard scores both 12/12 incoherent. `miss =
+violation OR incoherence` = 1.0 in both cases — the correct answer. The
+finding is not "the metric got lucky"; it is that you can see exactly which
+half of the checker is load-bearing: the regex at safe doses, the coherence
+guard at collapse doses. A regex-only eval (heretic, repeng+classifier)
+reports these catastrophes as flawless successes.

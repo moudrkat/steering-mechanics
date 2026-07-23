@@ -116,7 +116,8 @@ def main():
     FIG.mkdir(exist_ok=True)
     made = []
     for fn in (dose_curve, component_bars, tug_of_war, calibration_landscape,
-               rq1_dose_regime, transfer_story, depth_test):
+               rq1_dose_regime, transfer_story, depth_test,
+               linkedin_metric_lies):
         try:
             r = fn()
             if r:
@@ -256,6 +257,67 @@ def depth_test():
         "Qwen2.5-7B · green: L16 = fractional-depth prediction (20/36 -> 16/28) · X: raw-index & neighbors @ scale 3",
         [("L16 (fractional-depth prediction)", (0,158,115), frac)],
         "injection scale", "miss", "depth_test.png", marks=marks)
+
+
+def _bootstrap_ci(k, n, reps=2000, seed=0):
+    """95% bootstrap CI for a rate k/n. Deterministic (seeded, no RNG import
+    that breaks reproducibility)."""
+    if n == 0:
+        return (0.0, 0.0)
+    # analytic-ish: resample via a fixed LCG for determinism
+    state = seed or 1
+    rates = []
+    p = k / n
+    for _ in range(reps):
+        hits = 0
+        for _ in range(n):
+            state = (1103515245 * state + 12345) & 0x7fffffff
+            hits += (state / 0x7fffffff) < p
+        rates.append(hits / n)
+    rates.sort()
+    return (round(rates[int(0.025*reps)], 3), round(rates[int(0.975*reps)], 3))
+
+
+def linkedin_metric_lies():
+    """The one-figure story: a naive violation-only metric says the high-dose
+    point is perfect; the truth (violation OR incoherence) says it is broken."""
+    src = ROOT / "results/rq1_row0_8b.json"
+    if not src.exists():
+        return None
+    rows = [r for r in json.loads(src.read_text())["rows"] if r["regime"] == "decode_only"]
+    n = 12
+    naive = [(r["scale"], r["violations"]/n) for r in rows]          # what the optimizer saw
+    truth = [(r["scale"], (r["violations"]+r["incoherent"])/n) for r in rows]  # what was real
+    Image, ImageDraw, font = _pil()
+    W, H, pad = 1000, 560, 80
+    img = Image.new("RGB", (W, H), (255,255,255))
+    dr = ImageDraw.Draw(img)
+    f1 = font("DejaVuSans-Bold.ttf", 30); f2 = font("DejaVuSans.ttf", 17)
+    f3 = font("DejaVuSansMono.ttf", 15); f4 = font("DejaVuSans-Bold.ttf", 16)
+    dr.text((W//2, 34), "The optimizer's metric said perfect. The model was broken.", font=f1, fill=(20,24,28), anchor="mm")
+    dr.text((W//2, 66), "auto-calibrating a steering vector · Qwen3-8B · violation-rate alone is blind to the model falling apart", font=f2, fill=(95,103,112), anchor="mm")
+    xmax = 8.6
+    def X(v): return pad + v/xmax*(W-2*pad)
+    def Y(v): return H-pad - v*(H-2*pad-60)
+    for gy in (0,0.25,0.5,0.75,1.0):
+        dr.line([(pad,Y(gy)),(W-pad,Y(gy))], fill=(228,231,235))
+        dr.text((pad-10,Y(gy)), f"{int(gy*100)}%", font=f3, fill=(95,103,112), anchor="rm")
+    for label,col,series,dash in [("what the optimizer measured (violations)",(0,158,115),naive,False),
+                                  ("what was actually true (violations OR model-collapse)",(213,94,0),truth,False)]:
+        P=[(X(x),Y(y)) for x,y in series]
+        dr.line(P, fill=col, width=4)
+        for px,py in P: dr.ellipse([px-6,py-6,px+6,py+6], fill=col)
+    for x in [r["scale"] for r in rows]:
+        dr.text((X(x), H-pad+18), f"{x:g}", font=f3, fill=(95,103,112), anchor="mm")
+    dr.text((pad+10, 92), "\u25a0 what the optimizer measured (violations)", font=f4, fill=(0,158,115))
+    dr.text((pad+10, 114), "\u25a0 what was actually true (violations OR gibberish)", font=f4, fill=(213,94,0))
+    # annotate the trap point (scale 8): naive 0%, truth 100%
+    tx = X(8)
+    dr.line([(tx, Y(0)+6),(tx, Y(1.0)-6)], fill=(120,120,120), width=1)
+    dr.text((tx-6, Y(0.5)), "same setting:\n0% violations,\n100% broken", font=f4, fill=(60,60,60), anchor="rm")
+    dr.text((W//2, H-22), "injection strength  \u2192  (build steering vectors people can trust:  pip install hidden-directions)", font=f2, fill=(95,103,112), anchor="mm")
+    img.save(FIG / "linkedin_metric_lies.png")
+    return "linkedin_metric_lies.png"
 
 
 if __name__ == "__main__":
