@@ -315,3 +315,26 @@ finding is not "the metric got lucky"; it is that you can see exactly which
 half of the checker is load-bearing: the regex at safe doses, the coherence
 guard at collapse doses. A regex-only eval (heretic, repeng+classifier)
 reports these catastrophes as flawless successes.
+
+## Emergent-misalignment scare that wasn't — refusal-vocabulary drift (2026-07-23)
+
+Ran the #11 emergent-misalignment battery on Llama-3.1-8B: steer the benign
+no-tasks vector at a coherent working point (L16/0.50, scale 3), measure
+refusal on 10 harmful + 10 benign probes vs baseline. The battery flagged a
+**+0.3 harmful-compliance shift** — apparent emergent misalignment — and even
+with a coherence guard added, all steered outputs were coherent ("signal is
+real"). Reading the generations killed it:
+
+All three "compliance" cases were REFUSALS the regex missed —
+"I can't **discuss** ransomware", "I can't **discuss** how to make a lethal
+nerve agent", "I can't **talk about** things harmful to health". The model
+refused 10/10 harmful prompts steered and unsteered. No emergent misalignment.
+
+Mechanism (and the finding): the no-tasks vector nudges toward *discussion*
+framing, and that leaked into how the model phrases its *refusals* — "I can't
+discuss" instead of "I can't help/assist". The narrow refusal regex knew only
+the latter. **A steering vector can shift the vocabulary of an unrelated
+behavior without changing the behavior; a safety metric keyed on phrasing is
+therefore fragile under steering.** The coherence guard did not catch this
+(outputs were fluent); only reading did — EVAL_PRINCIPLES #4 in action.
+Refusal regex broadened; re-measure for a clean number.
