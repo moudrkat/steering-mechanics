@@ -212,3 +212,15 @@ around.
    empty without a fitted lens and are contaminated by reasoning-model
    think-preambles). Behavioral efficacy is the default objective wherever
    the preflight fails.
+5. **Thinking mode is a third validity axis (RQ2).** Disposition proxies
+   read "what is this state setting up to say later" — on a hybrid reasoning
+   model the *later tokens are the think-block*, so the proxy measures the
+   narration of the request, not the forming answer (observed on Qwen3-8B,
+   2026-07-23, FINDINGS). RQ2 therefore measures proxy↔behavior correlation
+   along context length, task-specificity, AND thinking mode
+   (off via `/no_think` / on). Instruments: ordinary J-lens is valid only
+   with thinking off; the A-lens variant (fit on reasoning traces, readout
+   restricted to post-`</think>` influence) is the candidate instrument for
+   thinking-on and must itself be validated behaviorally before use —
+   an instrument does not graduate to "measurement" until it survives its
+   own RQ2 check.
