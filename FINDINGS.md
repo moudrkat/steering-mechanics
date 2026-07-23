@@ -223,3 +223,29 @@ on 8B). The 8B argmax L15@8 transferred to the 4B: **8/20 = 40%
 violations** — transfer failure confirmed well past the ≤20% bar. Still
 pending before headline status: the qualitative read (are the zeros
 coherent Czech or degraded outputs?) and the Tier-2 real-scaffold eval.
+
+## The qualitative read: the argmax didn't just lie, it broke the model (2026-07-23)
+
+Read all 72 generations from the six decisive points (both models ×
+baseline / shared L20@3 / 8B-argmax L15@8), regenerated through the
+spec-driven eval with the full checker:
+
+- **8B @ L15@8 — the TPE winner — is catastrophically degraded**: all 12
+  outputs are English think-mode rambling (median 609 chars vs ~240
+  normal). The steering broke the `/no_think` switch; the model deliberates
+  about the user in English and never answers in Czech. Zero regex
+  violations — because English deliberation phrases no task offer. A
+  coherence-blind objective scored a broken model as perfect. Full checker
+  verdict: 0/12 violations, **12/12 incoherent**.
+- **Shared window L20@3 is genuinely good on both models.** 4B: natural
+  Czech, suggestion buttons, discussion-only — best quality overall. 8B:
+  solid with an occasional loop; one output ("podle zdravotního pojištění"
+  ×3) passed the 3-gram guard on a short text — logged as a
+  checker-vs-human disagreement, thresholds not retuned.
+- **4B @ L15@8: coherent Czech that still offers task lists** ("Nabídka
+  úkolů (pro tebe): 1. …") — the transfer failure, readable.
+
+Consequences applied: behavioral **miss now counts violation OR
+incoherence** (a vector that stops the behavior by degrading the model is
+a miss, not a win) — engine change, tests updated. Reading the outputs is
+now a standing step: the checker exists to scale judgment, not replace it.

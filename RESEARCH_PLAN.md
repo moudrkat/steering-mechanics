@@ -249,3 +249,11 @@ around.
    the mass law. Novelty verdict from the same pass: all three claimed
    contributions unclaimed in 2024–2026 literature; H1 is the weakest
    pre-registered claim and is designed for accordingly.
+8. **Miss = violation OR incoherence (2026-07-23).** The behavioral
+   efficacy objective counts a prompt as failed if the output violates the
+   intent *or* fails the coherence guards. Motivated by the L15@8 incident:
+   a coherence-blind objective selected a point that silently switched the
+   model into English think-mode rambling and scored it perfect. All prior
+   same-day numbers were re-examined with the full checker; results stand
+   for L20@3 (both models), and the 8B-argmax point is reclassified from
+   "0% violations" to "100% incoherent."
