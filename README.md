@@ -5,6 +5,12 @@ through [brainscope](https://github.com/moudrkat/brainscope)'s HTTP API.
 Scripts here are thin clients — the GPU work happens on the $GPU_HOST box, this
 repo holds experiments, aggregated results, and notes.
 
+For researchers and engineers who want to know *how* steering actually
+behaves — dose–response, cross-model transfer, and when the evals you trust
+stop measuring what you think. The findings and the pre-registered plan live
+in [FINDINGS.md](FINDINGS.md), [RESEARCH_PLAN.md](RESEARCH_PLAN.md), and
+[EVAL_PRINCIPLES.md](EVAL_PRINCIPLES.md).
+
 Division of labor (why this repo exists):
 
 - **brainscope** (OSS) — generic *instruments*: `/replay {forced: true}`
