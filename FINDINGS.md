@@ -188,3 +188,30 @@ Consequences: behavioral efficacy is the only trustworthy objective on a
 model without a fitted lens; a Qwen3-8B J-lens fit is now a prerequisite for
 running RQ2's proxy arm on the workhorse; and "does the proxy even emit
 signal here" becomes a mandatory preflight check before any calibration run.
+
+## First cross-model transfer result: the window transfers, the argmax lies (2026-07-23)
+
+No-tasks pref vector, re-extracted per model by the same recipe, same
+behavioral eval both sides (N=10/point, pilot-grade), scale sweeps at each
+model's calibrated best layer plus the other model's optimum as cross-points:
+
+- **4B→8B transfer: perfect.** The 4B's optimum (L20@3) scores miss 0.00 on
+  the 8B at KL 0.42 — *better damage than the 8B's own TPE winner* (L15@8,
+  KL 0.66). Zero efficacy loss; the pre-registered ≤20% bar is passed with
+  room to spare.
+- **8B→4B transfer: fails.** The 8B's TPE winner (L15@8) leaves 30%
+  violations on the 4B (native: 0%) — over the ≤20% threshold. L15 is a
+  model-specific pocket; L20 is the shared one.
+- **Both dose–response curves are clean and monotonic** (8B/L15: 0.70 →
+  0.00 across scales 1–8; 4B/L20: 0.30 → 0.00 across 1–4, then pure
+  overdose), and the 8B tolerates the shared coordinates with ~2x less KL
+  than the 4B (L20@3: 0.42 vs 0.94).
+
+The twist: a 15-trial TPE run on the 8B converged to a point (L15@8) that
+is *worse* than the transferred 4B optimum on the 8B's own eval (score
+0.063 vs 0.042) — the optimizer found a local pocket, not the shared
+window. Implication for H3 and for practice: **transfer the window (the
+curve), never the argmax** — single-run optima are model-idiosyncratic even
+when a shared optimum exists, and asymmetric cross-eval (A→B ≠ B→A) is the
+cheap test that exposes it. Caveats: one model pair, same family, equal
+depth (36 layers both), N=10.

@@ -1,0 +1,406 @@
+{
+ "key": "/home/kacka/projekty/steermech-private/intents/document.intent.json",
+ "id": "v_pref_document_overrequest",
+ "lambda_kl": 0.1,
+ "best": {
+  "layer": 8,
+  "scale": 0.76,
+  "score": 0.3332,
+  "miss": 0.333,
+  "kl": 0.0023,
+  "efficacy": {
+   "miss": 0.333,
+   "violations": 3,
+   "incoherent": 0,
+   "errors": 0,
+   "n": 9
+  },
+  "damage": {
+   "kl": 0.0023,
+   "kl_max": 0.00677,
+   "n": 8
+  }
+ },
+ "trials": [
+  {
+   "layer": 19,
+   "scale": 5.86,
+   "score": 0.9829,
+   "miss": 0.333,
+   "kl": 6.49909,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 6.49909,
+    "kl_max": 12.6527,
+    "n": 8
+   }
+  },
+  {
+   "layer": 20,
+   "scale": 4.59,
+   "score": 0.7062,
+   "miss": 0.333,
+   "kl": 3.7315,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 3.7315,
+    "kl_max": 6.25654,
+    "n": 8
+   }
+  },
+  {
+   "layer": 16,
+   "scale": 5.34,
+   "score": 0.4589,
+   "miss": 0.333,
+   "kl": 1.2586,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 1.2586,
+    "kl_max": 3.0106,
+    "n": 8
+   }
+  },
+  {
+   "layer": 17,
+   "scale": 7.19,
+   "score": 0.7456,
+   "miss": 0.333,
+   "kl": 4.12568,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 4.12568,
+    "kl_max": 7.29157,
+    "n": 8
+   }
+  },
+  {
+   "layer": 28,
+   "scale": 3.38,
+   "score": 0.5155,
+   "miss": 0.333,
+   "kl": 1.82486,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 1.82486,
+    "kl_max": 4.01998,
+    "n": 8
+   }
+  },
+  {
+   "layer": 24,
+   "scale": 4.47,
+   "score": 0.9557,
+   "miss": 0.333,
+   "kl": 6.2272,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 6.2272,
+    "kl_max": 10.67622,
+    "n": 8
+   }
+  },
+  {
+   "layer": 19,
+   "scale": 7.44,
+   "score": 1.4704,
+   "miss": 0.333,
+   "kl": 11.37357,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 11.37357,
+    "kl_max": 19.5107,
+    "n": 8
+   }
+  },
+  {
+   "layer": 9,
+   "scale": 1.15,
+   "score": 0.3337,
+   "miss": 0.333,
+   "kl": 0.00724,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 0.00724,
+    "kl_max": 0.0217,
+    "n": 8
+   }
+  },
+  {
+   "layer": 8,
+   "scale": 6.74,
+   "score": 0.3407,
+   "miss": 0.333,
+   "kl": 0.07652,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 0.07652,
+    "kl_max": 0.18946,
+    "n": 8
+   }
+  },
+  {
+   "layer": 24,
+   "scale": 7.03,
+   "score": 1.7536,
+   "miss": 0.333,
+   "kl": 14.20592,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 14.20592,
+    "kl_max": 19.41918,
+    "n": 8
+   }
+  },
+  {
+   "layer": 8,
+   "scale": 0.76,
+   "score": 0.3332,
+   "miss": 0.333,
+   "kl": 0.0023,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 0.0023,
+    "kl_max": 0.00677,
+    "n": 8
+   }
+  },
+  {
+   "layer": 8,
+   "scale": 0.65,
+   "score": 0.3332,
+   "miss": 0.333,
+   "kl": 0.00198,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 0.00198,
+    "kl_max": 0.00373,
+    "n": 8
+   }
+  },
+  {
+   "layer": 12,
+   "scale": 0.53,
+   "score": 0.3333,
+   "miss": 0.333,
+   "kl": 0.00332,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 0.00332,
+    "kl_max": 0.00972,
+    "n": 8
+   }
+  },
+  {
+   "layer": 12,
+   "scale": 1.96,
+   "score": 0.3353,
+   "miss": 0.333,
+   "kl": 0.02339,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 0.02339,
+    "kl_max": 0.09895,
+    "n": 8
+   }
+  },
+  {
+   "layer": 11,
+   "scale": 2.53,
+   "score": 0.3359,
+   "miss": 0.333,
+   "kl": 0.02873,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 0.02873,
+    "kl_max": 0.07985,
+    "n": 8
+   }
+  },
+  {
+   "layer": 8,
+   "scale": 1.6,
+   "score": 0.3335,
+   "miss": 0.333,
+   "kl": 0.00478,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 0.00478,
+    "kl_max": 0.01656,
+    "n": 8
+   }
+  },
+  {
+   "layer": 13,
+   "scale": 0.65,
+   "score": 0.3333,
+   "miss": 0.333,
+   "kl": 0.00267,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 0.00267,
+    "kl_max": 0.00494,
+    "n": 8
+   }
+  },
+  {
+   "layer": 10,
+   "scale": 2.8,
+   "score": 0.3355,
+   "miss": 0.333,
+   "kl": 0.02513,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 0.02513,
+    "kl_max": 0.06299,
+    "n": 8
+   }
+  },
+  {
+   "layer": 14,
+   "scale": 1.77,
+   "score": 0.3371,
+   "miss": 0.333,
+   "kl": 0.04073,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 0.04073,
+    "kl_max": 0.1408,
+    "n": 8
+   }
+  },
+  {
+   "layer": 10,
+   "scale": 3.31,
+   "score": 0.3363,
+   "miss": 0.333,
+   "kl": 0.03253,
+   "efficacy": {
+    "miss": 0.333,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 9
+   },
+   "damage": {
+    "kl": 0.03253,
+    "kl_max": 0.07464,
+    "n": 8
+   }
+  }
+ ]
+}

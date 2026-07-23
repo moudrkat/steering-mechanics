@@ -1,0 +1,311 @@
+{
+ "key": "/home/kacka/projekty/steermech-private/intents/no-tasks-8b.intent.json",
+ "id": "v_pref_no_task_checklist_v3",
+ "lambda_kl": 0.1,
+ "best": {
+  "layer": 15,
+  "scale": 7.95,
+  "score": 0.0631,
+  "miss": 0.0,
+  "kl": 0.63133,
+  "efficacy": {
+   "miss": 0.0,
+   "violations": 0,
+   "incoherent": 0,
+   "errors": 0,
+   "n": 10
+  },
+  "damage": {
+   "kl": 0.63133,
+   "kl_max": 1.66669,
+   "n": 8
+  }
+ },
+ "trials": [
+  {
+   "layer": 19,
+   "scale": 5.86,
+   "score": 0.3243,
+   "miss": 0.0,
+   "kl": 3.2433,
+   "efficacy": {
+    "miss": 0.0,
+    "violations": 0,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 3.2433,
+    "kl_max": 6.00237,
+    "n": 8
+   }
+  },
+  {
+   "layer": 20,
+   "scale": 4.59,
+   "score": 0.1787,
+   "miss": 0.0,
+   "kl": 1.7865,
+   "efficacy": {
+    "miss": 0.0,
+    "violations": 0,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 1.7865,
+    "kl_max": 5.04223,
+    "n": 8
+   }
+  },
+  {
+   "layer": 16,
+   "scale": 5.34,
+   "score": 0.127,
+   "miss": 0.1,
+   "kl": 0.26962,
+   "efficacy": {
+    "miss": 0.1,
+    "violations": 1,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.26962,
+    "kl_max": 1.00061,
+    "n": 8
+   }
+  },
+  {
+   "layer": 17,
+   "scale": 7.19,
+   "score": 0.1722,
+   "miss": 0.0,
+   "kl": 1.72211,
+   "efficacy": {
+    "miss": 0.0,
+    "violations": 0,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 1.72211,
+    "kl_max": 3.69941,
+    "n": 8
+   }
+  },
+  {
+   "layer": 28,
+   "scale": 3.38,
+   "score": 0.8103,
+   "miss": 0.8,
+   "kl": 0.10298,
+   "efficacy": {
+    "miss": 0.8,
+    "violations": 8,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.10298,
+    "kl_max": 0.17535,
+    "n": 8
+   }
+  },
+  {
+   "layer": 24,
+   "scale": 4.47,
+   "score": 0.281,
+   "miss": 0.2,
+   "kl": 0.81026,
+   "efficacy": {
+    "miss": 0.2,
+    "violations": 2,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.81026,
+    "kl_max": 1.68538,
+    "n": 8
+   }
+  },
+  {
+   "layer": 19,
+   "scale": 7.44,
+   "score": 0.7256,
+   "miss": 0.0,
+   "kl": 7.25645,
+   "efficacy": {
+    "miss": 0.0,
+    "violations": 0,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 7.25645,
+    "kl_max": 13.68367,
+    "n": 8
+   }
+  },
+  {
+   "layer": 9,
+   "scale": 1.15,
+   "score": 0.9002,
+   "miss": 0.9,
+   "kl": 0.00249,
+   "efficacy": {
+    "miss": 0.9,
+    "violations": 9,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.00249,
+    "kl_max": 0.00829,
+    "n": 8
+   }
+  },
+  {
+   "layer": 8,
+   "scale": 6.74,
+   "score": 0.9022,
+   "miss": 0.9,
+   "kl": 0.02226,
+   "efficacy": {
+    "miss": 0.9,
+    "violations": 9,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.02226,
+    "kl_max": 0.11597,
+    "n": 8
+   }
+  },
+  {
+   "layer": 24,
+   "scale": 7.03,
+   "score": 0.742,
+   "miss": 0.0,
+   "kl": 7.41968,
+   "efficacy": {
+    "miss": 0.0,
+    "violations": 0,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 7.41968,
+    "kl_max": 12.40491,
+    "n": 8
+   }
+  },
+  {
+   "layer": 13,
+   "scale": 0.91,
+   "score": 0.8002,
+   "miss": 0.8,
+   "kl": 0.00228,
+   "efficacy": {
+    "miss": 0.8,
+    "violations": 8,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.00228,
+    "kl_max": 0.0059,
+    "n": 8
+   }
+  },
+  {
+   "layer": 14,
+   "scale": 5.26,
+   "score": 0.4064,
+   "miss": 0.4,
+   "kl": 0.06374,
+   "efficacy": {
+    "miss": 0.4,
+    "violations": 4,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.06374,
+    "kl_max": 0.23428,
+    "n": 8
+   }
+  },
+  {
+   "layer": 15,
+   "scale": 7.92,
+   "score": 0.0636,
+   "miss": 0.0,
+   "kl": 0.63638,
+   "efficacy": {
+    "miss": 0.0,
+    "violations": 0,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.63638,
+    "kl_max": 1.72902,
+    "n": 8
+   }
+  },
+  {
+   "layer": 13,
+   "scale": 2.8,
+   "score": 1.0006,
+   "miss": 1.0,
+   "kl": 0.00562,
+   "efficacy": {
+    "miss": 1.0,
+    "violations": 10,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.00562,
+    "kl_max": 0.01854,
+    "n": 8
+   }
+  },
+  {
+   "layer": 15,
+   "scale": 7.95,
+   "score": 0.0631,
+   "miss": 0.0,
+   "kl": 0.63133,
+   "efficacy": {
+    "miss": 0.0,
+    "violations": 0,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.63133,
+    "kl_max": 1.66669,
+    "n": 8
+   }
+  }
+ ]
+}

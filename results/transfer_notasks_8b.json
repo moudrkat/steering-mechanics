@@ -1,0 +1,158 @@
+{
+ "model": "8b",
+ "vector": "v_pref_no_task_checklist_v3",
+ "rows": [
+  {
+   "layer": 15,
+   "scale": 1,
+   "score": 0.7005,
+   "miss": 0.7,
+   "kl": 0.00543,
+   "efficacy": {
+    "miss": 0.7,
+    "violations": 7,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.00543,
+    "kl_max": 0.01865,
+    "n": 8
+   }
+  },
+  {
+   "layer": 15,
+   "scale": 2,
+   "score": 0.7018,
+   "miss": 0.7,
+   "kl": 0.01792,
+   "efficacy": {
+    "miss": 0.7,
+    "violations": 7,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.01792,
+    "kl_max": 0.06486,
+    "n": 8
+   }
+  },
+  {
+   "layer": 15,
+   "scale": 3,
+   "score": 0.5037,
+   "miss": 0.5,
+   "kl": 0.03661,
+   "efficacy": {
+    "miss": 0.5,
+    "violations": 5,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.03661,
+    "kl_max": 0.15327,
+    "n": 8
+   }
+  },
+  {
+   "layer": 15,
+   "scale": 4,
+   "score": 0.3065,
+   "miss": 0.3,
+   "kl": 0.06453,
+   "efficacy": {
+    "miss": 0.3,
+    "violations": 3,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.06453,
+    "kl_max": 0.2114,
+    "n": 8
+   }
+  },
+  {
+   "layer": 15,
+   "scale": 6,
+   "score": 0.1191,
+   "miss": 0.1,
+   "kl": 0.1914,
+   "efficacy": {
+    "miss": 0.1,
+    "violations": 1,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.1914,
+    "kl_max": 0.52705,
+    "n": 8
+   }
+  },
+  {
+   "layer": 15,
+   "scale": 8,
+   "score": 0.0659,
+   "miss": 0.0,
+   "kl": 0.65866,
+   "efficacy": {
+    "miss": 0.0,
+    "violations": 0,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.65866,
+    "kl_max": 1.77861,
+    "n": 8
+   }
+  },
+  {
+   "layer": 20,
+   "scale": 3.0,
+   "score": 0.0424,
+   "miss": 0.0,
+   "kl": 0.42371,
+   "efficacy": {
+    "miss": 0.0,
+    "violations": 0,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 0.42371,
+    "kl_max": 1.48225,
+    "n": 8
+   }
+  },
+  {
+   "layer": 20,
+   "scale": 8.0,
+   "score": 0.9312,
+   "miss": 0.0,
+   "kl": 9.31197,
+   "efficacy": {
+    "miss": 0.0,
+    "violations": 0,
+    "incoherent": 0,
+    "errors": 0,
+    "n": 10
+   },
+   "damage": {
+    "kl": 9.31197,
+    "kl_max": 16.91195,
+    "n": 8
+   }
+  }
+ ]
+}

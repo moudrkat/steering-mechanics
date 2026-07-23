@@ -224,3 +224,10 @@ around.
    thinking-on and must itself be validated behaviorally before use —
    an instrument does not graduate to "measurement" until it survives its
    own RQ2 check.
+6. **H3 operationalization: fractional depth, windows over argmax.** The
+   layer coordinate compares across models as fractional depth (L /
+   n_layers); Qwen3-4B/8B share 36 layers, Llama-3.1-8B (32) and the coarse
+   tier do not. And per the 2026-07-23 pilot (FINDINGS): cross-evaluation
+   is scored on the transferred *curve* (the effectiveness window), with
+   the argmax reported but not trusted — single-run TPE optima proved
+   model-idiosyncratic even when a shared optimum existed.
