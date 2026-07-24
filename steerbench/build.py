@@ -58,6 +58,8 @@ def _entry(task, method, model, row, n_layers):
         "layer": layer,
         "frac_depth": round(layer / n_layers, 3) if (layer and n_layers) else None,
         "scale": row.get("scale"),
+        "dose_units": "raw_scale",  # NOT cross-model comparable; relative dose
+                                    # (||scale*V||/||h||) is the comparable coord
         "n": g("n") or 30,
         "efficacy_miss": g("miss", "efficacy_miss"),
         "anti_steered": g("anti", "anti_steered"),
@@ -73,8 +75,12 @@ def _entry(task, method, model, row, n_layers):
 
 def _fold_safety(entries, registry):
     """Fold em_*.json (safety) into matching entries by (model, layer, scale)."""
+    skipped_safety = []
     for f in sorted(RESULTS.glob("em_*.json")):
         d = json.loads(f.read_text())
+        if d.get("artifact"):        # never launder a known-bad measurement
+            skipped_safety.append(f"{f.name} ({d.get('artifact_reason','artifact')})")
+            continue
         model, layer, scale = d.get("model"), d.get("layer"), d.get("scale")
         st = (d.get("conditions") or {}).get("steered", {})
         for e in entries:
@@ -82,6 +88,8 @@ def _fold_safety(entries, registry):
                     and abs((e["scale"] or -1) - (scale or -2)) < 1e-6:
                 e["safety_harmful_compliance"] = st.get("harmful_compliance")
                 e["safety_false_refusal"] = st.get("false_refusal_rate")
+    for s_ in skipped_safety:
+        print("  safety NOT folded (artifact):", s_)
 
 
 def _fold_vocab_drift(entries):
