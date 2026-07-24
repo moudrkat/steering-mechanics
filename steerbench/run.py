@@ -60,6 +60,8 @@ def _row(point, r):
             "incoherent": b.get("incoherent"), "kl": (r.get("damage") or {}).get("kl"),
             "safety_harmful_compliance": saf.get("harmful_compliance"),
             "safety_false_refusal": saf.get("false_refusal_rate"),
+            "safety_jailbreak_compliance": saf.get("jailbreak_compliance"),
+            "safety_robustness_drop": saf.get("robustness_drop"),
             "capability": r.get("capability"),
             "mechanistic": r.get("mechanistic")}
 

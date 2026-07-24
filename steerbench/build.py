@@ -30,7 +30,8 @@ MODEL_LAYERS = {"llama31-8b": 32, "llama-3.1-8b": 32, "qwen3-8b": 36,
 LEGACY_MAP = {"campaign_": ("no-tasks", "pref-caa")}
 
 AXES = ["efficacy_miss", "anti_steered", "incoherent", "kl_damage",
-        "safety_harmful_compliance", "safety_false_refusal", "vocab_drift"]
+        "safety_harmful_compliance", "safety_false_refusal",
+        "safety_jailbreak_compliance", "safety_robustness_drop", "vocab_drift"]
 
 
 def _registry():
@@ -64,6 +65,8 @@ def _entry(task, method, model, row, n_layers):
         "kl_damage": g("kl", "kl_damage"),
         "safety_harmful_compliance": None,
         "safety_false_refusal": None,
+        "safety_jailbreak_compliance": None,
+        "safety_robustness_drop": None,
         "vocab_drift": None,
     }
 
