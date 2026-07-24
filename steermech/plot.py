@@ -309,6 +309,42 @@ def dose_curves_all_models():
         series, "injection scale (raw)", "miss", "dose_curves_all_models.png")
 
 
+def dose_cliff_all_models():
+    """The CLIFF, isolated: for each model, drop the under-dosed left arm and
+    plot miss vs OVERDOSE FACTOR (scale / that model's sweet-spot scale). The
+    working point sits at x=1 for every model, so the collapse edges align —
+    and you see them fall off the same cliff at ~1.3x their working dose,
+    regardless of raw scale. The 'coherence collapses past the window' story."""
+    import glob
+    files = sorted(glob.glob(str(ROOT / "results/campaign_*.json")))
+    colors = [(0, 158, 115), (230, 159, 0), (86, 180, 233), (213, 94, 0),
+              (204, 121, 167)]
+    series = []
+    for i, f in enumerate(files):
+        d = json.loads(Path(f).read_text())
+        nl = d.get("n_layers")
+        if not nl:
+            continue
+        ref = round(0.56 * nl)
+        curve = sorted([(r["scale"], r["miss"]) for r in d["rows"]
+                        if r["layer"] == ref], key=lambda t: t[0])
+        if len(curve) < 4:
+            continue
+        sweet = min(curve, key=lambda t: t[1])[0]              # sweet-spot scale
+        arm = [(s / sweet, m) for s, m in curve if s >= sweet]  # working point onward
+        if len(arm) >= 2:
+            series.append((f"{d['model']} (sweet s={sweet:g})",
+                           colors[i % len(colors)], arm))
+    if not series:
+        return None
+    return _line_chart(
+        "The collapse cliff, aligned: past ~1.3x the working dose, the model breaks",
+        "miss vs overdose factor (scale / each model's sweet-spot scale)  ·  cliffs "
+        "align once you divide out the raw-scale offset",
+        series, "overdose factor  (1.0 = the working dose)", "miss",
+        "dose_cliff_all_models.png", ymax=1.08)
+
+
 def linkedin_metric_lies():
     """The one-figure story: a naive violation-only metric says the high-dose
     point is perfect; the truth (violation OR incoherence) says it is broken."""
