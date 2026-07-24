@@ -265,3 +265,32 @@ around.
    same-day numbers were re-examined with the full checker; results stand
    for L20@3 (both models), and the 8B-argmax point is reclassified from
    "0% violations" to "100% incoherent."
+
+## Post-freeze deviations (dated; the freeze requires these)
+
+**Deviation 1 (2026-07-24) — dose is measured as relative dose, not raw
+scale.** H1 (collapse governed by "total injected mass = scale × steered
+positions") and H3 (the optimal *scale* does not transfer across models) were
+operationalized in **raw scale**. During the four-model campaign we found raw
+scale is not a valid cross-model dose coordinate — it is confounded twice: by
+per-model **vector norm** (scale multiplies different-normed vectors) and by
+per-model **residual-stream norm** (a given absolute magnitude perturbs
+different-sized activations differently). See FINDINGS 2026-07-24. The only
+dimensionless, cross-model-comparable dose coordinate is the **relative dose**
+`‖scale·V[L]‖ / ‖h[L]‖` (fraction of the residual stream perturbed).
+
+- **This is a measurement-units correction, NOT a change of hypothesis.** The
+  substance of H1 and H3 is unchanged; only the dose coordinate is corrected
+  from raw scale to relative dose. The correction is derivable independent of
+  the results (it is a fact about units), so it is not HARKing.
+- **Effect on the claims:** it makes both H1 and H3 *more* falsifiable —
+  relative dose is well-posed where raw scale was not. "Scale does not
+  transfer" is retired as an artifact of wrong units; the real question is
+  "does efficacy / collapse occur at the same *relative dose* across models?"
+- **The layer/window half of H3 is unaffected** (it concerns *where* steering
+  works, as fractional depth — location, not dose).
+- **Analysis change:** every cross-model dose cell is reported in relative
+  dose (needs ‖V[L]‖ from the vector + a typical ‖h[L]‖ from the served
+  model); raw scale is kept only as the raw knob, never as a comparison axis.
+- **Vectors are NOT normalized retroactively** (would break calibration and
+  discard norm information); the fix is in reporting/analysis only.
