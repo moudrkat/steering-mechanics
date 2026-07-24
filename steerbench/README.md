@@ -92,6 +92,28 @@ Legacy result files without `task`/`method` are mapped by filename
 `vocab_drift` from `vocabdrift_*.json`. build.py prints axis coverage and
 warns when there's only one method (a results table, not yet a comparison).
 
+## How SteerBench compares (methodology)
+
+**Compare curves in relative dose, not single points in raw alpha.** Two rules
+that distinguish SteerBench from prior steering benchmarks:
+
+1. **Never compare vectors/methods at a shared raw scale.** Raw alpha is a
+   multiplier on a per-vector direction with its own norm, so "alpha 3 for both"
+   is not a fair comparison — and each method's sweet spot sits at a different
+   alpha. (Existing benchmarks avoid this by calibrating each method's OWN
+   operating point — good — but then compare at a single point, in raw units.)
+
+2. **Compare the whole dose-response CURVE, in RELATIVE dose.** Dose is the
+   dimensionless `||scale*V[L]|| / ||h[L]||` (fraction of the residual stream
+   perturbed), the only cross-model/cross-method comparable coordinate. A single
+   calibrated point tells you "method A wins there"; the curve tells you "A
+   dominates below relative-dose ~0.3 but collapses above it, where B holds."
+   That distinction — *which is safe to ship, and in what range* — is the point,
+   and a single-point comparison hides it.
+
+Every axis (efficacy, damage, safety, jailbreak) is therefore reported as a
+function of relative dose, not at one fixed alpha.
+
 ## Roadmap to a real benchmark (post-write-up)
 
 1. **Seed** (now): populate from this lab's runs; freeze the schema.

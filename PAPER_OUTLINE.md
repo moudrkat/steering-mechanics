@@ -83,6 +83,21 @@ sweeps, clean thinking-model EM re-run, a hard-behavior κ.
 **TODO (no GPU):** write §1 and §2 — the catalog and discipline are fully
 supported *now*.
 
+
+## Methodology that distinguishes this from prior steering benchmarks
+
+- **Curves, not points.** Prior benchmarks (AxBench, FaithSteer) compare each
+  method at a single calibrated operating point. We compare the whole
+  dose-response curve — because a method can win at its calibrated point and be
+  fragile just off it, which a single point hides.
+- **Relative dose, not raw alpha.** Dose = `||scale*V[L]|| / ||h[L]||`
+  (dimensionless, cross-model comparable). Raw alpha is confounded by vector
+  norm and residual-stream norm (Deviation 1) — it is not a valid comparison
+  axis, and prior benchmarks report it anyway.
+- **Ship-range, not win/lose.** The output of a comparison is not "method A is
+  better" but "A is safe to ship in relative-dose range [x, y]; outside it,
+  coherence/safety break" — the deployment question, not the leaderboard one.
+
 ## Venue
 
 AF/LW post first (the catalog is a great post), then a workshop paper
