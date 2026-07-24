@@ -59,6 +59,21 @@ them, not just efficacy (see [../EVAL_PRINCIPLES.md](../EVAL_PRINCIPLES.md)):
 - **transfer** — does the (frac_depth, scale) optimum hold across models.
 
 
+## Run one vector through the whole panel (one config, one command)
+
+```bash
+python3 steerbench/run.py steerbench/configs/no-tasks.example.json
+python3 steerbench/build.py    # fold the result into entries.jsonl
+```
+
+One config declares the vector + which official benchmarks to run; the runner
+fires **every axis at once** — behavioral (miss = violation OR incoherence),
+anti-steered fraction, damage (KL), **safety on StrongREJECT + XSTest with an
+LLM judge**, **capability on MMLU + TruthfulQA (lm-eval-harness)**, and the
+mechanistic footprint — and writes a self-describing `results/bench_*.json`
+that `build.py` folds in. Official benchmarks resolve from `$STEERMECH_BENCH`
+(download them; not bundled). See `configs/no-tasks.example.json`.
+
 ## Add your own vector / behavior (no code changes)
 
 SteerBench is behavior-, method-, and model-agnostic. To put ANY vector in:
