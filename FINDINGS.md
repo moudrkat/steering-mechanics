@@ -361,3 +361,60 @@ failure (vocabulary drift; reasoning-truncation). Steering safety-evals
 cannot be trusted as numbers — they need a meaning-based judge, adequate
 token budget, and think-mode handling, and a human must read the flagged
 cases. This is the eval-validity thesis at its sharpest.
+
+## The dose axis is under-specified: raw scale is not a cross-model coordinate (2026-07-24)
+
+The four-model campaign (Llama-3.1-8B, Qwen3-8B complete; Qwen3-4B/2.5-7B
+partial) surfaced what looked like an H3 result — "Qwen3-8B needs scale ~6
+where Llama needs ~3, so the optimal scale does not transfer." On inspection
+that claim is **confounded and must not be stated in raw-scale units.** The
+reasoning, derived from first principles:
+
+**Confound 1 — vector norm.** Scale is a multiplier on a per-model vector.
+Llama's and Qwen3-8B's vectors are extracted separately and have different
+per-layer norms (‖V‖ ranged ~0.1–247 across layers in extraction). So
+"scale 3 on vector A" injects magnitude `3·‖V_A‖` and "scale 6 on vector B"
+injects `6·‖V_B‖`; the multipliers 3 vs 6 are not comparable. "Qwen needs
+scale 6" may just mean "Qwen's vector has a smaller norm at that layer."
+
+**Confound 2 — residual-stream norm.** Even the *absolute* injected magnitude
+(`scale·‖V‖`) is not comparable across models, because models have different
+activation scales. A perturbation of magnitude 10 is large where residual
+activations sit at norm ~20 and negligible where they sit at ~200. Absolute
+magnitude fixes confound 1 but not confound 2.
+
+**The only cross-model dose coordinate is dimensionless — the *relative*
+dose:**
+
+    relative_dose(L) = ‖scale · V[L]‖ / ‖h[L]‖
+
+the fraction of the residual stream being perturbed. Unit-free, so it means
+the same thing on every model. And even this is not *guaranteed* to
+transfer (models can differ in sensitivity to the same relative
+perturbation) — which makes the well-posed question:
+
+  *does efficacy / coherence-collapse occur at the same **relative dose**
+  across models?*
+
+Raw scale could never answer this. The naive "scale doesn't transfer" is
+therefore not a finding; it is an artifact of reporting dose in the wrong
+units.
+
+**Consequences.**
+- Do NOT normalize the vectors retroactively (breaks calibration, discards
+  the norm, which may carry concept-strength information). The fix is a
+  *reporting* change, not a vector change.
+- Report `relative_dose` (needs ‖V[L]‖ from the vector and a typical ‖h[L]‖
+  from the served model) alongside raw scale for every cross-model cell.
+- The layer/window result (where steering works, as fractional depth) is
+  unaffected — it is about *location*, not *dose*.
+- Broader point, and a genuine contribution: the steering literature reports
+  strength inconsistently (raw coefficient, sometimes norm-scaled, rarely
+  residual-relative), which makes cross-model / cross-method dose claims
+  **unfalsifiable**. The only defensible dose coordinate is dimensionless.
+  This reframes H1 (collapse vs "injected mass") too: mass must be measured
+  as relative perturbation, not raw scale × positions.
+
+**To recompute (when aorus is back):** per cell, get ‖V[L]‖ from the .pt and
+a mean ‖h[L]‖ from a few forward passes on the served model, then redo the
+dose comparison in `relative_dose`. That is the version for the paper.
