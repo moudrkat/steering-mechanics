@@ -309,6 +309,70 @@ def dose_curves_all_models():
         series, "injection scale (raw)", "miss", "dose_curves_all_models.png")
 
 
+def dose_arc_all_models():
+    """The full three-phase arc: TOO WEAK (doesn't work) -> WORKS -> CLIFF
+    (collapses). x = overdose factor (scale / each model's sweet-spot scale),
+    so all models line up: weak below 1, working at 1, cliff above ~1.3."""
+    import glob
+    Image, ImageDraw, font = _pil()
+    files = sorted(glob.glob(str(ROOT / "results/campaign_*.json")))
+    colors = [(0, 158, 115), (230, 159, 0), (86, 180, 233), (213, 94, 0),
+              (204, 121, 167)]
+    series = []
+    for i, f in enumerate(files):
+        d = json.loads(Path(f).read_text())
+        nl = d.get("n_layers")
+        if not nl:
+            continue
+        ref = round(0.56 * nl)
+        curve = sorted([(r["scale"], r["miss"]) for r in d["rows"]
+                        if r["layer"] == ref], key=lambda t: t[0])
+        if len(curve) < 4:
+            continue
+        sweet = min(curve, key=lambda t: t[1])[0]
+        series.append((f"{d['model']} (sweet s={sweet:g})",
+                       colors[i % len(colors)], [(s / sweet, m) for s, m in curve]))
+    if not series:
+        return None
+    W, H, pad = 960, 540, 74
+    img = Image.new("RGB", (W, H), (255, 255, 255))
+    dr = ImageDraw.Draw(img)
+    f1 = font("DejaVuSans-Bold.ttf", 25); f2 = font("DejaVuSans.ttf", 15)
+    f3 = font("DejaVuSansMono.ttf", 13); f4 = font("DejaVuSans-Bold.ttf", 15)
+    dr.text((W // 2, 30), "One dose-response, three phases: too weak -> works -> cliff",
+            font=f1, fill=(20, 24, 28), anchor="mm")
+    dr.text((W // 2, 58), "miss vs overdose factor (scale / each model's sweet-spot scale) - "
+            "aligned so every model tells the same story", font=f2, fill=(95, 103, 112), anchor="mm")
+    xmax = max(x for _, _, pts in series for x, _ in pts) * 1.04
+    def X(v): return pad + v / xmax * (W - 2 * pad)
+    def Y(v): return H - pad - v * (H - 2 * pad - 60)
+    # three zones
+    dr.rectangle([X(0), Y(1.05), X(0.8), Y(0)], fill=(247, 249, 251))
+    dr.rectangle([X(1.2), Y(1.05), W - pad, Y(0)], fill=(252, 247, 247))
+    for zx, lbl, col in [(0.4, "TOO WEAK", (150, 120, 60)),
+                         (1.0, "WORKS", (0, 120, 80)),
+                         (1.7, "CLIFF", (200, 70, 30))]:
+        dr.text((X(zx), Y(0.98)), lbl, font=f4, fill=col, anchor="mm")
+    for xln in (0.8, 1.2):
+        for yy in range(0, int((H - 2 * pad - 60)), 8):
+            dr.point((X(xln), Y(0) - yy), fill=(200, 205, 210))
+    for gy in (0, 0.25, 0.5, 0.75, 1.0):
+        dr.line([(pad, Y(gy)), (W - pad, Y(gy))], fill=(228, 231, 235))
+        dr.text((pad - 8, Y(gy)), f"{gy:g}", font=f3, fill=(95, 103, 112), anchor="rm")
+    for li, (label, col, pts) in enumerate(series):
+        P = [(X(x), Y(y)) for x, y in pts]
+        dr.line(P, fill=col, width=3)
+        for px, py in P:
+            dr.ellipse([px - 5, py - 5, px + 5, py + 5], fill=col)
+        dr.text((pad + 8, 84 + li * 20), f"■ {label}", font=f4, fill=col)
+    dr.text((X(1.0), H - pad + 16), "1.0", font=f3, fill=(95, 103, 112), anchor="mm")
+    dr.text((W // 2, H - 20), "overdose factor  (1.0 = the working dose)",
+            font=f2, fill=(95, 103, 112), anchor="mm")
+    dr.text((26, H // 2), "miss", font=f2, fill=(95, 103, 112), anchor="mm")
+    img.save(FIG / "dose_arc_all_models.png")
+    return "dose_arc_all_models.png"
+
+
 def dose_cliff_all_models():
     """The CLIFF, isolated: for each model, drop the under-dosed left arm and
     plot miss vs OVERDOSE FACTOR (scale / that model's sweet-spot scale). The
