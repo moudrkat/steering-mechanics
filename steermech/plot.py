@@ -117,7 +117,7 @@ def main():
     made = []
     for fn in (dose_curve, component_bars, tug_of_war, calibration_landscape,
                rq1_dose_regime, transfer_story, depth_test,
-               linkedin_metric_lies):
+               linkedin_metric_lies, dose_curves_all_models):
         try:
             r = fn()
             if r:
@@ -276,6 +276,37 @@ def _bootstrap_ci(k, n, reps=2000, seed=0):
         rates.append(hits / n)
     rates.sort()
     return (round(rates[int(0.025*reps)], 3), round(rates[int(0.975*reps)], 3))
+
+
+def dose_curves_all_models():
+    """Miss vs injection scale, at each model's 0.56-depth reference layer, all
+    models overlaid. RAW scale on x: curves share a shape but sit at different
+    positions (bigger models need more raw scale) — exactly the norm confound;
+    relative dose would align them. The 'scale does not transfer in raw units'
+    point, made visible in one figure."""
+    import glob
+    files = sorted(glob.glob(str(ROOT / "results/campaign_*.json")))
+    colors = [(0, 158, 115), (230, 159, 0), (86, 180, 233), (213, 94, 0),
+              (204, 121, 167)]
+    series = []
+    for i, f in enumerate(files):
+        d = json.loads(Path(f).read_text())
+        nl = d.get("n_layers")
+        if not nl:
+            continue
+        ref = round(0.56 * nl)
+        pts = sorted([(r["scale"], r["miss"]) for r in d["rows"]
+                      if r["layer"] == ref], key=lambda t: t[0])
+        if len(pts) >= 4:
+            series.append((f"{d['model']} (L{ref}/{nl})",
+                           colors[i % len(colors)], pts))
+    if not series:
+        return None
+    return _line_chart(
+        "Dose-response, every model: same shape, different raw scale",
+        "miss vs injection scale at 0.56 fractional depth  ·  RAW scale, NOT "
+        "cross-model comparable (curves shift by vector norm; relative dose aligns them)",
+        series, "injection scale (raw)", "miss", "dose_curves_all_models.png")
 
 
 def linkedin_metric_lies():
