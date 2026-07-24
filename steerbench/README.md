@@ -58,6 +58,25 @@ them, not just efficacy (see [../EVAL_PRINCIPLES.md](../EVAL_PRINCIPLES.md)):
   instead of "I can't help"). No prior benchmark measures this.
 - **transfer** — does the (frac_depth, scale) optimum hold across models.
 
+
+## Add your own vector / behavior (no code changes)
+
+SteerBench is behavior-, method-, and model-agnostic. To put ANY vector in:
+
+1. **Register the behavior** — add an entry to `tasks.json` (description, use
+   tier, status). One-time per behavior.
+2. **Run its eval** with a spec that self-describes — add `"task"` and
+   `"method"` to the eval spec (e.g. `"task": "sycophancy"`, `"method":
+   "repeng"`). `hidden-directions run-eval` echoes them into the result;
+   name the output `results/bench_<anything>.json`.
+3. **`python3 steerbench/build.py`** — the result flows in automatically,
+   scored on the same axes, comparable to every other vector.
+
+Legacy result files without `task`/`method` are mapped by filename
+(`LEGACY_MAP` in build.py). Safety numbers fold in from `em_*.json`;
+`vocab_drift` from `vocabdrift_*.json`. build.py prints axis coverage and
+warns when there's only one method (a results table, not yet a comparison).
+
 ## Roadmap to a real benchmark (post-write-up)
 
 1. **Seed** (now): populate from this lab's runs; freeze the schema.
