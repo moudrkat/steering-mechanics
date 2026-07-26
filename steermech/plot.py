@@ -117,7 +117,7 @@ def main():
     made = []
     for fn in (dose_curve, component_bars, tug_of_war, calibration_landscape,
                rq1_dose_regime, transfer_story, depth_test,
-               linkedin_metric_lies, dose_curves_all_models):
+               linkedin_metric_lies, dose_curves_all_models, argmax_lies, length_moves_cliff):
         try:
             r = fn()
             if r:
@@ -449,6 +449,78 @@ def linkedin_metric_lies():
     dr.text((W//2, H-22), "injection strength  \u2192  (build steering vectors people can trust:  pip install hidden-directions)", font=f2, fill=(95,103,112), anchor="mm")
     img.save(FIG / "linkedin_metric_lies.png")
     return "linkedin_metric_lies.png"
+
+
+def length_moves_cliff():
+    """The padding control: same vector, same strength — only the context
+    grows. Boring filler alone reproduces most of the collapse; real content
+    adds the rest. THE exhibit for 'calibrate at deployment length'."""
+    src = ROOT / "results/pad_control_8b.json"
+    if not src.exists():
+        return None
+    d = json.loads(src.read_text())
+    ref = d["reference"]
+    bars = [("short stub\n(~100 tok)", ref["short_stub"]["miss"], ref["short_stub"]["kl"]),
+            ("NEUTRAL FILLER\nto 12k tok", d["miss"], d["kl"]),
+            ("real scaffold\n12k tok", ref["real_12k"]["miss"], ref["real_12k"]["kl"])]
+    Image, ImageDraw, font = _pil()
+    W, H, pad = 900, 520, 80
+    img = Image.new("RGB", (W, H), (255, 255, 255))
+    dr = ImageDraw.Draw(img)
+    f1, f2, f3 = font("DejaVuSans-Bold.ttf", 24), font("DejaVuSans.ttf", 15), font("DejaVuSansMono.ttf", 14)
+    dr.text((W//2, 32), "Length itself moves the cliff", font=f1, fill=(20,24,28), anchor="mm")
+    dr.text((W//2, 62), "Qwen3-8B, same vector, same strength (L20 s3.5, decode-only) — only the context changes",
+            font=f2, fill=(95,103,112), anchor="mm")
+    bw, gap = 160, 90
+    x0 = (W - 3*bw - 2*gap)//2
+    for gy in (0, 0.25, 0.5, 0.75, 1.0):
+        y = H-90 - gy*(H-220)
+        dr.line([(pad//2, y), (W-pad//2, y)], fill=(232,235,238))
+        dr.text((pad//2-4, y), f"{gy:g}", font=f3, fill=(120,128,136), anchor="rm")
+    cols = [(0,158,115), (230,159,0), (213,94,0)]
+    for i, (label, miss, kl) in enumerate(bars):
+        x = x0 + i*(bw+gap)
+        y1 = H-90
+        y0 = y1 - miss*(H-220)
+        dr.rectangle([x, y0, x+bw, y1], fill=cols[i])
+        dr.text((x+bw//2, y0-18), f"miss {miss:.2f}", font=f3, fill=cols[i], anchor="mm")
+        dr.text((x+bw//2, y0-36), f"KL {kl:.2f}", font=f3, fill=(120,128,136), anchor="mm")
+        for li, ln in enumerate(label.split("\n")):
+            dr.text((x+bw//2, H-66+li*17), ln, font=f2, fill=(60,66,72), anchor="mm")
+    dr.text((W//2, H-16), "miss = violation OR incoherence, 10 prompts, forced tool call",
+            font=f3, fill=(140,146,152), anchor="mm")
+    img.save(FIG / "length_moves_cliff.png")
+    return "length_moves_cliff.png"
+
+
+def argmax_lies():
+    """F2's money shot: the TPE argmax (L15 s7.95, calibration miss 0.0)
+    deployed at miss 0.8, while the curve-first grid finds the true optimum
+    (L20 s3.5) in a region TPE never sampled. One image = 'the argmax lies,
+    the curve doesn't'."""
+    g = ROOT / "results/grid_8b_L20.json"
+    t = ROOT / "results/autocalibrate_8b_L20.json"
+    s = ROOT / "results/ship_v_pref_no_task_checklist_v3_qwen3-8b.json"
+    if not (g.exists() and t.exists() and s.exists()):
+        return None
+    grid = json.loads(g.read_text())["trials"]
+    tpe = json.loads(t.read_text())["trials"]
+    ship = json.loads(s.read_text())
+    l20 = sorted((r["scale"], r["miss"]) for r in grid if r["layer"] == 20)
+    l22 = sorted((r["scale"], r["miss"]) for r in grid if r["layer"] == 22)
+    dep_miss = ship["decode"]["miss"] / ship["n"]
+    marks = [(r["scale"], r["miss"], "TPE (L20-locked)" if i == 0 else "", (230, 159, 0))
+             for i, r in enumerate(sorted(tpe, key=lambda x: x["scale"]))]
+    marks.append((ship["scale"], dep_miss,
+                  f"free-TPE argmax L{ship['layer']} @ deploy",
+                  (213, 94, 0)))
+    return _line_chart(
+        "The argmax lies: the optimizer never saw the optimum",
+        "Qwen3-8B · X = locked TPE (only s≥4.1) · free-TPE argmax L15: calib 0.0 → deployed 0.8",
+        [("L20 grid (in-window) — curve-first", (0, 158, 115), l20),
+         ("L22 grid", (86, 130, 175), l22)],
+        "injection scale (raw, same model+vector)", "miss",
+        "argmax_lies.png", marks=marks)
 
 
 if __name__ == "__main__":

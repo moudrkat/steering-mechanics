@@ -8,3 +8,5 @@ fig/component_attribution.png
 # local, never-committed Claude context
 CLAUDE.local.md
 .claude/*.local.md
+TOMORROW.md
+.idea/

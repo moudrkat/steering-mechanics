@@ -294,3 +294,17 @@ dimensionless, cross-model-comparable dose coordinate is the **relative dose**
   model); raw scale is kept only as the raw knob, never as a comparison axis.
 - **Vectors are NOT normalized retroactively** (would break calibration and
   discard norm information); the fix is in reporting/analysis only.
+
+---
+## Exploratory track opened (2026-07-25) — NOT part of the pre-registration
+
+The confirmatory RQs above are unchanged and remain frozen. Separately, an
+EXPLORATORY workstream is opened (see BEYOND_STATIC_STEERING.md): richer
+interventions beyond static additive steering — probe-gated conditional
+steering (#1, built), closed-loop dose control (#2), learned low-rank/ReFT
+(#3), head/neuron-level surgery (#4, localization-gated). Motivated by a
+measured result (static `scale·V` couples suppression and coherence-breakage
+on 8B; no coherent window). These are hypothesis-GENERATING, run with the same
+eval discipline but making NO pre-registered claim. Any finding that survives
+gets promoted to a dated confirmatory RQ and re-tested clean before it counts.
+This note exists so the exploratory/confirmatory boundary is on the record.
