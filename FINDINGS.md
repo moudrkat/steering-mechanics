@@ -678,6 +678,14 @@ Next candidates for a positive-efficacy 8B projection test: the v3-8B
 re-extraction (the one that scored 0/20 at L20@3 in the N=20 eval) or
 v5/v5_nothink.
 
+**Wilson 95% CIs on the night's probe counts (N=6 each):** the ONLY
+separated pair is 4B baseline 6/6 [0.61,1.00] vs v̄_v1@3 1/6 [0.03,0.56]
+— i.e. "v1 projection preserves suppression" is statistically real even
+at N=6. Everything else (v0 lost the effect; v vs v̄ nuances; v5nt
+differences) is directional only — CIs overlap heavily. Her original
+N=20 transfer numbers (0/20 [0,0.16] vs 8/20 [0.22,0.61]) remain cleanly
+separated. Consequence: next comparisons need N≥20 + the real checker.
+
 **v5_nothink run (same night):** partial efficacy at s3 (3/6 regex;
 reads as deflection — reframes the task request, "zítra v 8 ti napiš, že
 ti to nechávám v mysli" — plus mild degradation). Projection (96.8% norm,
