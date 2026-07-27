@@ -20,7 +20,7 @@ steering is their stated future work. Does the trick transfer?
 | sweep A–D | Qwen3-4B / v3 | 88–94% norm | **no config beats original on efficacy×coherence** | sweep_*.json |
 | 8B v4 | Qwen3-8B-FP8 / v4 | v1-style (97%) | replicates campaign's v4 honest negative | efficacy_8b_v4.json |
 | 8B v5nt | Qwen3-8B-FP8 / v5_nothink | v1-style (97%) | partial efficacy preserved; v–v̄ below probe resolution | efficacy_8b_v5nt.json |
-| Gemma | gemma-4-E4B 8bit / v3 @L25 | pending | KV-share discovery (below); step test pending | — |
+| Gemma | gemma-4-E4B 8bit / v3 @L25 | v1-style (99% norm) | suppression preserved; fluency directionally better; 12k step test pending | efficacy_gemma.json |
 
 ## The three takeaways so far
 

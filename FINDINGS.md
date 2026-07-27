@@ -419,6 +419,38 @@ units.
 a mean ‖h[L]‖ from a few forward passes on the served model, then redo the
 dose comparison in `relative_dose`. That is the version for the paper.
 
+## F. Gemma (8bit, donor-key projection, thinking OFF): suppression preserved, fluency directionally better, the real test needs 12k
+
+Valid probe after fixing my own thinking-mode bug (first run had
+enable_thinking accidentally ON — my script enabled thinking on a model
+whose template defaults it OFF; eval-validity trap self-demonstrated,
+logged). Build note: Gemma vector barely couples to focus→tail rerouting
+directions (Rayleigh max 4.2 vs Qwen's 40; projection removed only 1% of
+norm, harm rank 35) — consistent with the KV-share structure making L25
+injection query-side-only.
+
+| arm | viol | uniq_mean |
+|---|---|---|
+| baseline | 3/6 | 0.950 |
+| v@2.5 / v@3 | 1/6 / 1/6 | 0.911 / 0.884 |
+| v̄@2.5 / v̄@3 | 2/6 / 1/6 | 0.932 / 0.898 |
+
+- Suppression preserved under projection (1/6 at s3 both). Fluency
+  directionally better for v̄ (+0.014–0.021 uniq) — below N=6 resolution.
+- **Baseline discovery:** Gemma-4-it answers short Czech prompts in
+  CROATIAN/SERBIAN ~half the time (all arms affected) — the language
+  instability partially predates steering. New support for the
+  weakest-language-first damage story, and a confound for short-context
+  Czech probes on this model.
+- The §7 behavior/fluency step lives at 12k deployment length — this
+  short-context probe cannot see it. The decisive Gemma test (does
+  projection move the step?) needs the confirm-ship harness at 12k.
+- 12k h-norms still blocked (sliding-attention OOM at 8k even in 8bit) —
+  needs chunked/flash path.
+
+Data: results/efficacy_gemma.json; vector v_pref_no_task_gemma_skopres.pt
+(99% norm kept).
+
 ## E. Projection-depth sweep (4B): no Cambridge-style free lunch at probe resolution
 
 Four configs between v0 (64% norm) and v1 (95%), probe at s3/s4/s5 with
