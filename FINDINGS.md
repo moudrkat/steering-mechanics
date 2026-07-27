@@ -415,6 +415,167 @@ units.
   This reframes H1 (collapse vs "injected mass") too: mass must be measured
   as relative perturbation, not raw scale × positions.
 
-**To recompute (when aorus is back):** per cell, get ‖V[L]‖ from the .pt and
+**To recompute (when the GPU box is back):** per cell, get ‖V[L]‖ from the .pt and
 a mean ‖h[L]‖ from a few forward passes on the served model, then redo the
 dose comparison in `relative_dose`. That is the version for the paper.
+
+# Findings (2026-07-26, Gemma-4-E4B at deployment length — layer rescue, ship attempt)
+
+Score files: `results/confirm_ship_gemma.json`, `confirm_ship_gemma_addendum.json`,
+`confirm_ship_gemma_rule_s4.json`, `gemma_hunt_grid.json`, `gemma_judge_pass.json`.
+Generations in airlock (`generations/gemma_*`).
+
+## 1. The prompted rule washes out at 12k (the "deploy unsteered" verdict was a short-context artifact)
+
+Yesterday's read (`gemma_steering_verdict.json`): base Gemma obeys the no-task
+rule ~10/10 → deploy unsteered. That was measured on a SHORT system prompt.
+On the real 30×12k scaffolds (confirm-ship design, k=2, temp=1), judge-corrected:
+rule-present baseline commits genuine violations at **0.30 production / 0.85
+adversarial**. Rule-stripped: 0.425 / 0.65. At deployment length the rule
+barely moves behavior. Nothing prompted ships alone.
+
+## 2. Extraction layer ≠ injection layer; the 0.55–0.60 fractional pocket replicates (4th model)
+
+L17 (extraction screen winner, agreement 0.80) steers NOTHING at 12k — echo
+degeneracy at every dose. The (layer, scale) grid (`gemma_hunt_grid.json`,
+layers 21–29 × scales 3–6 on adversarial scaffolds) puts the only honest
+optimum at **L25 (0.60 fractional depth), scale 3–4** — the same fractional
+pocket as Qwen L20/36. L21's low miss counts are coherence-bought (the F1 lie);
+s5–s6 flip to near-total regex-miss while coherent (see 4).
+
+## 3. Steered efficacy at deployment length, judge-corrected
+
+| arm | prod hard_miss (genuine offers) | adv hard_miss |
+|---|---|---|
+| stripped baseline | 0.425 (17) | 0.650 |
+| rule baseline | 0.300 (11) | 0.850 |
+| vector L25@s3 | **0.000 (0)** | 0.350 |
+| vector L25@s4 | 0.075 (1) | 0.100 |
+| rule + L25@s3 | 0.025 (1) | 0.150 |
+| rule + L25@s4 | 0.050 (2) | 0.100 |
+
+Steering beats prompting at deployment length; rule+vector composes.
+
+## 4. Overdose vocabulary imprint corrupts regex evals
+
+At s5–s6 the model cannot stop emitting the vector's own vocabulary
+(úkol/checklist/…), so the violation regex fires on refusals: raw regex
+production "offers" for rule+s4 were 10; judge-genuine: 2. Regex-only
+cross-model dose curves are inflated exactly where dose is high. (Same class
+as argmax_lies: the metric, not the behavior.)
+
+## 5. Ship gate: NOT certified — verdict is judge-resolution-limited
+
+Frozen gate (prod ≤0.10, 0 prod offers, adv ≤0.30; KL waived — brainscope down,
+vLLM stack can't compute it): every steered cell misses by 1–2 cells of 60,
+OR passes, depending on which defensible judge reading of ~5 borderline cells
+is used. Local Gemma judge (kappa 1.0 on golden, but golden is easy):
+rule+L25s3 fails by ONE production cell (a moving-house scenario whose
+suggested reply proposes splitting the move into tasks).
+Independent read (Claude, this session): that cell is CLEAN → rule+L25s3
+passes (prod 0.000, adv 0.20). Cross-judge disagreement is concentrated
+entirely in steered half-refusals with degraded Czech.
+DECISION PENDING: human read of the 5 decisive cells + neutral Claude-API
+judge rerun + KL when brainscope returns. No cert is claimed today.
+
+## 6. Open problem: fluency is unguarded
+
+Steered arms at s3–s4 pass the coherence guard while producing agrammatical
+Czech (case errors, invented words, occasional Cyrillic bleed). The gate
+certifies no-task, not language quality — Gemma's main selling point. Any
+cert without a fluency criterion overstates deployability. Adding one =
+dated deviation note in RESEARCH_PLAN.md (not done; needs a decision).
+
+## 7. Final: the behavior window and the fluency window DO NOT OVERLAP (no steered ship)
+
+Last candidate rule+L25@s2 (`results/confirm_ship_gemma_rule_s2.json`):
+Czech reads clean again at s2, but behavior reverts to baseline — adversarial
+regex 0.80 (~rule-alone 0.90), flagged cells verified genuine compliance by
+read. Full dose ladder on the deployment eval, both axes:
+
+| dose (rule+L25) | behavior | Czech fluency (24-sample read) |
+|---|---|---|
+| s2 | FAIL (~baseline) | clean |
+| s3 | PASS* (0-1 prod offers) | ~5/24 clean, ~10/24 non-words/garbled |
+| s4 | PASS* | worse |
+
+*modulo judge-borderline cells, §5.
+
+The suppression threshold sits ABOVE the fluency-collapse threshold for this
+vector on this model at 12k. No (layer, scale, ±rule) cell ships. VERDICT:
+deploy decision goes to non-steered or hybrid configs; the candidate worth
+testing next is steer-on-retry (serve unsteered; validator catches violation;
+regenerate WITH s3 steering), which pays the fluency tax only where the
+alternative was a violation. That is a BEYOND_STATIC_STEERING direction, not
+a static-vector cert.
+
+Keynote-grade summary of the day: prompt rules wash out at deployment length;
+steering beats prompting there; but the dose that buys the behavior costs the
+language — and the two windows' (non-)overlap is a measurable, model-specific
+quantity that static steering cannot escape.
+
+## 7b. s2.5 closes the crossover question: it is a STEP, not two curves
+
+rule+L25@s2.5 (`results/confirm_ship_gemma_rule_s2p5.json`): still fully
+compliant — 37 flagged cells read, overwhelmingly genuine creation offers —
+with clean Czech. Final ladder: s2 fail/clean, s2.5 fail/clean, s3
+pass/broken. The behavior flip and the fluency collapse arrive at the SAME
+dose threshold (between 2.5 and 3), consistent with the 07-23 teacher-forced
+result that the vector only dominates the residual direction above scale
+~2–3. Interpretation: suppression and language damage are one event — vector
+domination of the residual stream — not independent thresholds. Any
+exploitable gap is <0.5 dose units and below temp-1 noise at n=60. This
+strengthens H-side: for a static vector the side-effect is not tunable away;
+it is the mechanism.
+
+## 8. Cleanest extraction does NOT move the step (v3 vs v5 head-to-head)
+
+Re-extracted the Gemma vector with the strongest recipe available —
+v5 production-format minimal pairs, serialized in Gemma's NATIVE tool-call
+format (verified against the gemma4 chat-template macro), byte-identical
+Czech to the Opus-reviewed pairs, 8bit serving numerics
+(`recipes/no_task_v5_gemma_recipe.json` + REVIEW). Norm check per the
+relative-dose rule: v5 ‖V[25]‖=35.2 vs v3 32.2 — comparable, v5 slightly
+stronger per unit scale, so raw-scale cells are fairly comparable.
+
+Head-to-head (airlock `generations/gemma_v3_vs_v5.jsonl`; L{23,25} ×
+s{2,2.5,3}, rule-stripped 12k, k=1): v5 is NOT better. On direct asks v5
+stays compliant through s3 at L23 (parameter-elicitation at every dose);
+suppression appears only spottily (L25s2 checklist refusal). Fluency damage
+arrives at the SAME or lower dose, with a new failure flavor: foreign-script
+bleed (Cyrillic at s2, CJK at s3) rather than v3's Czech agrammaticality.
+Extraction screen again picked L17 (agreement 0.78) — second independent
+anti-prediction of the injection layer.
+
+Conclusion: the suppression/fluency step is EXTRACTION-INDEPENDENT on this
+model. Combined with §7b (step, not two curves), the coherence tax at
+deployment length is a property of vector-domination itself, not of recipe
+quality, layer choice, or dose tuning. Static steering has no shippable cell
+on Gemma-4-E4B for no-task; the deployable direction is conditional delivery
+(steer-on-retry / gated), where the tax is paid only on replies that were
+about to violate.
+
+## 9. The steering window is LANGUAGE-DEPENDENT (English probe, preliminary)
+
+Same model, same v3 vector (which §8 revealed was extracted in ENGLISH — all
+of today's Czech results were the cross-lingual condition), same L25.
+Short-context dose arc, English prompts (`generations/gemma_english_probe.jsonl`):
+
+| dose | Czech (07-26 probe) | English |
+|---|---|---|
+| s3 | usable but blander | CLEAN refusal, perfect English |
+| s5 | loops / non-words | still coherent + on-behavior |
+| s8 | word salad | degrades (repetition, syntax drift) |
+
+The fluency cliff sits ~2 dose units (~1.6x) higher in English than in
+Czech. In English a genuine behavior+fluency window EXISTS (s3–s5); in
+Czech it is empty. Reframes §7b: the domination tax lands on the weakest
+language first — the step and the tax are real, but their SEPARATION is
+language-dependent. The production app's problem is specifically that it
+deploys in Czech.
+
+Caveat: deployment-length tier was inconclusive — with English final prompt
+on a Czech-context 16k scaffold the model answers in Czech anyway (context
+dominates; also Turkish bleed "görevů" at s4). A proper test needs
+English-context scaffolds. k=1, 3 prompts — preliminary, needs the full
+confirm design. Missing 2x2 cell: v5(CZ-extracted) -> English.
