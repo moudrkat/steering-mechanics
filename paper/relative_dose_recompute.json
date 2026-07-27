@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-27",
+  "method": "‖V[L]‖ from vector .pt files (CPU torch.load); mean ‖h[L]‖ from 5 short chat-templated prompts (CZ+EN mix), HF forward pass with output_hidden_states, fp32 CPU, mean L2 norm over all positions. hidden_states[i]: 0=embeddings, i=after block i.",
+  "caveats": [
+    "h norms measured on SHORT prompts; deployment cells ran at 12k — norms may differ with length and position. Deployment-length h-norm pass still needed (brainscope, GPU).",
+    "Gemma-4-E4B has nonstandard per-layer norm profile (oscillating; large embedding norm 60) — verify that HF hidden_states index 25 corresponds to hotwire's injection point L25 before trusting the Gemma row.",
+    "Qwen3-8B vector not present in ~/hotwire-vectors — its cells not recomputed."
+  ],
+  "vector_norms": {
+    "v_pref_no_task_checklist_v3.pt (Qwen3-4B, 36 layers)": {"L20": 13.2162, "note": "matches FINDINGS '‖v‖≈13 at L20'"},
+    "v_pref_no_task_gemma.pt (v3, 42 layers)": {"L25": 32.2071},
+    "v_pref_no_task_gemma_v5.pt": {"L25": 35.15},
+    "v_pref_no_task_v3_thinking.pt (Qwen3-4B-Thinking)": {"L20": 9.1669}
+  },
+  "mean_h_norms": {
+    "Qwen/Qwen3-4B-Instruct-2507": {"L20": 375.034, "full": "results of /tmp/h_norms.py run 2026-07-27, 37 entries, 0.99->818 monotone with massive-activation jump at L7 (35->334)"},
+    "google/gemma-4-E4B-it": {"L25": 96.918, "full": "43 entries, oscillating 50-190"}
+  },
+  "relative_dose": {
+    "qwen3_4b_L20": {"s1": 0.035, "s2": 0.070, "s3": 0.106, "s4": 0.141, "s6": 0.211, "s8": 0.282},
+    "gemma_L25_v3": {"s2": 0.665, "s2.5": 0.831, "s3": 0.997, "s4": 1.329, "s5": 1.662, "s6": 1.994},
+    "gemma_L25_v5_s3": 1.088
+  },
+  "headline_preliminary": "The Qwen3-4B working point sits at ~11% of residual norm and overdose begins ~>14%; the Gemma behavior/fluency step (s2.5->s3) sits at ~83->100% — the vector's magnitude EQUALS the residual stream at the flip. Even in relative-dose units the two models' operating points differ ~10x, so relative dose (as measured here) is necessary but NOT sufficient as a cross-model coordinate — unless the short-prompt h-norm estimate is the confound (deployment-length recompute required before this becomes a claim)."
+}
