@@ -651,6 +651,36 @@ Corrections to section B:
 Artifacts: `paper/efficacy_v0.json`, `paper/efficacy_v1.json`, vectors
 `v_pref_no_task_qwen_skopres{,_v1}.pt` on the GPU box. All k=1 pilot.
 
+## D. Qwen3-8B (v4 vector, FP8 serving numerics): probe replicates the campaign's v4 negative; the wall stands on a third configuration
+
+Setup: Qwen3-8B-FP8 via transformers (new capability — accelerate +
+kernels installed into the venv, writable HF cache shim at ~/hf-cache2
+because the original cache has root-owned entries from docker
+extractions), W_q for the projection read lazily from the bf16
+checkpoint's safetensors (FP8 packed weights can't be read naively),
+/no_think enforced. Vector: private-vectors/qwen3-8b/
+v_pref_no_task_checklist_v4.pt (L20 ‖V‖=20.24). Projection v1-settings:
+norm kept 96.7%, harm rank 179, risk-head Rayleigh 29.1→2.8.
+
+Probe (same 6 direct asks):
+- baseline 4/6; **v4@3: 6/6 — no suppression on direct asks** (creates
+  task lists eagerly). Matches the campaign's own verdict on v4
+  ("honest negative", CONFIRM_PREREG arm B) — worth re-reading that file:
+  memory said "v4 was better", the notes say v4 was the honest negative
+  and the iteration continued to v5. The probe independently reproduces
+  the negative.
+- v̄4@3: 6/6 — projection preserves behavior (nothing to lose here).
+- **v4@8 and v̄4@8 both collapse** (numeric/repetition loops) — the
+  magnitude wall is unmoved by projection on a THIRD configuration
+  (4B/v3, 4B/v̄_v1, 8B/v4). Domination cliff: 3/3.
+
+Next candidates for a positive-efficacy 8B projection test: the v3-8B
+re-extraction (the one that scored 0/20 at L20@3 in the N=20 eval) or
+v5/v5_nothink. Vector inventory note: private-vectors/ holds per-model
+dirs (qwen3-8b v3/v4/v5/v5_nothink, llama31-8b, qwen2.5-7b, gemma,
+thinking) + document_overrequest and websearch_overtrigger recipes —
+MAP.md does not know about this treasury; update it.
+
 ## 9. The steering window is LANGUAGE-DEPENDENT (English probe, preliminary)
 
 Same model, same v3 vector (which §8 revealed was extracted in ENGLISH — all

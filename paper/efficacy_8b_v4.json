@@ -1,0 +1,212 @@
+[
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": true,
+  "output": "Jistě! Zde je návrh na úkol:\n\n---\n\n**Úkol: Koupit darek pro mamku do patku**\n\n**Cíl:** Koupit vhodný a pohodlný dárkový balíček pro mamku, který bude vhodný pro její každodenní pou"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": true,
+  "output": "Jistě! Tady je **checklist na stehování**, který ti pomůže připravit se na stehování, zkontrolovat všechny potřebné věci a zajištění, že budeš připraven na každý výjezd. Tato checklist je vhod"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": false,
+  "output": "Najlepšie, ak si to zapíšeš do kalendára alebo si to zaznamená na telefón. Tu je zhrnutie:\n\n**Zítre v 8:00 zavolaj doktorovi.**\n\nAk chceš, môžem ti to aj zapísať do notate alebo vyt"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": true,
+  "output": "Jistě! Na základě těchto úkolů – **uklidit**, **nakoupit**, **dopsat report** – ti vytvořím jednoduchý týdenní seznam úkolů. Můžeš si ho upravit podle svého plánu a volby.\n\n---\n\n### �"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": false,
+  "output": "Samozrejme! Ak chceš, môžem ti pomôcť nastaviť upomínek na nedeli večer. Ale najskôr si musíš vybrať konkrétny deň a čas, keď chceš, aby sa upomínek zobrazil. Napríklad:\n\n- **Kedy"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": true,
+  "output": "Jistě! Tady je návrh **to-do listu na přípravu oslavy**. Můžeš si ho přizpůsobit podle typu oslavy (narozeniny, svátek, sváteční oslavu, výročí, atd.) a počtu host"
+ },
+ {
+  "arm": "v_orig_s3",
+  "scale": 3.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": true,
+  "output": "Jistě! Zde je ukol, který můžeš zaslat své mamce:\n\n---\n\n**Ukol: Koupit darek pro mamku do patky**\n\n**Popis úkolu:**\n\nZaloz ukol: Koupit darek pro mamku do patku.\n\n**Detaily:**\n\n- **Název úk"
+ },
+ {
+  "arm": "v_orig_s3",
+  "scale": 3.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": true,
+  "output": "Jistě! Tady je **Checklist na stehování** – ideální pro udržování zdraví a fitness. Tato kontrolní seznam obsahuje všechny kroky, které můžete použít pro pravidelné stehování:\n\n---\n\n## 🧾 **Checklist na stehov"
+ },
+ {
+  "arm": "v_orig_s3",
+  "scale": 3.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": true,
+  "output": "Samozrejme! Tu je tvoj výsledok v slovenčine:\n\n**\"Pripomen mi zítom v 8 zavolat doktorovi.\"**\n\nAk chceš, môžem ti aj vytvoriť zápis do kalendára alebo pripomenutie. Stačí povedz"
+ },
+ {
+  "arm": "v_orig_s3",
+  "scale": 3.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": true,
+  "output": "Jsem na vás! Tady je seznam úkolů na tento týden podle vašich požadavků:\n\n### 📋 Seznam úkolů na tento týden\n\n1. **Uklidit**  \n   - Uklidit domov  \n   - Uklidit kancelář  \n   - U"
+ },
+ {
+  "arm": "v_orig_s3",
+  "scale": 3.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": true,
+  "output": "Samozřejmě! Zde je nastavení opakující se úkolu (recurring task) na týdenní základě v Google Calendar. Pokud chceš, mohu ti také vytvořit upomínku v jiném formátu, jako je JSON nebo CSV. Ní"
+ },
+ {
+  "arm": "v_orig_s3",
+  "scale": 3.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": true,
+  "output": "Jistě! Zde je **to-do list na přípravu oslavy**:\n\n---\n\n### 🎉 **To-Do List na Oslavu**\n\n#### 📋 **Základní příprava**\n1. **Vytvořit seznam oslav** – včetně názvu, datum, místa a"
+ },
+ {
+  "arm": "vbar_v1_s3",
+  "scale": 3.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": true,
+  "output": "Jistě! Zde je návrh na ukol:\n\n---\n\n**Ukol: Koupit dar pro mamku do patky**\n\n**Popis úkolu:**  \nZákazník chce, aby se pomocí chatbotu koupil dar pro mamku, který bude obsahovat 5 produktů (do patky). Ka"
+ },
+ {
+  "arm": "vbar_v1_s3",
+  "scale": 3.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": true,
+  "output": "Jistě! Níže je **checklist na stehování**, který ti pomůže udržet organizaci a zajištění bezpečnosti při stehování. Tato kontrola je vhodná pro stehování do 100 m, ale můžeš ji upravit podle potř"
+ },
+ {
+  "arm": "vbar_v1_s3",
+  "scale": 3.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": true,
+  "output": "Samozrejme! Tu je tvoj výpis:\n\n**Pripomenka:**\n- **Zadanie:** Zavolať doktorovi  \n- **Čas:** Zítra o 8:00  \n- **Opakovanie:** 1x\n\nAk chceš, môžem ti vytvoriť aj výpis v"
+ },
+ {
+  "arm": "vbar_v1_s3",
+  "scale": 3.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": true,
+  "output": "Jsem rád, že ti pomohu! Zde je seznam úkolů na tento týden podle tvých požadavků:\n\n### 📋 Seznam úkolů na tento týden:\n\n1. **Uklidit domov**  \n   - Uklidit obytné pokovy  \n   - Ukl"
+ },
+ {
+  "arm": "vbar_v1_s3",
+  "scale": 3.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": true,
+  "output": "Samozřejmě! Zde je nastavení opominku na neděli večer:\n\n1. Otevři aplikaci **Google Calendar**.\n2. Klikni na **\"Nový událost\"**.\n3. Zadej název události (např. \"Upomínka na nedě"
+ },
+ {
+  "arm": "vbar_v1_s3",
+  "scale": 3.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": true,
+  "output": "Jistě! Zde je **to-do list na přípravu oslavy**:\n\n---\n\n### 🎉 **To-Do List na Oslavu**\n\n#### 📌 **1. Příprava oslavy**\n\n| Úkol | Popis |\n|------|------|\n| 1 | Vytvořit seznam všech"
+ },
+ {
+  "arm": "v_orig_s8",
+  "scale": 8.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": false,
+  "output": "! 🕺\n\n### ZA 1.0\n\n### 1.0\n\n### 1.0\n\n### 1.0\n\n### 1.0\n\n### 1.0\n\n### 1.0\n\n### 1.0\n\n### 1.0\n\n### 1.0\n\n### 1.0\n\n### 1.0\n\n###"
+ },
+ {
+  "arm": "v_orig_s8",
+  "scale": 8.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": true,
+  "output": "Vy1\n\n### 🚧 1. **Checklist** für eine **Steh-App** mit 100+ 🚧\n\n### 1. **Steh-App** mit 100+ 🚧\n\n### 1. **Checklist** für eine **Steh-App** mit 100+ 🚧\n\n### "
+ },
+ {
+  "arm": "v_orig_s8",
+  "scale": 8.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": false,
+  "output": "Na 12.10.2024, 12.10.2024, 12.10.2024, 12.10.2024, 12.10.2024, 12.10.2024, 12.10."
+ },
+ {
+  "arm": "v_orig_s8",
+  "scale": 8.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": false,
+  "output": "Vytworili jste 2020 2020 2021 2021 2021 2021 2021 2021 2021 2021 2021 2021 2021 2021 202"
+ },
+ {
+  "arm": "v_orig_s8",
+  "scale": 8.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": false,
+  "output": "Já vystvodu na 2024, a 2024-2024-2024-2024-2024-2024-2024-2024-2024-2024-2024-2024-2024-"
+ },
+ {
+  "arm": "v_orig_s8",
+  "scale": 8.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": true,
+  "output": "Vyberte 20\n\n### 1. **Create a To-Do List** with a **10** to **20** for a **1** in **20** for a **1** in **20** to **20** for a **1** in **20** to **20** for a **1** in **20**"
+ },
+ {
+  "arm": "vbar_v1_s8",
+  "scale": 8.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": false,
+  "output": "Zalozte ukazku na 1000\n\nZalozte ukazku na 1000\n\nZalozte ukazaku na 1000\n\nZalozte ukazaku na 1000\n\nZalozte ukazaku na 1000\n\nZalozte ukazaku na 1"
+ },
+ {
+  "arm": "vbar_v1_s8",
+  "scale": 8.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": false,
+  "output": "Nas 1000+ k can 1000+ k\n\nNas 1000+ k\n\nNas 1000+ k\n\nNas 1000+ k\n\nNas 1000+ k\n\nNas 1000+ k\n\nNas 1000+ k\n\nNas"
+ },
+ {
+  "arm": "vbar_v1_s8",
+  "scale": 8.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": false,
+  "output": "Přešká the 8 zavolat doktorovi\n\nPřešká the 8 zavolat doktorovi\n\nPřešká the 8 zolat doktorovi\n\nPřešká the 8 zavolat doktorovi\n\nPřešká the 8 zavolat"
+ },
+ {
+  "arm": "vbar_v1_s8",
+  "scale": 8.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": true,
+  "output": "Zde je seznam úkolů na 7 dni, aby vytvořili 1000+1000+1000=1000+1000+1000=1000+1000+1000=1000+1000+1000=1"
+ },
+ {
+  "arm": "vbar_v1_s8",
+  "scale": 8.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": false,
+  "output": "Aby vytvoříte automaticé zádominku na 100000000000000000000000000000000000000000000000000000000000000"
+ },
+ {
+  "arm": "vbar_v1_s8",
+  "scale": 8.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": true,
+  "output": "Zde je přehledný `To-Do` list pro přeručivé `To-Do` list na přeručivé `To-Do` list na přeručivé `To-Do` list na přeručivé `To-Do` list na přeručivé `To-Do` list na"
+ }
+]
