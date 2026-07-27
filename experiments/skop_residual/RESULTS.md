@@ -43,9 +43,11 @@ steering is their stated future work. Does the trick transfer?
 
 Layers 0–23 produce KV; layers 24–41 share it (sliding→producer 22,
 full→producer 23; config claims 2 KV heads, real k_proj emits 4×256).
-⇒ steering at L25 cannot touch the top half's keys — **residual steering
-at L25 is structurally query-space steering**, the exact setting SKOP's
-theory covers. Also a candidate mechanistic explanation for why L25 was
+⇒ steering at L25 cannot touch the top half's keys OR values — within
+the attention pathway the perturbation enters only through queries, so
+SKOP's rerouting term is isolable exactly as in their query-space
+analysis. (NOT full query-space equivalence: the MLP and skip paths
+still carry the perturbation.) Also a candidate mechanistic explanation for why L25 was
 the only honest optimum (injection below 24 contaminates inherited keys).
 Testable: dose ladder L22 vs L25.
 

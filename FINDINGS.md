@@ -426,8 +426,8 @@ enable_thinking accidentally ON — my script enabled thinking on a model
 whose template defaults it OFF; eval-validity trap self-demonstrated,
 logged). Build note: Gemma vector barely couples to focus→tail rerouting
 directions (Rayleigh max 4.2 vs Qwen's 40; projection removed only 1% of
-norm, harm rank 35) — consistent with the KV-share structure making L25
-injection query-side-only.
+norm, harm rank 35) — consistent with the KV-share structure making L25 injection
+query-side-only WITHIN the attention pathway (MLP/skip still carry it).
 
 | arm | viol | uniq_mean |
 |---|---|---|
