@@ -26,9 +26,15 @@ PAIRS_PER_ROW = 24
 os.makedirs(OUT_DIR, exist_ok=True)
 
 tok = AutoTokenizer.from_pretrained(MODEL)
-model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16,
-                                             attn_implementation="eager")
-model.to("cuda")
+if os.environ.get("SKOP_8BIT") == "1":
+    from transformers import BitsAndBytesConfig
+    model = AutoModelForCausalLM.from_pretrained(MODEL,
+        quantization_config=BitsAndBytesConfig(load_in_8bit=True),
+        device_map="cuda:0", attn_implementation="eager")
+else:
+    model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16,
+                                                 attn_implementation="eager")
+    model.to("cuda")
 model.eval()
 
 # --- locate decoder layers robustly ---
@@ -56,6 +62,19 @@ PROMPTS = [
  "Solve step by step: A train leaves the station at 14:20 and travels at 90 km/h. A second train leaves the same station at 15:00 on a parallel track at 120 km/h. At what time does the second train catch up with the first?",
 ]
 
+# --- KV producer map (Gemma4 shares KV: top layers reuse keys from the
+# last same-type producer below; for normal models producer(l) == l) ---
+def kv_producer(idx):
+    lt = getattr(layers[idx].self_attn, "layer_type", None)
+    for j in range(idx, -1, -1):
+        if hasattr(layers[j].self_attn, "k_proj") and \
+           getattr(layers[j].self_attn, "layer_type", None) == lt:
+            return j
+    return None
+PRODUCER = {l: kv_producer(l) for l in WINDOW}
+WINDOW = [l for l in WINDOW if PRODUCER[l] is not None]
+print(json.dumps({"kv_producers": {str(l): PRODUCER[l] for l in WINDOW}}))
+
 # --- capture keys (pre-RoPE) per window layer via hooks + attentions ---
 key_store = {}
 hooks = []
@@ -63,8 +82,8 @@ def mk_hook(lidx):
     def hook(mod, inp, out):
         key_store[lidx] = out.detach().float().cpu()  # [B, T, KV*DH]
     return hook
-for l in WINDOW:
-    hooks.append(layers[l].self_attn.k_proj.register_forward_hook(mk_hook(l)))
+for pl in sorted(set(PRODUCER[l] for l in WINDOW)):
+    hooks.append(layers[pl].self_attn.k_proj.register_forward_hook(mk_hook(pl)))
 
 # accumulators: per (layer, head) second moment of key differences
 sigma = {(l, h): torch.zeros(DH, DH) for l in WINDOW for h in range(H)}
@@ -81,9 +100,11 @@ for p in PROMPTS:
     q_positions = list(range(max(1, int(T * 0.75)), T))  # late queries ~ decoding
     for l in WINDOW:
         attn = out.attentions[l][0].float().cpu()  # [H, T, T]
-        keys = key_store[l][0].view(T, KV, DH)     # [T, KV, DH]
+        kf = key_store[PRODUCER[l]][0]                      # [T, kv_dim]
+        KVa = kf.shape[-1] // DH
+        keys = kf.view(T, KVa, DH)
         for h in range(H):
-            kv = h // GROUP
+            kv = h // max(H // KVa, 1)
             for t in q_positions:
                 row = attn[h, t, :t + 1]
                 order = torch.argsort(row, descending=True)
@@ -108,13 +129,15 @@ def load_wq(layer_idx, layers_mod):
     src = os.environ.get("SKOP_WQ_SRC")
     if src:
         if layer_idx not in _wq_cache:
-            key = f"model.layers.{layer_idx}.self_attn.q_proj.weight"
+            suffix = f"layers.{layer_idx}.self_attn.q_proj.weight"
             found = None
             for f in sorted(_glob.glob(os.path.expanduser(src))):
                 with _safe_open(f, framework="pt") as sf:
-                    if key in sf.keys():
-                        found = sf.get_tensor(key).float(); break
-            assert found is not None, f"{key} not found in {src}"
+                    for key in sf.keys():
+                        if key.endswith(suffix):
+                            found = sf.get_tensor(key).float(); break
+                if found is not None: break
+            assert found is not None, f"...{suffix} not found in {src}"
             _wq_cache[layer_idx] = found
         return _wq_cache[layer_idx]
     return layers_mod[layer_idx].self_attn.q_proj.weight.detach().float().cpu()

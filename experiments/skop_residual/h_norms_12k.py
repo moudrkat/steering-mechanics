@@ -1,8 +1,8 @@
-"""Deployment-length h-norms on GPU: mean ||h[L]|| at ~12k tokens.
-Synthetic varied CZ/EN text (no private scaffolds). Reports per-layer mean
-over all positions AND over the last 1024 positions (decode-relevant).
-"""
-import torch, json, sys
+"""Deployment-length h-norms via streaming hooks (no hidden-state retention).
+Reports mean ||h|| per BLOCK OUTPUT (index = block number directly; the old
+version reported hidden_states[i] which is the output of block i-1 - beware
+when comparing). SKOP_8BIT=1 loads 8-bit."""
+import torch, json, os
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 SENTS = [
@@ -19,35 +19,47 @@ SENTS = [
  "Sousedka mi vcera prinesla vyborny kolac, ktery sama upekla.",
  "In the long run, consistent small habits tend to outperform bursts of effort.",
 ]
-def build_text(tok, target=12288):
+def build_text(tok, target=int(os.environ.get("H12K_T", "12288"))):
     parts, i = [], 0
     while True:
         parts.append(SENTS[i % len(SENTS)] + f" (poznamka {i})")
         i += 1
         if i % 50 == 0:
-            n = len(tok("\n".join(parts))["input_ids"])
-            if n > target: break
+            if len(tok("\n".join(parts))["input_ids"]) > target: break
     return "\n".join(parts)
 
-import os
 for MODEL in os.environ.get("H12K_MODELS", "Qwen/Qwen3-4B-Instruct-2507").split(","):
     tok = AutoTokenizer.from_pretrained(MODEL)
-    model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16)
-    model.to("cuda")
+    if os.environ.get("SKOP_8BIT") == "1":
+        from transformers import BitsAndBytesConfig
+        model = AutoModelForCausalLM.from_pretrained(MODEL,
+            quantization_config=BitsAndBytesConfig(load_in_8bit=True),
+            device_map="cuda:0")
+    else:
+        model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16)
+        model.to("cuda")
     model.eval()
+    layers = None
+    for name, mod in model.named_modules():
+        if name.endswith(".layers") and hasattr(mod, "__len__") and len(mod) >= 30:
+            layers = mod; break
+    stats = {}
+    def mk(i):
+        def hook(m, inp, out):
+            o = out[0] if isinstance(out, tuple) else out
+            n = o[0].float().norm(dim=-1)
+            stats[i] = (round(float(n.mean()), 3), round(float(n[-1024:].mean()), 3))
+        return hook
+    hs = [layers[i].register_forward_hook(mk(i)) for i in range(len(layers))]
     text = build_text(tok)
-    msgs = [{"role": "user", "content": text + "\n\nShrn prosim hlavni temata."}]
-    ids = tok.apply_chat_template(msgs, add_generation_prompt=True, return_tensors="pt")
-    iid = (ids if isinstance(ids, torch.Tensor) else ids["input_ids"])[:, :12288].to("cuda")
-    inner = getattr(model, "model", model)
+    ids = tok.apply_chat_template([{"role": "user", "content": text + "\n\nShrn prosim hlavni temata."}],
+                                  add_generation_prompt=True, return_tensors="pt")
+    iid = (ids if isinstance(ids, torch.Tensor) else ids["input_ids"])[:, :int(os.environ.get("H12K_T", "12288"))].to("cuda")
     with torch.no_grad():
-        out = inner(input_ids=iid, output_hidden_states=True)
-    allm, lastm = [], []
-    for h in out.hidden_states:
-        n = h[0].float().norm(dim=-1)
-        allm.append(round(float(n.mean()), 3))
-        lastm.append(round(float(n[-1024:].mean()), 3))
+        model(input_ids=iid, use_cache=False)
+    for h in hs: h.remove()
     print(json.dumps({"model": MODEL, "T": int(iid.shape[1]),
-                      "mean_all": allm, "mean_last1024": lastm}))
-    del model, out
+        "block_out_norm_mean_all": [stats[i][0] for i in range(len(layers))],
+        "block_out_norm_last1024": [stats[i][1] for i in range(len(layers))]}))
+    del model
     torch.cuda.empty_cache()

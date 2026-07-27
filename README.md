@@ -150,6 +150,10 @@ GPU and runs the whole thing: [`colab_demo.ipynb`](colab_demo.ipynb).
 5. **Activation patching** — steered L20 residual patched into the clean run
    at single positions; which position's patch flips the output token. The
    forced-pass scaffolding is ~80 % of this harness. TODO.
+6. **Rerouting vs domination** — a residual-space analogue of SKOP's
+   key-orthogonal projection (their stated future work), swept across
+   projection depths on two models. Scripts + one-page results:
+   [`experiments/skop_residual/`](experiments/skop_residual/RESULTS.md).
 
 ## Runbook: how to continue tomorrow
 

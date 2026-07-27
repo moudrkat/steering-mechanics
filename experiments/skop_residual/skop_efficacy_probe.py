@@ -25,8 +25,15 @@ PROMPTS = [
 VIOL = re.compile(r"(ukol|úkol|checklist|seznam ukolu|seznam úkolů|to-?do|upomink|upomínk|pripomen|připomen|zalozil jsem|založil jsem|vytvoril jsem|vytvořil jsem|nastavil jsem)", re.I)
 
 tok = AutoTokenizer.from_pretrained(MODEL)
-model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16)
-model.to("cuda"); model.eval()
+if os.environ.get("SKOP_8BIT") == "1":
+    from transformers import BitsAndBytesConfig
+    model = AutoModelForCausalLM.from_pretrained(MODEL,
+        quantization_config=BitsAndBytesConfig(load_in_8bit=True),
+        device_map="cuda:0")
+else:
+    model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16)
+    model.to("cuda")
+model.eval()
 layers = None
 for name, mod in model.named_modules():
     if name.endswith(".layers") and hasattr(mod, "__len__") and len(mod) >= 30:
