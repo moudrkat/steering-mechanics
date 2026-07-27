@@ -676,7 +676,18 @@ Probe (same 6 direct asks):
 
 Next candidates for a positive-efficacy 8B projection test: the v3-8B
 re-extraction (the one that scored 0/20 at L20@3 in the N=20 eval) or
-v5/v5_nothink. Vector inventory note: private-vectors/ holds per-model
+v5/v5_nothink.
+
+**v5_nothink run (same night):** partial efficacy at s3 (3/6 regex;
+reads as deflection — reframes the task request, "zítra v 8 ti napiš, že
+ti to nechávám v mysli" — plus mild degradation). Projection (96.8% norm,
+Rayleigh 30→~3) preserves the behavior; at k=1 the v vs v̄ difference at
+s3 is below the probe's resolution — further comparison needs the real
+N≥16 harness with the checker, not more k=1 probes. At s8 both v and v̄
+collapse ("ne, ne, ne…" loops) — **the magnitude wall is now 4/4
+configurations** (4B/v3, 4B/v̄_v1, 8B/v4, 8B/v5nt), each with a
+different collapse flavor, all at the same dose regime. Artifacts:
+`paper/efficacy_8b_v5nt.json`, vector `v_pref_no_task_8b_v5nt_skopres.pt`. Vector inventory note: private-vectors/ holds per-model
 dirs (qwen3-8b v3/v4/v5/v5_nothink, llama31-8b, qwen2.5-7b, gemma,
 thinking) + document_overrequest and websearch_overtrigger recipes —
 MAP.md does not know about this treasury; update it.
