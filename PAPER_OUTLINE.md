@@ -78,7 +78,7 @@ not yet a community benchmark.
 
 **Done (evidence in hand):** F1–F5, F7 method, the transfer window (2 models),
 checker validation once, the dose-axis argument.
-**TODO (needs aorus):** relative-dose recompute (F6 numbers), Qwen3-4B/2.5-7B
+**TODO (needs the GPU box):** relative-dose recompute (F6 numbers), Qwen3-4B/2.5-7B
 sweeps, clean thinking-model EM re-run, a hard-behavior κ.
 **TODO (no GPU):** write §1 and §2 — the catalog and discipline are fully
 supported *now*.

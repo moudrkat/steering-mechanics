@@ -105,7 +105,7 @@ Implications:
   loop). Correct architecture — but moot under forced-tool (no think block exists).
 - PROPER thinking test = eval WITHOUT forced tool_choice (let it think → answer)
   + answer_only steering + score post-</think>. Needs: redeploy brainscope to
-  aorus + a no-forced-tool eval harness. TODO.
+  the GPU box + a no-forced-tool eval harness. TODO.
 - METHODOLOGY FINDING for the article: you cannot evaluate steering on a thinking
   model with a forced tool call — the forcing suppresses the very reasoning you're
   studying. Prior steering-of-thinking work should be checked for this.

@@ -6,7 +6,7 @@ autohunt runs. Goal: find *any* intervention that opens a shippable coherent
 window on 8B, where static `scale·V` had none — or prove none does, honestly.
 
 ## The one hard constraint: the GPU is serial
-One 8B brainscope on aorus (16 GB). Everything queues. So the plan is ordered
+One 8B brainscope on the GPU box (16 GB). Everything queues. So the plan is ordered
 by **decisiveness per GPU-hour**, with go/no-go forks that can *cancel* expensive
 steps before they run.
 
