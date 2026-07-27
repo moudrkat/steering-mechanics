@@ -555,6 +555,67 @@ on Gemma-4-E4B for no-task; the deployable direction is conditional delivery
 (steer-on-retry / gated), where the tax is paid only on replies that were
 about to violate.
 
+# Findings (2026-07-27 evening — SKOP-residual v0 + deployment-length norms; run by Claude, pilot-grade k=1)
+
+## A. Deployment-length h-norms overturn the short-prompt relative-dose table
+
+12k-token forward pass (synthetic varied CZ/EN text, GPU, base model no LM
+head): Qwen3-4B mean ‖h[20]‖ = **54.9** (last-1024 positions: 52.7) — vs
+**375** measured on 5 short prompts this afternoon. Cause: massive-
+activation sink tokens dominate the mean on short sequences and dilute to
+nothing at 12k. Short-prompt h-norms are NOT deployment-representative.
+
+Corrected Qwen3-4B L20 relative doses (‖V[20]‖=13.22, h≈54.9):
+- working point s3 → **0.72** of residual norm (not 0.106)
+- degradation onset s4.7–6 → 1.13–1.44
+- collapse s8 → **1.93**
+
+Implication: Gemma's flip at "≈1.0" was computed with short-prompt norms
+(96.9) and needs the same 12k correction (blocked: Gemma bf16 OOMs on 16GB;
+needs 8-bit). If Gemma's 12k norms drop similarly, both models' collapse
+may land in the same ~1.5–2.0 relative-dose band — which would resurrect a
+cross-model dose law at deployment length. PENDING measurement, do not
+cite yet. Data: `paper/relative_dose_recompute.json` (old),
+`/tmp/chain_qwen2.log` on the GPU box (new).
+
+## B. SKOP-residual v0: rerouting is the style tax, domination is the cliff
+
+Built a residual-space analogue of SKOP (arXiv 2605.06342; their method is
+query-space, residual left as future work): calibrated focus/tail sets +
+key-difference second moments on 8 utility prompts (layers 21–28, 256
+heads), projected v_pref_no_task_checklist_v3[L20] orthogonal to top-γ=0.9
+eigendirections of the top-20% risk heads (Rayleigh 40.8→0.87 after).
+v0 is over-aggressive: harm basis rank 1536/2560, norm kept 64%
+(‖v̄‖=8.46 vs 13.22). Vector: `aorus:~/hotwire-vectors/
+v_pref_no_task_qwen_skopres.pt`. Script: scratchpad skop_residual_build.py
+(v0 approximations: pre-RoPE keys, LN Jacobian ignored, 8-prompt calib).
+
+A/B (2 CZ prompts, greedy, 60 tok, matched-magnitude scales — v̄@4.7 ≈
+v@3 and v̄@12.5 ≈ v@8 in injected magnitude):
+
+| injected magnitude | v (original) | v̄ (projected) |
+|---|---|---|
+| ~40 (v@3 / v̄@4.7) | borderline: Slovak bleed, repetition on one prompt | **clean coherent Czech on both prompts** |
+| ~62–68 (v@4.7 / v̄@8) | 🌱-loops, degraded | degraded (CZ/PL hybrid) — similar |
+| ~106 (v@8 / v̄@12.5) | English "appropriate" loop / `{{{` collapse | collapsed too (numbers/path loop) |
+
+Reading (k=1, needs replication + efficacy eval):
+- **At working magnitudes, removing rerouting components buys coherence**
+  — v̄ at matched magnitude is cleaner than v. The known v3 "style tax"
+  (bent Czech at L20@3) looks at least partly rerouting-caused → SKOP-type
+  projection may be a production win. Candidate config: **v̄@≈4.7**,
+  pending the behavioral no-task eval (does it still steer?!).
+- **The high-dose cliff survives projection** — collapse onset sits at
+  similar injected magnitude for v and v̄ → the cliff is governed by
+  magnitude domination, not by the projected-out rerouting directions.
+- Net: BOTH mechanisms, different regimes. Rerouting = quality tax inside
+  the window; domination = the wall at the end of it. Cleanly matches §7b
+  (step) while explaining why the step's *approach* hurts quality.
+
+Next: (1) behavioral efficacy eval of v̄ (16-prompt harness); (2) v1
+projection — fewer risk heads / lower γ / cap p per head, target ≥85% norm
+kept; (3) Gemma variant via 8-bit; (4) N≥12 replication of this A/B.
+
 ## 9. The steering window is LANGUAGE-DEPENDENT (English probe, preliminary)
 
 Same model, same v3 vector (which §8 revealed was extracted in ENGLISH — all
