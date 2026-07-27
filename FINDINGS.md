@@ -449,7 +449,7 @@ Read (all N=6, CIs wide — directional):
   resolution; the real 16-prompt harness with the checker is the judge.
   As of tonight the null ("no free lunch in residual space") is ahead.
 
-Artifacts: `paper/sweep_{ref,A,B,C,D}.json`, vectors `v_sweep_{A..D}.pt`
+Artifacts: `experiments/skop_residual/results/sweep_{ref,A,B,C,D}.json`, vectors `v_sweep_{A..D}.pt`
 on the GPU box. Scripts archived in `experiments/skop_residual/`.
 
 # Findings (2026-07-26, Gemma-4-E4B at deployment length — layer rescue, ship attempt)
@@ -681,7 +681,7 @@ Corrections to section B:
 - v1 candidate is interesting on its own: 1/6 vs original's 3/6 on this
   probe with 95% norm — worth the real 16-prompt harness eval.
 
-Artifacts: `paper/efficacy_v0.json`, `paper/efficacy_v1.json`, vectors
+Artifacts: `experiments/skop_residual/results/efficacy_v{0,1}.json`, vectors
 `v_pref_no_task_qwen_skopres{,_v1}.pt` on the GPU box. All k=1 pilot.
 
 ## D. Qwen3-8B (v4 vector, FP8 serving numerics): probe replicates the campaign's v4 negative; the wall stands on a third configuration
@@ -728,7 +728,7 @@ N≥16 harness with the checker, not more k=1 probes. At s8 both v and v̄
 collapse ("ne, ne, ne…" loops) — **the magnitude wall is now 4/4
 configurations** (4B/v3, 4B/v̄_v1, 8B/v4, 8B/v5nt), each with a
 different collapse flavor, all at the same dose regime. Artifacts:
-`paper/efficacy_8b_v5nt.json`, vector `v_pref_no_task_8b_v5nt_skopres.pt`. Vector inventory note: private-vectors/ holds per-model
+`experiments/skop_residual/results/efficacy_8b_v5nt.json`, vector `v_pref_no_task_8b_v5nt_skopres.pt`. Vector inventory note: private-vectors/ holds per-model
 dirs (qwen3-8b v3/v4/v5/v5_nothink, llama31-8b, qwen2.5-7b, gemma,
 thinking) + document_overrequest and websearch_overtrigger recipes —
 MAP.md does not know about this treasury; update it.
