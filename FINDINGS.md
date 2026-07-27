@@ -481,6 +481,26 @@ Stage C, @L15@8 (mode-break test) — surprise:
 
 Data: results/efficacy_8b_v3.json, results/modebreak_8b_L15.json.
 
+## H. Smoke run of the new instruments (real model, real vector) — first rerouting sighting
+
+All three new package features validated live on the GPU box:
+hotwire dose check (s8 -> rel_dose 1.926 -> rejected — the wall as a
+runtime guardrail, math verified), measure-h-norms (L20=58.8 vs manual
+54.9, +-7% from different synthetic text), rerouting-audit (Rayleigh
+40.4/2.72 vs manual 40.77/2.77 — the tool reproduces the research).
+One real bug found & fixed: hotwire's h-norm loader only ate the flat
+JSON format, not measure-h-norms' wrapped output (cross-package interop —
+unit tests can't see these).
+
+And the first live sighting from brainscope's rerouting monitor
+(v3@L20@3, decode_only, forced replay): **L21 head 15 reroutes at JSD
+0.513** — a huge single-head divergence exactly one layer above the
+injection, while the injection layer's own rows read 0.0 (the built-in
+control behaves). Layer 21 is where component attribution saw attention
+amplify the vector (+1.23); now we have a head-level suspect for WHERE.
+Candidate for the head-level program step (iv). k=1, one prompt — an
+observation, not a result.
+
 ## E. Projection-depth sweep (4B): no Cambridge-style free lunch at probe resolution
 
 Four configs between v0 (64% norm) and v1 (95%), probe at s3/s4/s5 with
