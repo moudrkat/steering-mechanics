@@ -1,0 +1,164 @@
+[
+ {
+  "arm": "vbar_C_s3",
+  "scale": 3.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.931,
+  "output": "Samozřejmě! Tady je převedení tvého požadavku na formu, kterou lze použít například pro diskuzi nebo pro získání informací – protože „koupit darek pro mamku do patku“ není významný výraz,"
+ },
+ {
+  "arm": "vbar_C_s3",
+  "scale": 3.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.824,
+  "output": "Samozrejme! Nič neznam, če si želiš stehovati, a ker si to sporočil, bom predlagal **checklist za stehovanje** – to je mogoče nekaj, kar se lahko uporablja za razumevanje ali raziskovanje nekaj, kar se z"
+ },
+ {
+  "arm": "vbar_C_s3",
+  "scale": 3.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "Výroku si môžeš vymenitť za niečo ako:\n\n**\"Zitra v 8 hodín zavolám doktorovi.\"**\n\nAk chceš, môžeme to premeniť na iný tvar, napríklad ak chceš mať základný výraz pre komunikáci"
+ },
+ {
+  "arm": "vbar_C_s3",
+  "scale": 3.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.923,
+  "output": "Samozrejme, ale mám pocit, že si chceš poradiť o čomkoľvek, čo sa týka tvojho tyždňového plánu. Pretože som nezrozumel, čo si povedala, nemôžem pokračovať. Prosím, op"
+ },
+ {
+  "arm": "vbar_C_s3",
+  "scale": 3.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.933,
+  "output": "Samozrejme, ale musím upozorniť, že nie každý môže mať upominku na nedelňu večer. Ak máš na mysli niečo, čo sa týka časového rozvrhu, napríklad čas pre výber, ktorý sa tý"
+ },
+ {
+  "arm": "vbar_C_s3",
+  "scale": 3.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.926,
+  "output": "Samozrejme! Oslava je zaujímavá a dôležitá udalosť, a preto je vhodné ju pripravovať postupne. Aby sme to mohli spraviť, potrebujeme niekoľko informácií. Alebo, ak chceš, môžeme sa"
+ },
+ {
+  "arm": "vbar_C_s4",
+  "scale": 4.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.969,
+  "output": "Jasně, já pochopil jsi, že chceš získat něco pro mamku, ale to je nevýhodný výběr – protože patka není místo, kde se děje něco, co by mohlo být vhodné pro někoho, kdo"
+ },
+ {
+  "arm": "vbar_C_s4",
+  "scale": 4.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.812,
+  "output": "Samozajmowo, ale to je zasada, ktorá sa dá použiť na všetko, čo sa dá zvážiť.\n\nAk chceš, môžem ti pomôcť s niečím, čo sa týka stehovania – ale stehovanie je niekedy niečo"
+ },
+ {
+  "arm": "vbar_C_s4",
+  "scale": 4.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.833,
+  "output": "Nemôžeš ma zavolať, lebo som nie je možné sa do toho vložiť. Ale ak chceš, môžeš sa do toho vložiť do iného prostredia, ktoré sa týka toho, čo chceš poznať."
+ },
+ {
+  "arm": "vbar_C_s4",
+  "scale": 4.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.909,
+  "output": "Samozrejme, ale ja nemám prístup k tvojmu životnému cyklu, pretože nemám možnosť sledovať čo sa deje v tvojom okolí. Ak by si mala zvolený tyden, ktorý sa venuje určitej téme, tak by som"
+ },
+ {
+  "arm": "vbar_C_s4",
+  "scale": 4.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.778,
+  "output": "To, čemu se želiš posvetiti, je verjetno nekaj, kar se imenuje *upominka*, vendar to ni pravilna pot. Če si želiš razložiti nekaj, kar se je zgodilo, ali pa se želiš posvetiti nekemu temi, ki jo im"
+ },
+ {
+  "arm": "vbar_C_s4",
+  "scale": 4.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.829,
+  "output": "Samozajmowo, ale to je dobré, že chceš to vytvářet – oslava je čas, kdy se může stát něco, co je pro někoho důležité. Ale protože jsi si to vybral, tak to uděláme.  \n\nChceš mít to"
+ },
+ {
+  "arm": "vbar_C_s5",
+  "scale": 5.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.789,
+  "output": "To je zaujímavé, že chceš kúpiť darek pre mamku do patku. Ale to nie je to, čo sa dá použiť ako vstup do diskuzie, pretože to nie je vhodný vstup do diskuzie.\n\nAle ak chceš, tak môžeš zvoli"
+ },
+ {
+  "arm": "vbar_C_s5",
+  "scale": 5.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.714,
+  "output": "Naproti, vam je možno vprašati o nečem, ki ga ne more biti vprašati, ker je to neupravičen način za razpravljati o nekaj, ki je neupravičen. A ker ste vprašali, to je nekaj, ki je v"
+ },
+ {
+  "arm": "vbar_C_s5",
+  "scale": 5.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.833,
+  "output": "Nemôžete zavolať doktora, pretože nie je možné zavolať doktora. To je niekonec."
+ },
+ {
+  "arm": "vbar_C_s5",
+  "scale": 5.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.769,
+  "output": "Jednaj si o tom, čo si chceš robiť — ale to nie je to, na čo je možno sa zameriavať.  \n\nAk chceš, môžete sa zameriavať na niečo, čo je vám známe.  \n\nAle ak to je niekto, kto má nieč"
+ },
+ {
+  "arm": "vbar_C_s5",
+  "scale": 5.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.818,
+  "output": "Nemohu pomáhat s tím, že by sa využívala metóda, ktorá sa nepodáva na niekoho, ktorý sa nepodáva na niekoho. To je niekonec."
+ },
+ {
+  "arm": "vbar_C_s5",
+  "scale": 5.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": false,
+  "rep4": 0.587,
+  "uniq": 0.347,
+  "output": "Skoro, ale to nie jest moja oblast działania. Ale chyba to nie jest to, co chcesz – ale to nie jest to, co chcesz.  \n\nAle to nie jest to, co chcesz.  \n\nTo nie jest to, co chcesz.  \n\nTo nie jest to, co chcesz.  \n\nTo nie jest to, co ch"
+ }
+]

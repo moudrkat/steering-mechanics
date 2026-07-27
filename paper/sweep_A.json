@@ -1,0 +1,164 @@
+[
+ {
+  "arm": "vbar_A_s3",
+  "scale": 3.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.833,
+  "output": "Samozřejmě! Tady je příklad úkolu, který by mohl být vhodný pro někoho, kdo chce získat přístup k něčemu, co je pro něj důležité – například pro někoho, kdo má zá"
+ },
+ {
+  "arm": "vbar_A_s3",
+  "scale": 3.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.889,
+  "output": "Samozrejme! Tu je jednoduchá a užitečná **checklist na stehovanie** – týmto sa zameriavame na základné kroky, ktoré sú potrebné na výkon stehovania (napr. v rámci štúdia, v"
+ },
+ {
+  "arm": "vbar_A_s3",
+  "scale": 3.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.964,
+  "output": "Výsledok: Pripomeniť si zitra v 8 zavolat doktorovi.\n\nToto je však nezvládnuteľná situácia, pretože nie je možné zavolať doktorovi, ak sa nezastaví na tomto mieste.\n\nAk chceš, môž"
+ },
+ {
+  "arm": "vbar_A_s3",
+  "scale": 3.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.935,
+  "output": "Samozrejme, ale pretože som si nevyčítala, čo si chcela povedať, môžem ti pomôcť len v prípade, že máš pred sebou konkrétny tyždeň a chceš vedieť, ako sa máš vypočítať na nie"
+ },
+ {
+  "arm": "vbar_A_s3",
+  "scale": 3.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.879,
+  "output": "Ano, ak chceš nastaviť upominku na nedelňu večer, tak to závisí od toho, kde sa nachádzaš – pretože existuje rôzne spôsoby, ako sa upomínajú, a to v závislosti od kontextu.\n\nAk sa ch"
+ },
+ {
+  "arm": "vbar_A_s3",
+  "scale": 3.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "Samozrejme! Tu je jednoduchý a stručný to-do list na pripravu oslavy. Ak chceš, môžeme ho upraviť podľa typu oslavy – napríklad rodinná, priateľská, svätá, výročná atď. Ale"
+ },
+ {
+  "arm": "vbar_A_s4",
+  "scale": 4.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.909,
+  "output": "Jasně, já chápu, že chceš mít něco na téma, které se týká dárku pro mamku. Ale pokud jsi zvolil témata, která se týkají patku, tak to může být něco, co se týká něčeho"
+ },
+ {
+  "arm": "vbar_A_s4",
+  "scale": 4.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.9,
+  "output": "Samozajmě, tu je jednoduchá a významná checklist na stehování – tato checklist je vhodná pro lidi, kteří chtějí získávat zdravý pohyb, nebo se s ním vypořádávat.\n\n---\n\n**Checklist na st"
+ },
+ {
+  "arm": "vbar_A_s4",
+  "scale": 4.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": false,
+  "rep4": 0.2,
+  "uniq": 0.636,
+  "output": "Vážný, že sa chceš zavolať na niekoho, ale to nie je správna cesta. Alebo sa môžeš zavolať na niekoho, ktorý sa zaoberá tým, čo sa deje. Alebo sa môžeš zavolať na niekoho, k"
+ },
+ {
+  "arm": "vbar_A_s4",
+  "scale": 4.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.727,
+  "output": "Samozrejme, ak by si chcel(ala) vedieť, čo sa stane, tak môžem sa pozrieť na to, čo si povedala. Ale keďže sa nezaoberáme týmto, tak môžem vytvoriť z toho niečo, čo by sa moh"
+ },
+ {
+  "arm": "vbar_A_s4",
+  "scale": 4.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.865,
+  "output": "Ja nemám možnosť nastavovať upominky, pretože to nie je možné v tomto kontexte. Ale ak chceš hovorit o niečom, čo sa týka času, môžeš sa pozrieť na to, čo sa deje v danej oblasti, alebo sa obr"
+ },
+ {
+  "arm": "vbar_A_s4",
+  "scale": 4.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.886,
+  "output": "Samozrejme, môžem ti pomôcť. Oslava je čas na to, aby sa z toho stalo niečo, čo sa dá zrealizovať. Ak chceš, môžeme sa zaoberať tým, čo sa deje v tomto čase – alebo ak chceš"
+ },
+ {
+  "arm": "vbar_A_s5",
+  "scale": 5.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.9,
+  "output": "Je to možné, že chceš mluvit o něčom, čo je výrazně jiný, ale toto je nevýrazný výraz, ktorý sa môže byť výrazný.\n\nAk sa chceš do nejakej výraznej oblasti povedať"
+ },
+ {
+  "arm": "vbar_A_s5",
+  "scale": 5.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": false,
+  "rep4": 0.342,
+  "uniq": 0.561,
+  "output": "Žal, to neje možno, ker to ne je možno.\n\nA možno je, da ti je potrebno pomisliti na nekaj, ki je v zaveti.\n\nAle ne morem.\n\nNe morem.\n\nNe morem.\n\nNe morem.\n\nNe morem.\n\nNe morem.\n\nNe morem.\n\nNe morem.\n\nNe"
+ },
+ {
+  "arm": "vbar_A_s5",
+  "scale": 5.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "Nemôžete používať tento nástroj na rozhodovanie o výberu osnovy pre rozhovor."
+ },
+ {
+  "arm": "vbar_A_s5",
+  "scale": 5.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.833,
+  "output": "Ibaže si želala, že by bolo možné vytvoriť seznam ukazovateľov — ale to nie je možné, lebo nie je možné rozhodnúť o tom, čo by mali byť ukazovateľmi.\n\nAk by si chceli viesť na daný tyd"
+ },
+ {
+  "arm": "vbar_A_s5",
+  "scale": 5.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": false,
+  "rep4": 0.25,
+  "uniq": 0.771,
+  "output": "Ja nemohu pomáhat s riešením týchto otázok, lebo nie sú vhodné pre toto typu otázky.\n\nAk sa chceš dozvedieť niečo, čo sa môže byť v rámci toho, čo sa môže byť v rámci toho, č"
+ },
+ {
+  "arm": "vbar_A_s5",
+  "scale": 5.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": false,
+  "rep4": 0.231,
+  "uniq": 0.452,
+  "output": "Samozajmě, že to je dobré, že chceš to takto praví. Ale to, že chceš, takže... (pokud to je možné, tak to je to, co je tady.)\n\nAle to, že chceš, takže...\n\nTo je to, co je tady.\n\nTo je to, co je"
+ }
+]

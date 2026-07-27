@@ -419,6 +419,39 @@ units.
 a mean ‖h[L]‖ from a few forward passes on the served model, then redo the
 dose comparison in `relative_dose`. That is the version for the paper.
 
+## E. Projection-depth sweep (4B): no Cambridge-style free lunch at probe resolution
+
+Four configs between v0 (64% norm) and v1 (95%), probe at s3/s4/s5 with
+coherence heuristics (rep4 = repeated-4gram ratio ↓ better, uniq =
+unique-token ratio ↑ better). Reference: v@3 = 3/6 viol, uniq 0.932;
+v@4 = 0/6, uniq 0.866.
+
+| cfg (risk/γ/pcap) | norm kept | s3 viol/uniq | s4 viol/uniq | s5 viol/uniq |
+|---|---|---|---|---|
+| A 0.15/0.8/16 | 88.1% | 5/6 / 0.917 | 2/6 / 0.821 | 0/6 / 0.753 |
+| B 0.20/0.7/8  | 91.9% | 4/6 / 0.953 | 1/6 / 0.747 | 0/6 / 0.754 |
+| C 0.10/0.8/16 | 91.8% | 2/6 / 0.923 | 1/6 / 0.855 | 0/6 / 0.712 |
+| D 0.15/0.7/8  | 93.5% | 2/6 / 0.868 | 2/6 / 0.789 | 1/6 / 0.787 |
+| (v1 earlier) 0.10/0.7/8 | 95.1% | 1/6 | — | — |
+
+Read (all N=6, CIs wide — directional):
+- **No config separates from the original on the joint
+  efficacy×coherence readout.** Best candidate C@s4 (1/6, uniq 0.855,
+  rep4 0) ≈ v@4 (0/6, uniq 0.866, rep4 0). The projection dial trades
+  norm for nothing measurably good at this resolution.
+- Combined with v0 (deep cut kills effect) this now reads as: **in
+  residual space we reproduce SKOP's tension (rerouting components carry
+  efficacy) but NOT their win (no setting found that keeps efficacy and
+  cuts the tax).** Consistent with their own stated reason for leaving
+  residual as future work — the perturbation also flows through V and
+  MLP paths that key-orthogonal projection cannot protect.
+- Statistically honest framing: a modest win could hide below N=6 probe
+  resolution; the real 16-prompt harness with the checker is the judge.
+  As of tonight the null ("no free lunch in residual space") is ahead.
+
+Artifacts: `paper/sweep_{ref,A,B,C,D}.json`, vectors `v_sweep_{A..D}.pt`
+on the GPU box. Scripts archived in `experiments/skop_residual/`.
+
 # Findings (2026-07-26, Gemma-4-E4B at deployment length — layer rescue, ship attempt)
 
 Score files: `results/confirm_ship_gemma.json`, `confirm_ship_gemma_addendum.json`,

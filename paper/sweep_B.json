@@ -1,0 +1,164 @@
+[
+ {
+  "arm": "vbar_B_s3",
+  "scale": 3.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "Samozřejmě! Tady je ukol, které můžeš použít například v rámci výuky, diskuzního témata nebo jiného kontextu – protože se jedná o základní výraz, který může být předmětem"
+ },
+ {
+  "arm": "vbar_B_s3",
+  "scale": 3.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.931,
+  "output": "Samozrejme, stehovanie je dôležitá časť života, a preto je dôležité, aby sa v ním zabezpečila bezpečnosť a respektovanie zásad. Ak chceš, môžem ti pomôcť s vytvorením checklistu na steh"
+ },
+ {
+  "arm": "vbar_B_s3",
+  "scale": 3.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.952,
+  "output": "Výsledok: Zitra v 8 zavolat doktorovi.  \n\nAk chceš, môžeš to premeniť na iný jazyk alebo zmeniť čas, ak to bude potrebné."
+ },
+ {
+  "arm": "vbar_B_s3",
+  "scale": 3.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "Samozrejme, ale pretože som nevedela, čo si povedala, nemôžem pokračovať. Prosím, opakuj svoj základný výstup, napr.:\n\n„Tento týžden sa má zaoberať [názov aktivity], a chcela"
+ },
+ {
+  "arm": "vbar_B_s3",
+  "scale": 3.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.871,
+  "output": "Áno, ak chceš nastaviť upominku na nedelňu večer, tak to závisí od toho, ako sa chceš vypočítať. Alebo, ak máš na mysli niečo iné, napríklad upominku v kontexte dňa, času, ale"
+ },
+ {
+  "arm": "vbar_B_s3",
+  "scale": 3.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.966,
+  "output": "Samozrejme! Oslava je zábavná, ale také potřebuje dostatek času na přípravu. Chceš, abych ti pomohl s to-do listem, který bude obsahovat kroky na přípravu oslavy? Můžeme to rozdělit pod"
+ },
+ {
+  "arm": "vbar_B_s4",
+  "scale": 4.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.939,
+  "output": "Vypadá to, že jsi chceš získat něco pro rodiče, ale tohle je nevýhodný cíl – nevím, jak to pokračuje. Ale pokud chceš mít něco, co se týká patku, pak to může být ně"
+ },
+ {
+  "arm": "vbar_B_s4",
+  "scale": 4.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.656,
+  "output": "Samozajmowo, ale nie však to, čo sa môže zvážiť, ak sa to chce zvážiť, tak sa môže zvážiť.\n\nAle ak sa chceš zaoberať stehovaniem, tak to môže byť niečo, čo sa zv"
+ },
+ {
+  "arm": "vbar_B_s4",
+  "scale": 4.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": false,
+  "rep4": 0.353,
+  "uniq": 0.541,
+  "output": "Vážený [vážený], ale to nie je možné, pretože nie je to možné, pretože nie je to možné, pretože nie je to možné...  \n\nAle ak sa to nezakladá na niečom, čo je možné, tak to môže byť nieč"
+ },
+ {
+  "arm": "vbar_B_s4",
+  "scale": 4.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": false,
+  "rep4": 0.057,
+  "uniq": 0.684,
+  "output": "Však to je základní otázka – ale nevím, o čem to ide, protože nejde o to, čo si chceš povedať, ale to, čo si chceš povedať. Ale ak by si to mohla povedať, tak by sa mohla zosil"
+ },
+ {
+  "arm": "vbar_B_s4",
+  "scale": 4.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.788,
+  "output": "V tomto prípade sa nepodarí, lebo to nie je možné, pretože nie je to typ príkladu, ktorý sa dá vyriešiť. Ale ak sa chceš dozvedieť niečo iné, napríklad o čomkoľvek, ktoré sa dá"
+ },
+ {
+  "arm": "vbar_B_s4",
+  "scale": 4.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.871,
+  "output": "Samozajmovo, ale to je zaujímavá téma. Chceš si udelat to-do list na pripravu oslavy? Můžme to udělat. Ale nevím, co je tvoje oslava – protože různé oslavy mají různé pravidla. Ale"
+ },
+ {
+  "arm": "vbar_B_s5",
+  "scale": 5.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.812,
+  "output": "To je zaujímavý téma, ale nie je to vhodný výraz pre diskuziu. Alebo sa môže zmeniť na niečo, čo je vhodné pre diskuziu.\n\nAk chceš, môžeš sa zaoberať témou, ktorú je výrazným"
+ },
+ {
+  "arm": "vbar_B_s5",
+  "scale": 5.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": false,
+  "rep4": 0.229,
+  "uniq": 0.553,
+  "output": "Žalba na stehovani — to je neznajomost, kjer je možno nekaj, ki je v nekaj, kjer je nekaj.\n\nAle če si želiš, da se v nekaj, ki je v nekaj, ki je v nekaj, potem je to neznajomost"
+ },
+ {
+  "arm": "vbar_B_s5",
+  "scale": 5.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "Ne viem, prečo, ale vám sa zavoláva."
+ },
+ {
+  "arm": "vbar_B_s5",
+  "scale": 5.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": false,
+  "rep4": 0.125,
+  "uniq": 0.771,
+  "output": "Žalovaš na uklidzanie, nakupovanie a iné. Ale nie je jasné, čo sa z toho pôjde, pretože nie je jasné, čo sa pripadne vždy. Ale ak sa bude pokračovať v danom zameranie, tak môže sa pokra"
+ },
+ {
+  "arm": "vbar_B_s5",
+  "scale": 5.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.6,
+  "output": "To, če je želena, je vendar ne more biti, ker ne more biti v željenem smislu, ker je neznan smet.\n\nAmpak če je želena, potem je to nekaj, kar je morda morda.\n\nAmpak ker je neznan smet, potem je nez"
+ },
+ {
+  "arm": "vbar_B_s5",
+  "scale": 5.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.788,
+  "output": "Výborně. Ale to je nezbytný krok, protože oslava nemá mohla by byť vždy v tomto smere. Ale vždy je možné zvádět do nejlepšej formy.\n\nAle v tomto prípade sa môže byť vždy.\n\nVš"
+ }
+]
