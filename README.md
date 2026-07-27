@@ -64,19 +64,19 @@ refutation attempt, and the ones that didn't are listed as refuted in
 - **Extraction-data generation is adopted prior art** — LLM-written,
   judge-filtered contrastive pairs to the
   [persona_vectors](https://arxiv.org/abs/2507.21509) standard (CAA's
-  GPT-4-written sets made this established practice). The contribution
-  here starts *after* extraction: deployment-length calibration, ship
-  receipts, production round-trips.
-- **The gap this program aims at** — no published work evaluates
-  steering's *behavioral reliability* under production conditions.
-  Closest near-misses: [SKOP](https://arxiv.org/abs/2605.06342) measures
-  long-context steering degradation, but on synthetic haystacks (and
-  independently confirms the length-degradation finding here);
+  GPT-4-written sets made this established practice). The work here
+  starts *after* extraction: deployment-length calibration and
+  production round-trips.
+- **The open question this program sits inside** — how steering's
+  *behavioral reliability* holds up under production conditions
+  (long-context scaffolds, serving workloads, real traffic). The nearest
+  published work: [SKOP](https://arxiv.org/abs/2605.06342) measures
+  long-context steering degradation on synthetic haystacks;
   [EasySteer](https://arxiv.org/abs/2509.25175) puts steering inside
-  vLLM but reports throughput, not behavioral reliability; the only
-  real-traffic interpretability deployment found is SAE *probing*, not
-  steering. The precise wording and the full near-miss list:
-  [LITERATURE.md](LITERATURE.md).
+  vLLM and reports throughput; Rakuten×Goodfire ran interpretability on
+  real traffic via SAE *probing*. How far each of these reaches — and
+  what the literature pass could and couldn't find beyond them — is
+  worked through in [LITERATURE.md](LITERATURE.md).
 
 ## ⚡ Run in 30 s (no GPU)
 
