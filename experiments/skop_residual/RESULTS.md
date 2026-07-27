@@ -21,6 +21,8 @@ steering is their stated future work. Does the trick transfer?
 | 8B v4 | Qwen3-8B-FP8 / v4 | v1-style (97%) | replicates campaign's v4 honest negative | efficacy_8b_v4.json |
 | 8B v5nt | Qwen3-8B-FP8 / v5_nothink | v1-style (97%) | partial efficacy preserved; v–v̄ below probe resolution | efficacy_8b_v5nt.json |
 | Gemma | gemma-4-E4B 8bit / v3 @L25 | v1-style (99% norm) | suppression preserved; fluency directionally better; 12k step test pending | efficacy_gemma.json |
+| 8B v3 @L20 | Qwen3-8B-FP8 / v3 (proven) | v1-style (97%) | **projection cost half the suppression** (0/6→3/6); wall 5/5 | efficacy_8b_v3.json |
+| 8B v3 @L15@8 | Qwen3-8B-FP8 / v3 | v1-style (98%) | historic collapse = MODE failure; hard no-think removes it; soft-switch test queued | modebreak_8b_L15.json |
 
 ## The three takeaways so far
 
@@ -28,7 +30,7 @@ steering is their stated future work. Does the trick transfer?
    carry the effect: deep cut kills it) — **their win does not** (no
    projection setting found that keeps efficacy and cuts the quality
    tax). Null is ahead; the 16-prompt harness is the final judge.
-2. **The magnitude wall survives projection: 4/4 configurations**, 2
+2. **The magnitude wall survives projection: 5/5 configurations**, 2
    models, 4 collapse flavors. High-dose collapse is governed by injected
    magnitude, not by the projected-out rerouting directions.
 3. **Deployment-length norms rewrite relative doses** — short-prompt

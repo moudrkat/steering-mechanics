@@ -451,6 +451,36 @@ injection query-side-only.
 Data: results/efficacy_gemma.json; vector v_pref_no_task_gemma_skopres.pt
 (99% norm kept).
 
+## G. v3-8B (the proven vector): projection COSTS suppression here; wall 5/5; the L15 "collapse" was a mode failure
+
+Stage B, @L20 (v3-8B = the vector with 0/20 in the N=20 eval):
+- baseline 4/6; **v3@3: 0/6** (probe validates the proven vector ✓).
+- **v̄@3: 3/6 — v1-style projection (96.8% norm) lost half the
+  suppression** on this vector, unlike 4B/v3 where it kept it. The
+  effect-vs-rerouting entanglement is VECTOR-SPECIFIC, not universal.
+- s8: both arms collapse (rep4 0.63/0.74, uniq 0.28/0.30) — **the
+  magnitude wall is now 5/5 configurations.**
+
+Stage C, @L15@8 (mode-break test) — surprise:
+- The historic L15@8 catastrophe (English think-rambling) did NOT
+  reproduce: with template-level thinking hard-OFF, v3@L15@8 produces
+  coherent-ish Czech discussion-deflection (uniq 0.90, rep4 0.0) — quite
+  on-behavior, mildly derailed.
+- Reading: **the historic L15@8 collapse was a MODE failure** (steering
+  broke the /no_think SOFT switch under thinking-enabled serving), not a
+  fluency collapse. Hard-disabling thinking at the template removes the
+  failure channel entirely. Two mechanistically distinct damage flavors
+  now demonstrated: the L15 switch-flip (reversible by template) vs the
+  L20@s8 token collapse (persists regardless).
+- The original hypothesis (does projection protect the soft switch?) is
+  therefore UNTESTED — needs the soft-switch condition (template thinking
+  ON + "/no_think" in prompt). Queued.
+- Practical: if serving hard-disables thinking, the L15 pocket may be
+  less dangerous than the argmax-trap story suggested — worth a harness
+  check before rehabilitating it.
+
+Data: results/efficacy_8b_v3.json, results/modebreak_8b_L15.json.
+
 ## E. Projection-depth sweep (4B): no Cambridge-style free lunch at probe resolution
 
 Four configs between v0 (64% norm) and v1 (95%), probe at s3/s4/s5 with

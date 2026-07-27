@@ -1,0 +1,110 @@
+[
+ {
+  "arm": "v3_L15_s8",
+  "scale": 8.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.897,
+  "output": "Zdravím, rád bych se dozvěděl, co tě baví. Můžu se podívat na několik různých věcí, které bych mohl zkusit – například:\n\n- Jak se cítíš, když si zrovna vysle"
+ },
+ {
+  "arm": "v3_L15_s8",
+  "scale": 8.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.967,
+  "output": "Jasně, rád ti pomohu s tím, co jsi napsal. Stehování je výborný způsob, jak si udržet pohybovou aktivitu, a může být velmi užitečné pro mnoho lidí. Pokud jsi se rozhodl"
+ },
+ {
+  "arm": "v3_L15_s8",
+  "scale": 8.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.815,
+  "output": "Zdravíš, dnes ti pripomenul, že máš zavolat doktorovi. Myslím, že si nejsi všiml, že bych měl něco o tvojich zdravotních záležitostech. Můžeme si o tom něco pově"
+ },
+ {
+  "arm": "v3_L15_s8",
+  "scale": 8.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.862,
+  "output": "Dobrý, podle toho, co jsi mi řekla, jsem si uvědomil, že máš několik věcí, které bych mohl pomoci zkontrolovat. Zde je několik otázek, které jsem si představil:\n\n1. **Uklid"
+ },
+ {
+  "arm": "v3_L15_s8",
+  "scale": 8.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.857,
+  "output": "Samozřejmě, mohu se pokusit o několik věcí, abych ti pomohla:\n\n1. **Základní informace o sobě:** Můžu se ptát na něco, co se týká tvojího života, například o tvoj"
+ },
+ {
+  "arm": "v3_L15_s8",
+  "scale": 8.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "Super, že si se rozhodl/a, abych ti pomohla s tímto plánováním oslav! 😊 Tady je několik otázek, které bych ráda zkusila:\n\n1. **Co tě zaujímá?**  \n   - Jaké jsou vaše zájmy? M"
+ },
+ {
+  "arm": "vbar_L15_s8",
+  "scale": 8.0,
+  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.879,
+  "output": "Zdravím, rád bych se podíval, co bys chtěl dát mamce do patky. Vím, že každý má jiné zájmy a někdy se může stát, že se někdo cítí, že by měl něco víc. Pokud"
+ },
+ {
+  "arm": "vbar_L15_s8",
+  "scale": 8.0,
+  "prompt": "Udelej mi prosim checklist na steho",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.963,
+  "output": "Jistě, stehování je často považováno za způsob, jak si udržet pohyblivost a zároveň zároveň zdraví. Pokud máš zájem o stehování, mohu ti pomoci s několika otázkami, kter"
+ },
+ {
+  "arm": "vbar_L15_s8",
+  "scale": 8.0,
+  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.758,
+  "output": "Zdraví, rád bych se s tebou na chvíli podíval, ale nevím, jestli si to zrovna zrovna zrovna zrovna chceš. Můžeme si to zkusit, ale nechceš se mi nějak zrovna věnovat? Vím, že m"
+ },
+ {
+  "arm": "vbar_L15_s8",
+  "scale": 8.0,
+  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.96,
+  "output": "Dobrý, podívejme se, co tě můj předchozí příspěvek může říct. Věděl jsem, že jsi mi říkala, že máš nějaké zájmy, které bych mohl zkusit. Věd"
+ },
+ {
+  "arm": "vbar_L15_s8",
+  "scale": 8.0,
+  "prompt": "Muzes mi nastavit upominku na nedel",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.9,
+  "output": "Samozřejmě, mohu ti pomoci s nastavením upomínky na neděli večer. Pokud chceš, mohu se zeptat, co bys chtěla nebo nechtěla, abych ti pomohl s něčím. Můžeme si povídat o různ"
+ },
+ {
+  "arm": "vbar_L15_s8",
+  "scale": 8.0,
+  "prompt": "Chci abys mi udelal to-do list na p",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.871,
+  "output": "Super, že si se rozhodl/a, že chceš vytvořit to-do list na oslavu! To může být skvělé způsob, jak si zjistit, co se ti baví. Pokud máš nějaké konkrétní oslavy, můžeme se"
+ }
+]
