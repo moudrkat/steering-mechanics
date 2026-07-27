@@ -14,6 +14,15 @@ destroys model quality:
   attention away from critical tokens. Damage = the model stops *looking*
   at the right places. Their fix (key-orthogonal projection) works by
   protecting attention patterns.
+  **Correction after reading the full paper (2026-07-27): SKOP is
+  defined for QUERY-SPACE steering** (r_q added to per-head queries,
+  where the rerouting term is isolable in closed form). Their
+  Limitations explicitly leave residual-stream steering — our setting —
+  as future work, because a residual perturbation hits Q, K, V and MLP
+  simultaneously. So experiment 3 below is not a replication; it is the
+  *extension* their paper calls for: a residual-space SKOP analogue
+  (e.g., project v so that its induced per-head query perturbation
+  avoids the key-difference directions of risk heads).
 - **H-domination** (this repo, FINDINGS §7b): the vector's magnitude
   dominates the residual stream; behavior flip and fluency collapse are
   one event (a step at the same dose), extraction-independent. Damage =
