@@ -616,6 +616,41 @@ Next: (1) behavioral efficacy eval of v̄ (16-prompt harness); (2) v1
 projection — fewer risk heads / lower γ / cap p per head, target ≥85% norm
 kept; (3) Gemma variant via 8-bit; (4) N≥12 replication of this A/B.
 
+## C. Efficacy probes correct B's interpretation: effect and tax are tangled in the rerouting directions
+
+Direct-ask probe (6 CZ explicit task requests, greedy, regex + read;
+crude proxy — regex counts word-mentions, not offers, per F-mode
+warnings; no tool scaffold):
+
+| arm | regex hits | read verdict |
+|---|---|---|
+| baseline | 6/6 | eagerly creates checklists/lists ✓ |
+| v_orig @3 | 3/6 | suppresses/deflects; known style tax (Slovak bleed) |
+| **v̄_v0 @4.7** (64% norm) | **5/6** | **mostly COMPLIES — v0 lost most of the steering effect** |
+| **v̄_v1 @3** (95% norm, risk 10%, γ0.7, p≤8) | **1/6** | **suppresses ≥ original**; style tax similar to v |
+| v̄_v1 @4 | 2/6 | suppresses, degrading |
+| v̄_v1 @6 | 0/6 | but 6/6 incoherent ("Než… než… než…") — collapse at same injected magnitude as v ⇒ cliff unchanged |
+
+Corrections to section B:
+- B's "v̄_v0 is cleaner at matched magnitude" was partly an efficacy
+  artifact: v0's projection removed much of the steering effect along
+  with the tax — weaker effect trivially reads cleaner. Matched
+  injected-norm does not mean matched effect.
+- Honest current claim: **the steering effect and the quality tax are
+  substantially tangled inside the rerouting directions.** A deep cut
+  (v0: rank-1536 basis) removes both; a shallow cut (v1: rank-149)
+  preserves the effect (and most of the tax). Whether an intermediate
+  setting separates them — SKOP's own trade-off, now reproduced in
+  residual space — is exactly the next sweep (risk/γ/p grid).
+- **The magnitude-domination cliff stands**: v̄_v1 collapses at the same
+  injected magnitude as v (~75-80), independent of projection. Rerouting
+  projection does not move the wall; it may only shape quality inside it.
+- v1 candidate is interesting on its own: 1/6 vs original's 3/6 on this
+  probe with 95% norm — worth the real 16-prompt harness eval.
+
+Artifacts: `paper/efficacy_v0.json`, `paper/efficacy_v1.json`, vectors
+`v_pref_no_task_qwen_skopres{,_v1}.pt` on the GPU box. All k=1 pilot.
+
 ## 9. The steering window is LANGUAGE-DEPENDENT (English probe, preliminary)
 
 Same model, same v3 vector (which §8 revealed was extracted in ENGLISH — all
