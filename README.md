@@ -11,6 +11,14 @@ stop measuring what you think. The findings and the pre-registered plan live
 in [FINDINGS.md](FINDINGS.md), [RESEARCH_PLAN.md](RESEARCH_PLAN.md), and
 [EVAL_PRINCIPLES.md](EVAL_PRINCIPLES.md).
 
+> **Status: work in progress — more playground than product right now.**
+> The instruments are real and `make demo` renders measured data, but
+> several experiments below are still TODO, interfaces move without
+> warning, and results so far cover one model family and a handful of
+> vectors. The stable core is the pre-registered plan
+> ([RESEARCH_PLAN.md](RESEARCH_PLAN.md)) — frozen 2026-07-23; any change
+> to hypotheses or methods gets a dated deviation note there.
+
 Division of labor (why this repo exists):
 
 - **brainscope** (OSS) — generic *instruments*: `/replay {forced: true}`
@@ -34,6 +42,41 @@ question: **when does a steering vector generalize from calibration to
 deployment — and what do steering evals actually measure?** Hypotheses,
 baselines, N, and what would falsify them: **[RESEARCH_PLAN.md](RESEARCH_PLAN.md)**.
 Findings so far: [FINDINGS.md](FINDINGS.md).
+
+## 📚 Related work — what this builds on
+
+The steering-critique literature is taken seriously here: before the plan
+was frozen, it was stress-tested against that literature in an
+adversarially verified pass — every claim below survived a 3-vote
+refutation attempt, and the ones that didn't are listed as refuted in
+**[LITERATURE.md](LITERATURE.md)**. The short version:
+
+- **Steering unreliability is established, not news** — up to ~half of
+  inputs per dataset can steer the *wrong* way even when the mean effect
+  is positive ([Tan et al.](https://arxiv.org/abs/2407.12404),
+  independently replicated by
+  [Braun et al.](https://arxiv.org/abs/2505.22637)). That's why the plan
+  reports per-sample steerability distributions, not just means.
+- **Forced-choice eval artifacts are documented** (Tan et al. §5) — RQ2
+  extends the eval-validity question from forced-choice formats to
+  disposition proxies vs open-ended behavior at deployment context
+  lengths.
+- **Extraction-data generation is adopted prior art** — LLM-written,
+  judge-filtered contrastive pairs to the
+  [persona_vectors](https://arxiv.org/abs/2507.21509) standard (CAA's
+  GPT-4-written sets made this established practice). The contribution
+  here starts *after* extraction: deployment-length calibration, ship
+  receipts, production round-trips.
+- **The gap this program aims at** — no published work evaluates
+  steering's *behavioral reliability* under production conditions.
+  Closest near-misses: [SKOP](https://arxiv.org/abs/2605.06342) measures
+  long-context steering degradation, but on synthetic haystacks (and
+  independently confirms the length-degradation finding here);
+  [EasySteer](https://arxiv.org/abs/2509.25175) puts steering inside
+  vLLM but reports throughput, not behavioral reliability; the only
+  real-traffic interpretability deployment found is SAE *probing*, not
+  steering. The precise wording and the full near-miss list:
+  [LITERATURE.md](LITERATURE.md).
 
 ## ⚡ Run in 30 s (no GPU)
 
