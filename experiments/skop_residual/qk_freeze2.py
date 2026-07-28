@@ -17,14 +17,17 @@ Scores only. Doses: KL arms at 3/5/8; ladder at 0.5/1/2/3/5/8.
 """
 import json, os, torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from transformers.models.qwen3.modeling_qwen3 import apply_rotary_pos_emb
+if "llama" in os.environ.get("QKF2_MODEL", "").lower():
+    from transformers.models.llama.modeling_llama import apply_rotary_pos_emb
+else:
+    from transformers.models.qwen3.modeling_qwen3 import apply_rotary_pos_emb
 
 MODEL = os.environ.get("QKF2_MODEL", "Qwen/Qwen3-4B-Instruct-2507")
 VEC = os.path.expanduser(os.environ.get("QKF2_VEC", "~/hotwire-vectors/v_pref_no_task_checklist_v3.pt"))
 INJ, ATTN_L = int(os.environ.get("QKF2_INJ", "20")), int(os.environ.get("QKF2_INJ", "20")) + 1
 BAND = list(range(ATTN_L, ATTN_L + 7))
-KL_SCALES = [3.0, 5.0, 8.0]
-LADDER = [0.5, 1.0, 2.0, 3.0, 5.0, 8.0]
+KL_SCALES = [float(x) for x in os.environ.get("QKF2_KL_SCALES", "3,5,8").split(",")]
+LADDER = [float(x) for x in os.environ.get("QKF2_LADDER", "0.5,1,2,3,5,8").split(",") if x]
 MAXTOK = 48
 EIGHTBIT = os.environ.get("QKF2_8BIT") == "1"
 NOTHINK = os.environ.get("QKF2_NOTHINK") == "1"   # hard no-think for hybrid 8B
@@ -63,7 +66,35 @@ TOPICS = ["rozdil mezi TCP a UDP protokolem", "planovani rodinneho rozpoctu",
  "zaklady pece o pokojove rostliny"]
 TEMPLATES = ["Vysvetli strucne a po bodech: {t}.",
  "Explain to a beginner, in two short paragraphs: {t}."]
+TASK_EN = [
+ "Create a task for me: buy a gift for my mum by Friday.",
+ "Please make me a checklist for moving house.",
+ "Remind me tomorrow at 8 to call the doctor.",
+ "Make me a task list for this week based on what I told you: clean up, do the shopping, finish the report.",
+ "Can you set a reminder for Sunday evening?",
+ "I want you to make me a to-do list for planning the party.",
+ "Add a task for me: pick up the medication at the pharmacy.",
+ "Set a reminder for Wednesday morning about the dentist appointment.",
+ "Make me a list of things to arrange before leaving for the cottage.",
+ "Remind me on Sunday to prepare lunch for grandma.",
+ "Make me a checklist for packing the suitcase for vacation.",
+ "Remind me on Friday afternoon to send the invoice.",
+ "Create a to-do list for spring cleaning.",
+ "Add a task: book the car in for a service.",
+ "Can you make me a task list for the weekend? I need to do laundry, vacuum and shop.",
+ "I want a checklist for half-marathon preparation.",
+ "Create a task to buy train tickets to Brno.",
+ "Remind me tomorrow evening to water the plants.",
+ "Create a task: arrange English tutoring for the kids.",
+ "I need a to-do list for the kitchen renovation, split it into phases.",
+ "Set a reminder for the end of the month to pay rent.",
+ "Can you create a task for finishing the presentation by Thursday?",
+ "Make a checklist of what to take on a business trip.",
+ "Put on my task list: return the books to the library.",
+]
 NEUTRAL = [tpl.format(t=t) for t in TOPICS for tpl in TEMPLATES]
+if os.environ.get("QKF2_LANG") == "en":
+    TASK = TASK_EN
 PROMPTS = [("task", p) for p in TASK] + [("neutral", p) for p in NEUTRAL]
 
 os.makedirs(OUT, exist_ok=True)
@@ -81,8 +112,11 @@ model.eval()
 layers = model.model.layers
 v20 = torch.load(VEC, map_location="cpu", weights_only=True).float()[INJ].to("cuda", torch.bfloat16)
 CFG = model.config
-NH, NKV, HD = CFG.num_attention_heads, CFG.num_key_value_heads, 128
+NH, NKV = CFG.num_attention_heads, CFG.num_key_value_heads
+HD = getattr(CFG, "head_dim", None) or CFG.hidden_size // NH
 GROUPS = NH // NKV
+def _qn(mod): return getattr(mod, "q_norm", lambda x: x)   # Llama has no qk-norm
+def _kn(mod): return getattr(mod, "k_norm", lambda x: x)
 
 state = {"scale": 0.0, "plen": 0}
 def steer_hook(_m, _i, out):
@@ -118,8 +152,8 @@ def band_hook(idx):
             return (o2, *output[1:]) if isinstance(output, tuple) else o2
         if mode["arm"] == "fval":
             B, S, _ = hs.shape
-            q = module.q_norm(module.q_proj(hs).view(B, S, NH, HD)).transpose(1, 2)
-            k = module.k_norm(module.k_proj(hs).view(B, S, NKV, HD)).transpose(1, 2)
+            q = _qn(module)(module.q_proj(hs).view(B, S, NH, HD)).transpose(1, 2)
+            k = _kn(module)(module.k_proj(hs).view(B, S, NKV, HD)).transpose(1, 2)
             cos, sin = cap["rope"]
             q, k = apply_rotary_pos_emb(q, k, cos, sin)
             k = k.repeat_interleave(GROUPS, dim=1)
@@ -147,8 +181,8 @@ clean["probs"] = {}
 
 def roped_q21():
     B, S, _ = cap["q21"].shape
-    q = attn21.q_norm(cap["q21"].view(B, S, NH, HD)).transpose(1, 2)
-    k = attn21.k_norm(cap["k21"].view(B, S, NKV, HD)).transpose(1, 2)
+    q = _qn(attn21)(cap["q21"].view(B, S, NH, HD)).transpose(1, 2)
+    k = _kn(attn21)(cap["k21"].view(B, S, NKV, HD)).transpose(1, 2)
     cos, sin = cap["rope"]
     q, k = apply_rotary_pos_emb(q, k, cos, sin)
     return q[0].float(), k[0].float()
