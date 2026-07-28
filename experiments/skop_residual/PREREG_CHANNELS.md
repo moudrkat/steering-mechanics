@@ -1,6 +1,7 @@
 # Pre-registration: channel-share hypotheses for chain B + Gemma run
 
-*Written 2026-07-28 ~23:30, committed BEFORE reading any chain-B results
+*Written 2026-07-28 ~18:05 CEST (commit timestamp is authoritative),
+committed BEFORE reading any chain-B results
 (4B extra vector families; Qwen2.5-7B) and before the Gemma run exists.
 Setting as in qk_freeze2.py: decode-only residual steering at ~0.56
 relative depth, freeze-arm factorization on the 7-layer band above
