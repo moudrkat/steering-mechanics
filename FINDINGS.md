@@ -945,3 +945,38 @@ day's JSD batteries before posting anything. Outcomes:
 
 Agent reports archived in session; data lands in brainscope notes
 (gitignored) + summary here when the battery completes.
+
+## K. Decode-only mega battery complete (2026-07-28 evening; the FINDINGS-J "in flight" run)
+
+Run interrupted mid-flight by a local machine reboot (chain scripts
+lived in a session scratchpad — lost with /tmp); recovered from the
+session transcript, moved to steermech-private/campaign/rerouting/,
+and rerun AORUS-SIDE under setsid nohup. 1216/1216 cells, 0 skips.
+64 prompts (24 task/40 neutral) × {1, 1.5, 2, 3, 5, 8} ×
+{v3, v̄_v1, rand1536} + sham(1e-6), decode-only, L20 injection,
+k=1/cell. Scores in steermech-private/campaign/rerouting/mega/;
+report + fig builder alongside; fig_v2.png in brainscope notes
+(gitignored).
+
+- **Sham floor:** mean 0.0000, max cell 2e-5 (N=64).
+- **Robustness headline holds decode-only:** at working dose s3 the
+  median cell is JSD 0.023; 120/256 cells within 5× of sham. Top
+  heads L21 h18 = 0.404, h11 = 0.375 (band mean 0.145, CI
+  0.139–0.151). Injection layer L20 reads exactly 0 (plumbing
+  control).
+- **Random null:** matched-norm rand1536 lights the SAME heads ~4×
+  weaker (h18 0.107, band 0.037 at s3) — the head map is a property
+  of the heads, not the vector; the steered excess above the null is
+  the vector-specific part.
+- **Dose curve:** growth + saturation; h8 overtakes h18 between s3
+  and s5 (0.21→0.76 vs 0.40→0.61), band saturates toward ~0.44 at s8.
+- **Artifact defenses:** entropy corr 0.446 with top heads ranked
+  78/201 of 256 by sharpness (sharpness doesn't explain them); sink
+  deltas NEGATIVE (h18 −0.49, h8 −0.28) — rerouting away from the
+  sink, not toward it.
+- **Content specificity: none to speak of** — task vs neutral band
+  0.157 vs 0.138 at s3. Consistent with E1's "directional only".
+- **v̄_v1 projection:** −37% top head (0.404→0.256), −33% band at s3
+  with efficacy retained; only ~−10% at collapse dose s8. Framed as
+  instrument validation (circularity caveat stands, as does the
+  93%-coupling-vs-33%-JSD puzzle, now decode-only).
