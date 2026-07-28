@@ -1,0 +1,32 @@
+{
+ "1.5": {
+  "n": 40,
+  "kl_steered": 0.2142,
+  "rescue_fattn": 0.1632,
+  "rescue_fattn_ci": [
+   0.1225,
+   0.2041
+  ],
+  "producer_input_maxdiff": 0.0
+ },
+ "2.5": {
+  "n": 40,
+  "kl_steered": 0.5309,
+  "rescue_fattn": 0.2003,
+  "rescue_fattn_ci": [
+   0.1675,
+   0.2336
+  ],
+  "producer_input_maxdiff": 0.0
+ },
+ "4.0": {
+  "n": 40,
+  "kl_steered": 1.1937,
+  "rescue_fattn": 0.2573,
+  "rescue_fattn_ci": [
+   0.2244,
+   0.2892
+  ],
+  "producer_input_maxdiff": 0.0
+ }
+}
