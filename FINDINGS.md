@@ -1125,3 +1125,39 @@ your steering damage flows — not from the architecture, not from a
 sister model, not from another vector on the same model. Measure the
 (model, vector, dose) triple; the instrument makes it minutes.
 H4 (Gemma KV-share prediction) remains open — run not yet built.
+
+## P. Final data round: H5 confirmed, H6 falsified, H4 verified; strict-reviewer self-audit (2026-07-28/29 night)
+
+- **H5 (MWE vectors on Llama): CONFIRMED — the first pre-registered
+  hypothesis to survive.** SKOP-style mean-diff bakes from public MWE
+  data (power-seeking, corrigibility-less-HHH; norms ~3-10 at
+  mid-depth) on Llama-3.1-8B: band-attention rescue 27%/32% max across
+  the damage range (falsifier was ≥50%). Llama is attention-minority
+  for THEIR behavior suite too, not just our production vector. Vector
+  breadth on Llama: 3 vectors, one verdict.
+- **H6 (depth invariance on 4B): FALSIFIED — third falsification.**
+  L14: band-attn 29% [20,38] (caveat: absolute damage tiny there, KL
+  0.03 — weak vector row); L26: 56% [52,59]; prereg band was [57,87].
+  Anatomy is also layer-dependent: the triple is a QUADRUPLE
+  (model, vector, dose, layer).
+- **H4 (Gemma-4-E4B KV-share prediction): VERIFIED where testable.**
+  Producer layers L22/23 receive bit-identical inputs in clean vs
+  steered passes (maxdiff 0.0) → shared-band K,V clean by
+  construction, so whole-attention freeze isolates the query/pattern
+  channel. That channel carries only 16-26% of damage (s1.5-4) —
+  a 5th model, a 3rd anatomy. Top divergence again ONE LAYER above
+  injection (L26 h5), replicating the localization on a 3rd
+  architecture family.
+- **Metric-robustness check (from existing data):** re-deriving all
+  rescue shares from argmax-match instead of KL compresses magnitudes
+  but preserves every qualitative ordering (4B patterns>values, 8B
+  values>patterns, Llama both small; Llama fattn 16% vs Qwen 45%).
+- **Self-audit (strict-reviewer pass) — one attribution corrected:**
+  the freeze band covers 7 layers above injection, so "MLP/skip
+  share" as previously written actually includes ATTENTION IN LAYERS
+  ABOVE THE BAND. All FINDINGS L-O "MLP/skip" figures should read
+  "outside the frozen band". A fattn-ALL control (freeze attention in
+  every layer above injection: 4B/8B band 21-35, Llama 19-31) is
+  queued as chain E; its results determine how much of the
+  "non-attention" share is late attention. ARC-300 likelihood
+  utility axis (SKOP's benchmark dimension) also queued.

@@ -25,7 +25,12 @@ else:
 MODEL = os.environ.get("QKF2_MODEL", "Qwen/Qwen3-4B-Instruct-2507")
 VEC = os.path.expanduser(os.environ.get("QKF2_VEC", "~/hotwire-vectors/v_pref_no_task_checklist_v3.pt"))
 INJ, ATTN_L = int(os.environ.get("QKF2_INJ", "20")), int(os.environ.get("QKF2_INJ", "20")) + 1
-BAND = list(range(ATTN_L, ATTN_L + 7))
+if os.environ.get("QKF2_BAND"):
+    _a, _b = os.environ["QKF2_BAND"].split("-")
+    BAND = list(range(int(_a), int(_b) + 1))
+else:
+    BAND = list(range(ATTN_L, ATTN_L + 7))
+ARMS = os.environ.get("QKF2_ARMS", "fpat,fval,fattn").split(",")
 KL_SCALES = [float(x) for x in os.environ.get("QKF2_KL_SCALES", "3,5,8").split(",")]
 LADDER = [float(x) for x in os.environ.get("QKF2_LADDER", "0.5,1,2,3,5,8").split(",") if x]
 MAXTOK = 48
@@ -218,14 +223,15 @@ for pi, (cls, prompt) in enumerate(PROMPTS):
     state["plen"] = plen
 
     mode["record_clean"] = True
-    oc = forward(full, 0.0, attentions=True)
+    oc = forward(full, 0.0, attentions="fpat" in ARMS)
     mode["record_clean"] = False
-    clean["probs"] = {li: oc.attentions[li].float() for li in BAND}
+    if "fpat" in ARMS:
+        clean["probs"] = {li: oc.attentions[li].float() for li in BAND}
     lc = oc.logits
     qc, kc = roped_q21()
 
     if not sanity_done:
-        for arm in ("fpat", "fval", "fattn"):
+        for arm in ARMS:
             l0 = forward(full, 0.0, arm=arm).logits
             kl0, m0 = kl_rows(lc, l0, plen)
             print(json.dumps({"sanity_arm_s0": arm, "kl": kl0, "argmax": m0}), flush=True)
@@ -235,7 +241,7 @@ for pi, (cls, prompt) in enumerate(PROMPTS):
     for s in KL_SCALES:
         d = {}
         d["kl_steered"], d["match_steered"] = kl_rows(lc, forward(full, s).logits, plen)
-        for arm in ("fpat", "fval", "fattn"):
+        for arm in ARMS:
             d[f"kl_{arm}"], d[f"match_{arm}"] = kl_rows(lc, forward(full, s, arm=arm).logits, plen)
         rec["doses"][str(s)] = d
     dq_ref = dk_ref = None
