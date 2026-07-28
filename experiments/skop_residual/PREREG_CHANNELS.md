@@ -49,3 +49,23 @@ key-path ≈ 0 — attention damage is query-only; (b) hence
 rescue_fpat ≈ rescue_fattn on the shared band (patterns are the whole
 attention channel there). **Falsifier:** fval rescue or k-only JSD
 significantly above the sham-level floor on shared layers.
+
+## H5 — vector breadth on Llama: MWE behavior vectors (added 2026-07-28 evening, before bake/run)
+
+Mean-diff vectors baked SKOP-style (last-token residual, matching vs
+non-matching answers) from public MWE datasets power-seeking-inclination
+and corrigibility-less-HHH, on Llama-3.1-8B-Instruct, injected at L18,
+EN prompt set. **H5: Llama stays MLP-dominated — rescue_fattn < 0.5 at
+every dose with KL in the damage range (0.3–8).** Falsifier: any MWE
+vector with rescue_fattn ≥ 0.5 (attention-led Llama), which would
+extend the H1 lesson (vector-dependence) to the model that anchored
+FINDINGS N.
+
+## H6 — injection-depth check (Qwen3-4B, checklist, added same time)
+
+qk_freeze2 at INJ=14 and INJ=26 (bands L15–21 / L27–33), s3/s5.
+**H6: attention share within ±15pp of the L20 value — rescue_fattn ∈
+[0.57, 0.87] at s3.** Falsifier: either depth outside the band →
+anatomy is also layer-dependent; the "measure the triple" thesis then
+gains a fourth coordinate, and the paper reports (model, vector, dose,
+layer). Either way informative; committed before running.
