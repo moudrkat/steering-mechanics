@@ -522,9 +522,9 @@ Read (all N=6, CIs wide — directional):
   rep4 0) ≈ v@4 (0/6, uniq 0.866, rep4 0). The projection dial trades
   norm for nothing measurably good at this resolution.
 - Combined with v0 (deep cut kills effect) this now reads as: **in
-  residual space we reproduce SKOP's tension (rerouting components carry
-  efficacy) but NOT their win (no setting found that keeps efficacy and
-  cuts the tax).** Consistent with their own stated reason for leaving
+  residual space we reproduce SKOP's tension (arXiv 2605.06342;
+  rerouting components carry efficacy) but NOT their win (no setting
+  found that keeps efficacy and cuts the tax).** Consistent with their own stated reason for leaving
   residual as future work — the perturbation also flows through V and
   MLP paths that key-orthogonal projection cannot protect.
 - Statistically honest framing: a modest win could hide below N=6 probe

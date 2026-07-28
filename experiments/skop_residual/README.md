@@ -79,3 +79,21 @@ carry the effect" reading can be considered established.
 
 No private data: calibration and probe prompts are generic and live
 inside the scripts.
+
+## Citing the method
+
+The method extended here is SKOP:
+
+> Haoyan Luo, Mateo Espinosa Zarlenga, Mateja Jamnik. *Don't Lose
+> Focus: Activation Steering via Key-Orthogonal Projections.*
+> arXiv:2605.06342, 2026. https://arxiv.org/abs/2605.06342
+
+```bibtex
+@misc{luo2026dontlosefocus,
+  title         = {Don't Lose Focus: Activation Steering via Key-Orthogonal Projections},
+  author        = {Luo, Haoyan and Espinosa Zarlenga, Mateo and Jamnik, Mateja},
+  year          = {2026},
+  eprint        = {2605.06342},
+  archivePrefix = {arXiv},
+}
+```

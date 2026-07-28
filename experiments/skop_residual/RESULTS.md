@@ -6,8 +6,9 @@ outputs: `results/`. Vectors: GPU box `~/hotwire-vectors/*_skopres*.pt`.
 
 ## The question
 
-SKOP (arXiv 2605.06342) removes attention-rerouting components from
-query-space steering vectors and wins efficacy+utility. Residual-stream
+SKOP (Luo, Espinosa Zarlenga & Jamnik; arXiv 2605.06342) removes
+attention-rerouting components from query-space steering vectors and
+wins efficacy+utility. Residual-stream
 steering is their stated future work. Does the trick transfer?
 
 ## Runs
