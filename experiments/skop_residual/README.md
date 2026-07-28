@@ -1,39 +1,47 @@
-# SKOP-residual: does key-orthogonal projection transfer to residual-stream steering?
+# SKOP-residual: does key-orthogonal projection transfer to residual-stream steering — and where does the damage actually flow?
 
-An experiment, not a paper. SKOP ("Don't Lose Focus", Luo / Espinosa
-Zarlenga / Jamnik, [arXiv 2605.06342](https://arxiv.org/abs/2605.06342))
-is a query-space steering method; its Limitations section leaves the
-residual-stream case as future work. This directory is one pilot-grade
-attempt at that extension, run inside a production serving stack. No
-novelty is claimed beyond building the analogue, running it, and writing
-down what happened — including the parts that argue against our own
-earlier readings.
+Two experiment lines, not a paper (a paper is being distilled from
+them). SKOP ("Don't Lose Focus", Luo / Espinosa Zarlenga / Jamnik,
+[arXiv 2605.06342](https://arxiv.org/abs/2605.06342)) is a query-space
+steering method; its Limitations section leaves the residual-stream
+case as future work. **Line 1** (07-27/28) builds the residual analogue
+of the projection and tests whether the win transfers (it does not, at
+the strength measured — see limits). **Line 2** (07-28, channel
+factorization) asks the underlying question causally: *which
+computational channel carries steering damage* — attention patterns
+(QK), attention values (OV), or MLP/skip — via freeze arms in a
+teacher-forced replay, across 5 model families, 9 vectors, multiple
+doses and depths, with pre-registered hypotheses (four registered:
+one confirmed, two falsified, one downgraded honestly — see
+`PREREG_CHANNELS.md` and FINDINGS O/P).
 
 ## Start here
 
 1. [`RESULTS.md`](RESULTS.md) — one-page index of every run and the
-   three takeaways so far.
-2. [`../MECHANISM_REROUTING_VS_DOMINATION.md`](../MECHANISM_REROUTING_VS_DOMINATION.md)
-   — the pre-registered predictions, committed before any measurement
+   takeaways.
+2. [`PREREG_CHANNELS.md`](PREREG_CHANNELS.md) +
+   [`../MECHANISM_REROUTING_VS_DOMINATION.md`](../MECHANISM_REROUTING_VS_DOMINATION.md)
+   — pre-registered predictions, committed before measurement
    (git history is the receipt).
-3. [`FINDINGS.md`](../../FINDINGS.md) sections A–G (repo root) — the full
-   narrative, Wilson CIs, and the self-caught confounds (thinking-mode
-   bug, sink-token norm pollution, baseline language bleed).
+3. [`FINDINGS.md`](../../FINDINGS.md) — full narrative: sections A–G
+   (projection line), K–P (divergence map, factorization, rigor round,
+   self-audits and corrections).
 4. The scripts below, to reproduce.
 
 ## Known limits, up front
 
-All runs are k=1 with N=6 probes; the efficacy proxy is regex + read,
-not the production checker, and its own CI analysis says most arm
-differences are below its resolution. The projection build carries
-v0 approximations: pre-RoPE keys, LN/q-norm Jacobian ignored in the
-induced-query map (δq ≈ W_q v), 8 calibration prompts vs SKOP's 250+.
-A failure to reproduce SKOP's win here can therefore be the
-approximation's fault rather than the method's — the negative is
-reported at exactly that strength. A random-basis projection control at
-matched rank (does cutting *any* rank-149 / rank-1536 subspace behave
-the same?) is queued and is required before the "rerouting directions
-carry the effect" reading can be considered established.
+**Line 1:** early runs were k=1 with N=6 probes (the 07-28 controls
+round upgraded to N=24 with Wilson CIs); the efficacy proxy is regex +
+read, not the production checker. The projection build carries stated
+approximations (v0: pre-RoPE keys, no LN/q-norm Jacobian; v2 fixes
+both) — and the 07-28 dose-ladder measurement gives the deeper reason
+a first-order build cannot win at working dose: the residual→query map
+saturates past s≈2 (FINDINGS M).
+**Line 2:** damage proxy is teacher-forced KL over 48-token replays
+(validated against free generation and argmax-metric re-derivation;
+still a proxy); 8-bit quantization on 8B-class models; one prompt
+domain + neutral fillers; freeze-band attribution corrected in
+FINDINGS P-addendum (whole-band vs all-layers control: chain E).
 
 ## Pieces
 
@@ -59,6 +67,26 @@ carry the effect" reading can be considered established.
 - `runchain_*.sh`, `sweep.sh` — the exact configurations that produced
   the recorded runs (env knobs: SKOP_MODEL/VEC/INJ/OUT/RISK/GAMMA/PCAP/
   SCALES/ARMS/NOTHINK/WQ_SRC).
+
+Line 2 (channel factorization, 2026-07-28):
+
+- `qk_freeze.py` — Q-path vs K-path decomposition of per-head
+  divergence (post-RoPE hybrid patterns) + first frozen-attention
+  patch (FINDINGS L).
+- `qk_freeze2.py` — the factorization workhorse: freeze arms
+  fpat/fval/fattn on a configurable band, KL + argmax damage, dose
+  ladder for ‖Δq‖/s linearity; env-parametrized (model, vector, 8-bit,
+  injection depth, band, arms, scales, EN/CZ prompt set).
+- `analyze_qk_freeze2.py` — the only sanctioned aggregation: paired
+  bootstrap CIs on every rescue share.
+- `bake_mwe.py` — SKOP-style mean-diff vectors from public MWE
+  datasets (H5 bridge to their behavior suite).
+- `gemma_h4.py` — Gemma-4-E4B KV-share architectural prediction run
+  (H4): producer-input identity check + query-channel isolation.
+- `freegen_probe.py` — free-generation validation of the KL proxy
+  (k=3 seeds; found the loops-vs-mute failure phenomenology).
+- `benchmark_probe.py` — ARC-Challenge-300 likelihood accuracy under
+  steering (utility axis; working dose is capability-free, s5+ is not).
 - `results/` — score-only JSONs from the recorded runs (no generated
   text; see the repo's privacy policy in the root README).
 
