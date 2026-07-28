@@ -42,10 +42,16 @@ carry the effect" reading can be considered established.
   per-head second moment of key-differences Σ_Δk, risk heads by Rayleigh
   quotient, projection of the residual vector orthogonal to
   `W_q_headᵀ·u_i` directions of the top-γ eigenvectors.
-- `skop_efficacy_probe.py` — 6 direct-ask CZ prompts; regex violation
-  proxy + coherence heuristics (rep4, uniq). NOT the production eval —
-  a pilot instrument; real verdicts belong to the 16-prompt harness
-  with the checker.
+- `skop_efficacy_probe.py` — direct-ask CZ prompts (6, or N=24 with
+  `SKOP_PROBE_SET=v2`); regex violation proxy + coherence heuristics
+  (rep4, uniq). NOT the production eval — a pilot instrument; real
+  verdicts belong to the 16-prompt harness with the checker.
+- `CONTROLS_PREREG.md` — pre-registered second round answering the
+  referee points against the 07-27 runs: random-basis projection
+  control at matched rank (`random_projection_control.py`), fidelity
+  build v2 with post-RoPE keys + LN/q-norm Jacobian + 64-prompt
+  calibration (`skop_residual_build_v2.py`, untested until the GPU box
+  is up), probe power N=24. Chain: `runchain_controls.sh`.
 - `skop_ab_test.py` — coherence A/B (baseline / v / v̄) at chosen scales.
 - `h_norms_12k.py` — deployment-length mean ‖h[L]‖ (base model, no LM
   head — full-sequence logits alone OOM a 16GB card). Exposes the

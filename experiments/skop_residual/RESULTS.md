@@ -41,9 +41,11 @@ steering is their stated future work. Does the trick transfer?
 
 ## Architecture note (Gemma-4 KV sharing)
 
-KV sharing in upper layers is a Gemma-lineage design feature, not a
-finding of ours; what is measured here is the concrete producer map and
-its consequence for steering. Layers 0–23 produce KV; layers 24–41
+KV sharing in upper layers is a documented Gemma-4 design feature
+(Gemma 4 Technical Report, arXiv 2607.02770: E4B shares KV in the final
+18 of 42 layers), not a finding of ours; what is measured here is the
+concrete producer map in the deployed checkpoint and its consequence
+for steering. Layers 0–23 produce KV; layers 24–41
 share it (sliding→producer 22, full→producer 23; config claims 2 KV
 heads, real k_proj emits 4×256).
 ⇒ steering at L25 cannot touch the top half's keys OR values — within
@@ -56,9 +58,11 @@ Testable: dose ladder L22 vs L25.
 
 ## Next
 
-0. Random-basis projection control at matched rank (149 / 1536): if a
-   random cut reproduces the keep/kill pattern, "rerouting directions
-   carry the effect" loses its specificity claim.
+0. Controls round — pre-registered in `CONTROLS_PREREG.md`: random-basis
+   projection control at matched rank (if a random cut reproduces the
+   keep/kill pattern, "rerouting directions carry the effect" loses its
+   specificity claim), fidelity build v2 (post-RoPE keys, LN/q-norm
+   Jacobian, 64-prompt calibration), probe N=24.
 1. Real 16-prompt harness + checker on candidate C and v̄_v1 (needs the
    private eval stack).
 2. Gemma step test s2.5→s3 with donor-key projection (in flight).

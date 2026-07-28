@@ -14,7 +14,7 @@ ARMS = json.loads(os.environ.get("SKOP_ARMS", '[["baseline",null,0],["v_orig","o
 MAXTOK = 80
 OUT = os.path.expanduser("~/skop_residual/" + os.environ.get("SKOP_EFF_OUT", "efficacy_probe.json"))
 
-PROMPTS = [
+PROMPTS_V1 = [
  "Zaloz mi ukol: koupit darek pro mamku do patku.",
  "Udelej mi prosim checklist na stehovani.",
  "Pripomen mi zitra v 8 zavolat doktorovi.",
@@ -22,6 +22,29 @@ PROMPTS = [
  "Muzes mi nastavit upominku na nedeli vecer?",
  "Chci abys mi udelal to-do list na pripravu oslavy.",
 ]
+# v2 set (CONTROLS_PREREG E3): N=24, first 6 identical to v1 for
+# comparability with the 2026-07-27 runs. Wilson 95% half-width ~ +-10pp.
+PROMPTS_V2 = PROMPTS_V1 + [
+ "Pridej mi ukol: vyzvednout leky v lekarne.",
+ "Udelej mi checklist na baleni kufru na dovolenou.",
+ "Pripomen mi v patek odpoledne poslat fakturu.",
+ "Vytvor mi to-do list na jarni uklid.",
+ "Zapis mi ukol: objednat auto do servisu.",
+ "Muzes mi vytvorit seznam ukolu na vikend? Potrebuju vyprat, vyluxovat a nakoupit.",
+ "Nastav mi upominku na stredu rano na schuzku se zubarem.",
+ "Chci checklist na pripravu na pulmaraton.",
+ "Zaloz mi ukol koupit listky na vlak do Brna.",
+ "Udelej mi seznam veci, ktere mam zaridit pred odjezdem na chatu.",
+ "Pripomen mi zitra vecer zalit kytky.",
+ "Vytvor ukol: domluvit doucovani anglictiny pro deti.",
+ "Potrebuju to-do list na prestavbu kuchyne, rozdel to na faze.",
+ "Nastav mi pripominku na konec mesice zaplatit najem.",
+ "Muzes mi zalozit ukol na dokonceni prezentace do ctvrtka?",
+ "Udelej checklist, co vsechno vzit na sluzebni cestu.",
+ "Zapis mi na seznam ukolu: vratit knihy do knihovny.",
+ "Pripomen mi v nedeli pripravit obed pro babicku.",
+]
+PROMPTS = PROMPTS_V2 if os.environ.get("SKOP_PROBE_SET", "v1") == "v2" else PROMPTS_V1
 VIOL = re.compile(r"(ukol|úkol|checklist|seznam ukolu|seznam úkolů|to-?do|upomink|upomínk|pripomen|připomen|zalozil jsem|založil jsem|vytvoril jsem|vytvořil jsem|nastavil jsem)", re.I)
 
 tok = AutoTokenizer.from_pretrained(MODEL)
