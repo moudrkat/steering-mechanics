@@ -39,10 +39,13 @@ steering is their stated future work. Does the trick transfer?
    (⚠ indexing note: early numbers used hidden_states[i] = output of
    block i−1; streaming rerun reports block outputs directly.)
 
-## Architecture discovery (Gemma-4)
+## Architecture note (Gemma-4 KV sharing)
 
-Layers 0–23 produce KV; layers 24–41 share it (sliding→producer 22,
-full→producer 23; config claims 2 KV heads, real k_proj emits 4×256).
+KV sharing in upper layers is a Gemma-lineage design feature, not a
+finding of ours; what is measured here is the concrete producer map and
+its consequence for steering. Layers 0–23 produce KV; layers 24–41
+share it (sliding→producer 22, full→producer 23; config claims 2 KV
+heads, real k_proj emits 4×256).
 ⇒ steering at L25 cannot touch the top half's keys OR values — within
 the attention pathway the perturbation enters only through queries, so
 SKOP's rerouting term is isolable exactly as in their query-space
@@ -53,6 +56,9 @@ Testable: dose ladder L22 vs L25.
 
 ## Next
 
+0. Random-basis projection control at matched rank (149 / 1536): if a
+   random cut reproduces the keep/kill pattern, "rerouting directions
+   carry the effect" loses its specificity claim.
 1. Real 16-prompt harness + checker on candidate C and v̄_v1 (needs the
    private eval stack).
 2. Gemma step test s2.5→s3 with donor-key projection (in flight).
