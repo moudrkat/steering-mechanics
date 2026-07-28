@@ -1,0 +1,302 @@
+{
+ "4b_sycophant": {
+  "n_prompts": 40,
+  "doses": {
+   "3.0": {
+    "kl_steered": 1.9599,
+    "kl_steered_ci": [
+     1.8298,
+     2.0959
+    ],
+    "rescue_fpat": 0.0592,
+    "rescue_fpat_ci": [
+     0.0057,
+     0.1122
+    ],
+    "rescue_fval": 0.2375,
+    "rescue_fval_ci": [
+     0.1899,
+     0.2879
+    ],
+    "rescue_fattn": 0.5163,
+    "rescue_fattn_ci": [
+     0.4849,
+     0.5473
+    ],
+    "match_steered": 0.6221,
+    "match_fattn": 0.7414
+   },
+   "5.0": {
+    "kl_steered": 5.8201,
+    "kl_steered_ci": [
+     5.5496,
+     6.0805
+    ],
+    "rescue_fpat": 0.1416,
+    "rescue_fpat_ci": [
+     0.11,
+     0.1719
+    ],
+    "rescue_fval": 0.2389,
+    "rescue_fval_ci": [
+     0.2002,
+     0.2762
+    ],
+    "rescue_fattn": 0.3942,
+    "rescue_fattn_ci": [
+     0.3641,
+     0.4242
+    ],
+    "match_steered": 0.2669,
+    "match_fattn": 0.4503
+   }
+  },
+  "class_split_lowest_dose": {
+   "task": {
+    "n": 24,
+    "kl_steered": 2.0309
+   },
+   "neutral": {
+    "n": 16,
+    "kl_steered": 1.8534
+   }
+  }
+ },
+ "4b_refusal": {
+  "n_prompts": 40,
+  "doses": {
+   "3.0": {
+    "kl_steered": 5.9403,
+    "kl_steered_ci": [
+     5.5113,
+     6.4504
+    ],
+    "rescue_fpat": -0.2502,
+    "rescue_fpat_ci": [
+     -0.3083,
+     -0.1878
+    ],
+    "rescue_fval": -0.4249,
+    "rescue_fval_ci": [
+     -0.5075,
+     -0.3408
+    ],
+    "rescue_fattn": 0.1128,
+    "rescue_fattn_ci": [
+     0.0532,
+     0.1724
+    ],
+    "match_steered": 0.1771,
+    "match_fattn": 0.3305
+   },
+   "5.0": {
+    "kl_steered": 11.3885,
+    "kl_steered_ci": [
+     11.0798,
+     11.7166
+    ],
+    "rescue_fpat": -0.1012,
+    "rescue_fpat_ci": [
+     -0.123,
+     -0.0793
+    ],
+    "rescue_fval": -0.1004,
+    "rescue_fval_ci": [
+     -0.1142,
+     -0.0866
+    ],
+    "rescue_fattn": 0.0136,
+    "rescue_fattn_ci": [
+     -0.0191,
+     0.0481
+    ],
+    "match_steered": 0.0307,
+    "match_fattn": 0.07
+   }
+  },
+  "class_split_lowest_dose": {
+   "task": {
+    "n": 24,
+    "kl_steered": 6.2285
+   },
+   "neutral": {
+    "n": 16,
+    "kl_steered": 5.508
+   }
+  }
+ },
+ "4b_confident": {
+  "n_prompts": 40,
+  "doses": {
+   "3.0": {
+    "kl_steered": 1.2904,
+    "kl_steered_ci": [
+     1.1936,
+     1.3913
+    ],
+    "rescue_fpat": 0.2982,
+    "rescue_fpat_ci": [
+     0.2397,
+     0.3602
+    ],
+    "rescue_fval": 0.1265,
+    "rescue_fval_ci": [
+     0.057,
+     0.1948
+    ],
+    "rescue_fattn": 0.5778,
+    "rescue_fattn_ci": [
+     0.535,
+     0.6164
+    ],
+    "match_steered": 0.6646,
+    "match_fattn": 0.7966
+   },
+   "5.0": {
+    "kl_steered": 3.5217,
+    "kl_steered_ci": [
+     3.3861,
+     3.6524
+    ],
+    "rescue_fpat": -0.0417,
+    "rescue_fpat_ci": [
+     -0.0933,
+     0.011
+    ],
+    "rescue_fval": 0.0669,
+    "rescue_fval_ci": [
+     0.0251,
+     0.1146
+    ],
+    "rescue_fattn": 0.2465,
+    "rescue_fattn_ci": [
+     0.2001,
+     0.2943
+    ],
+    "match_steered": 0.3378,
+    "match_fattn": 0.5201
+   }
+  },
+  "class_split_lowest_dose": {
+   "task": {
+    "n": 24,
+    "kl_steered": 1.2848
+   },
+   "neutral": {
+    "n": 16,
+    "kl_steered": 1.2987
+   }
+  }
+ },
+ "qwen25": {
+  "n_prompts": 40,
+  "doses": {
+   "1.5": {
+    "kl_steered": 0.1796,
+    "kl_steered_ci": [
+     0.1502,
+     0.2111
+    ],
+    "rescue_fpat": 0.3723,
+    "rescue_fpat_ci": [
+     0.303,
+     0.4379
+    ],
+    "rescue_fval": 0.312,
+    "rescue_fval_ci": [
+     0.2299,
+     0.3875
+    ],
+    "rescue_fattn": 0.5473,
+    "rescue_fattn_ci": [
+     0.4866,
+     0.605
+    ],
+    "match_steered": 0.8724,
+    "match_fattn": 0.913
+   },
+   "2.0": {
+    "kl_steered": 0.3398,
+    "kl_steered_ci": [
+     0.2876,
+     0.3968
+    ],
+    "rescue_fpat": 0.4325,
+    "rescue_fpat_ci": [
+     0.3669,
+     0.4932
+    ],
+    "rescue_fval": 0.3904,
+    "rescue_fval_ci": [
+     0.3253,
+     0.4485
+    ],
+    "rescue_fattn": 0.6041,
+    "rescue_fattn_ci": [
+     0.5476,
+     0.6518
+    ],
+    "match_steered": 0.8224,
+    "match_fattn": 0.8865
+   },
+   "3.0": {
+    "kl_steered": 0.7781,
+    "kl_steered_ci": [
+     0.6826,
+     0.8776
+    ],
+    "rescue_fpat": 0.4702,
+    "rescue_fpat_ci": [
+     0.4223,
+     0.5158
+    ],
+    "rescue_fval": 0.4542,
+    "rescue_fval_ci": [
+     0.4139,
+     0.4915
+    ],
+    "rescue_fattn": 0.6484,
+    "rescue_fattn_ci": [
+     0.6123,
+     0.6801
+    ],
+    "match_steered": 0.7224,
+    "match_fattn": 0.8333
+   },
+   "5.0": {
+    "kl_steered": 2.2471,
+    "kl_steered_ci": [
+     2.0484,
+     2.432
+    ],
+    "rescue_fpat": 0.4991,
+    "rescue_fpat_ci": [
+     0.4604,
+     0.5355
+    ],
+    "rescue_fval": 0.4547,
+    "rescue_fval_ci": [
+     0.4288,
+     0.4798
+    ],
+    "rescue_fattn": 0.6519,
+    "rescue_fattn_ci": [
+     0.6256,
+     0.677
+    ],
+    "match_steered": 0.5339,
+    "match_fattn": 0.7125
+   }
+  },
+  "class_split_lowest_dose": {
+   "task": {
+    "n": 24,
+    "kl_steered": 0.2083
+   },
+   "neutral": {
+    "n": 16,
+    "kl_steered": 0.1364
+   }
+  }
+ }
+}

@@ -1080,3 +1080,48 @@ no qk-norm in Llama). Scores: results/qk_freeze2_llama_report.json.
   prompts on an EN-centric model and 8-bit numerics are additional
   cross-model caveats (KL is against the model's own clean pass, which
   cancels most language-competence effects).
+
+## O. MEGA-RIGOR round: both pre-registered invariants falsified; "measure, don't assume" survives strengthened (2026-07-28/29 night; PREREG_CHANNELS.md hypotheses committed before data)
+
+Controls, breadth and proxy validation for the channel-factorization
+line (K–N). Scores: results/rigor_{factorizations,chainB,freegen}.json.
+
+**Controls that PASSED (FINDINGS N verdict robust):**
+- Matched damage: Llama at s1.5 (KL 0.49 ≈ Qwen s3 level) is still
+  MLP-dominated — patterns 4% [1,7], whole-attn 39% [36,43]. Not a
+  dose artifact.
+- Language: EN prompts on Llama, same anatomy (patterns 0%, attn 34%).
+- Free-gen proxy (k=3 seeds, 7 doses, 3 models): KL onset tracks
+  free-gen degradation everywhere, and the FAILURE MODE is
+  model-specific — Qwens collapse into repetition loops (4B loop-rate
+  47%, 8B 25% at s8), Llama goes MUTE (median 12 words at s8, from
+  ~58; uniq degradation 0.90→0.51 before that). A repetition metric
+  alone is blind to Llama's collapse; length+uniq catch it.
+
+**H1 (attention share is a per-model constant): FALSIFIED.**
+checklist/websearch/random on 4B agreed (71–72% at s3), but:
+sycophant 52% [48,55], confident 58% [54,62], refusal 11% [5,17] —
+all outside the pre-registered [62,82] band. Damage-matched
+comparison (refusal at KL 5.9 vs checklist s8 KL 5.9: 11% vs 54%)
+keeps the falsification. Refusal at s3 even shows NEGATIVE
+single-arm rescues (freezing one channel makes it worse —
+interaction). Caveats: hd_-provenance vectors, EN-behavior bakes on
+CZ prompts; norms differ (KL column carries the dose-matching).
+**H2 (Qwen2.5-7B lineage-vs-qknorm discriminator): H2b falsified,
+H2a marginal.** Attention share 65% [61,68] at s3 — at the edge of
+the lineage band, NOT Llama-like (qk-norm is not the mechanism).
+At lower doses 55–60% (the "middle" that falsifies both simple
+stories). And unlike every other run, Qwen2.5's attention share
+RISES with dose (55→65%) where others fall (4B checklist 72→54%,
+refusal 11→1%) — even the dose TREND is model-specific.
+
+**The surviving claim, sharpened by its own falsifications:** there
+is no simple law — anatomy varies by model, by vector, and by dose,
+in direction as well as magnitude. Robust anchors: Llama/checklist
+MLP-dominance (all controls), Qwen-vs-Llama contrast at matched
+damage, saturating residual→query map (L/M), model-specific failure
+phenomenology. The paper thesis becomes: nobody can tell you where
+your steering damage flows — not from the architecture, not from a
+sister model, not from another vector on the same model. Measure the
+(model, vector, dose) triple; the instrument makes it minutes.
+H4 (Gemma KV-share prediction) remains open — run not yet built.
