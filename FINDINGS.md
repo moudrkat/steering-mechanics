@@ -1016,3 +1016,35 @@ path, so comparisons are internal).
   free-running fluency); 7-layer freezing is itself a large
   intervention (exact-at-s0 sanity mitigates); one model, one vector
   family, k=1.
+
+## M. Damage factorization flips between models (2026-07-28 night; qk_freeze2.py, 4B bf16 + 8B 8bit hard-no-think, decode-only L20, N=40 each)
+
+Completed the patch factorization from FINDINGS L (three freeze arms on
+the L21-27 band: clean PATTERNS / clean VALUES / whole attention output
+clean) plus a dose ladder for the induced Δq at L21. All arms exact at
+s=0 (KL ≤ 0.004, argmax 1.0). Scores: results/qk_freeze2_{4b,8b}_report.json.
+
+- **The headline: 4B and 8B break through OPPOSITE attention channels.**
+  KL rescue at working dose s3 — 4B: patterns 54% > values 42%;
+  **8B: values 53% > patterns 25%**. Same vector recipe, same layer,
+  same dose; different damage anatomy. Shares drift with dose but the
+  ordering holds at s5/s8 (8B patterns down to 9% at s8).
+- **This mechanistically explains the 8B projection failure** (FINDINGS
+  E/RESULTS "projection cost half the suppression"): a SKOP-style
+  projection protects attention *patterns* — on our 8B that channel
+  carries only ~a quarter of the damage, so even a perfect
+  pattern-protection cannot transfer the win. Channel shares must be
+  measured per model before choosing a fix.
+- **Whole-attention freeze rescues ~72% (both models) at s3, falling
+  to ~50% at s8** — the MLP/skip share grows with dose (28% → ~half),
+  consistent with H-domination at collapse (FINDINGS L). Pattern+value
+  rescues are sub-additive vs whole-attn (nonlinear interaction).
+- **Linearity ladder: the residual→query map saturates.** ||Δq||/s is
+  ~flat only below s≈2, then decays (4B h18: 4.6→2.8 from s1→s8; 8B
+  from s1 already), with direction drift (cos vs linear prediction
+  0.91/0.90 at s8; 8B departs earlier). First-order/Jacobian
+  projections are built in exactly the regime that stops being valid
+  at production dose — the concrete reason E2's faithful build could
+  not win, and a caution transferable to SKOP's residual extension.
+- Caveats: teacher-forced KL proxy; k=1; band = L21-27; 8B in 8-bit
+  (sham-floor logic from FINDINGS K applies); one vector family.

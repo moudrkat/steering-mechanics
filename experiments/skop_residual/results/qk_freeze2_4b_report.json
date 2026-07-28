@@ -1,0 +1,81 @@
+{
+ "doses": {
+  "3.0": {
+   "kl_steered": 0.625,
+   "kl_fpat": 0.291,
+   "rescue_fpat": 0.535,
+   "kl_fval": 0.361,
+   "rescue_fval": 0.422,
+   "kl_fattn": 0.177,
+   "rescue_fattn": 0.717,
+   "match_steered": 0.81,
+   "match_fattn": 0.895
+  },
+  "5.0": {
+   "kl_steered": 1.79,
+   "kl_fpat": 0.922,
+   "rescue_fpat": 0.485,
+   "kl_fval": 1.302,
+   "rescue_fval": 0.273,
+   "kl_fattn": 0.607,
+   "rescue_fattn": 0.661,
+   "match_steered": 0.644,
+   "match_fattn": 0.795
+  },
+  "8.0": {
+   "kl_steered": 5.884,
+   "kl_fpat": 3.382,
+   "rescue_fpat": 0.425,
+   "kl_fval": 5.041,
+   "rescue_fval": 0.143,
+   "kl_fattn": 2.689,
+   "rescue_fattn": 0.543,
+   "match_steered": 0.204,
+   "match_fattn": 0.491
+  }
+ },
+ "ladder": {
+  "0.5": {
+   "dq18_per_s": 4.497,
+   "cos18": 1.0,
+   "dqband_per_s": 3.135,
+   "cosband": 1.0,
+   "dk_per_s": 3.904
+  },
+  "1.0": {
+   "dq18_per_s": 4.649,
+   "cos18": 0.999,
+   "dqband_per_s": 3.106,
+   "cosband": 0.998,
+   "dk_per_s": 3.859
+  },
+  "2.0": {
+   "dq18_per_s": 4.764,
+   "cos18": 0.995,
+   "dqband_per_s": 2.998,
+   "cosband": 0.994,
+   "dk_per_s": 3.707
+  },
+  "3.0": {
+   "dq18_per_s": 4.604,
+   "cos18": 0.985,
+   "dqband_per_s": 2.842,
+   "cosband": 0.987,
+   "dk_per_s": 3.507
+  },
+  "5.0": {
+   "dq18_per_s": 3.837,
+   "cos18": 0.956,
+   "dqband_per_s": 2.477,
+   "cosband": 0.969,
+   "dk_per_s": 3.075
+  },
+  "8.0": {
+   "dq18_per_s": 2.757,
+   "cos18": 0.915,
+   "dqband_per_s": 1.991,
+   "cosband": 0.942,
+   "dk_per_s": 2.517
+  }
+ }
+}
