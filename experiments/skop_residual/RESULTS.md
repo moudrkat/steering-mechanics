@@ -57,4 +57,4 @@ Testable: dose ladder L22 vs L25.
    private eval stack).
 2. Gemma step test s2.5→s3 with donor-key projection (in flight).
 3. v3-8B (the proven 0/20 vector) + the L15@8 /no_think mode-break test.
-4. N≥12 probe replication; then: Cambridge email → LW post → LinkedIn.
+4. N≥12 probe replication; then write-up.

@@ -501,7 +501,7 @@ amplify the vector (+1.23); now we have a head-level suspect for WHERE.
 Candidate for the head-level program step (iv). k=1, one prompt — an
 observation, not a result.
 
-## E. Projection-depth sweep (4B): no Cambridge-style free lunch at probe resolution
+## E. Projection-depth sweep (4B): no SKOP-style free lunch at probe resolution
 
 Four configs between v0 (64% norm) and v1 (95%), probe at s3/s4/s5 with
 coherence heuristics (rep4 = repeated-4gram ratio ↓ better, uniq =
@@ -701,7 +701,7 @@ key-difference second moments on 8 utility prompts (layers 21–28, 256
 heads), projected v_pref_no_task_checklist_v3[L20] orthogonal to top-γ=0.9
 eigendirections of the top-20% risk heads (Rayleigh 40.8→0.87 after).
 v0 is over-aggressive: harm basis rank 1536/2560, norm kept 64%
-(‖v̄‖=8.46 vs 13.22). Vector: `aorus:~/hotwire-vectors/
+(‖v̄‖=8.46 vs 13.22). Vector: GPU box `~/hotwire-vectors/
 v_pref_no_task_qwen_skopres.pt`. Script: scratchpad skop_residual_build.py
 (v0 approximations: pre-RoPE keys, LN Jacobian ignored, 8-prompt calib).
 

@@ -116,7 +116,7 @@ Each: 1 para failure story + 1 para "why the metric can't see it" + the fix.
 1. calibration_landscape.png (exists)
 2. dose ladder table → simple chart (behavior vs fluency vs dose, Gemma)
 3. Pareto: projection depth (norm kept) vs efficacy vs coherence
-   (WAITING on sweep — aorus offline)
+   (WAITING on sweep — GPU box offline)
 4. h-norm profile short vs 12k (the sink pollution figure) — have data.
 
 ## Disclosure footer (LW policy)
