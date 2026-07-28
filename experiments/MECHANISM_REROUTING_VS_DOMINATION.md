@@ -83,3 +83,15 @@ GPU required for all three. Option A: revive the GPU box. Option B: the
 rented-cloud-GPU serving path (documented in the team testkit). Order:
 (1) attention divergence, (2) frozen-attention, (3) SKOP replication —
 each step's result decides whether the next is worth running.
+
+---
+
+**Outcome note (2026-07-28):** measurements 1+2 ran (decode-only,
+Qwen3-4B L20 — the production setting; the sketch above said 8B, noted
+as a deviation). Measurement 1: FINDINGS K (divergence localized, dose
+growth+saturation — neither clean jump nor flat). Measurement 2:
+FINDINGS L — frozen-attention rescue is PARTIAL (~half at working
+dose, less at collapse; L21 alone ~nothing). Per the table: mixed,
+leaning H-domination; rerouting is a real but minority damage carrier,
+and the high-dose collapse is not attention-routed. Measurement 3
+(SKOP projection): ran earlier — cliff did not move (FINDINGS E/K).
