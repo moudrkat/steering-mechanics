@@ -102,6 +102,32 @@ attribute the task-direction write per head on 8B.
 head-edit hook is a brainscope addition after the diagnostic says it's worth it.
 Do NOT build surgery for a diffuse target — the diagnostic gates the build.
 
+## #5 Signature probe: prompted vs steered induction, per-token (added 2026-07-28)
+
+Motivated by external literature (Kang et al., arXiv 2605.10664; Heyman &
+Vandeputte, arXiv 2605.03907): prompting moves activations SPARSELY via
+attention from instruction tokens; residual steering pushes every token
+uniformly and accumulates in the KV cache, degrading multi-turn coherence.
+If that signature holds on our vectors, it is a mechanism candidate for
+the regime accident and for H1's total-injected-mass law (WHY the window
+closes at deployment length).
+
+**Design (2 evenings, existing instruments only):** (a) prompted arm =
+the strongest no-task system prompt (the pre-registered prompting
+baseline) vs steered arm = v_pref at matched efficacy (checker-matched);
+per-token projection profile onto the preference direction + KV-cache
+accumulation over turns, via brainscope forced replay. (b) Run on TWO
+vectors — v_pref plus a freshly extracted task-preference vector
+(creative-vs-analytical, English) — because the SKOP round showed
+effects are vector-specific (FINDINGS G); one vector = anecdote.
+Side result for free: cos(v_fresh, v_pref) — does the production
+behavior sit on a general task-preference axis (cf. Gilg et al., arXiv
+2605.13339)?
+
+**Status:** queued for spare GPU evenings behind the RQ1 grid.
+Exploratory: no pre-registered claim; anything that survives gets
+promoted and re-tested clean, per the rules of this track.
+
 ## Evaluation (identical discipline for all four)
 Each is scored by the frozen pipeline: deployment-length scaffolds, temp 1,
 hard/soft triage, bootstrap CIs, the ship gate. The comparison of interest is
