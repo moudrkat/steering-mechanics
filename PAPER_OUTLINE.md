@@ -1,5 +1,14 @@
 # Paper outline — "How steering evaluations lie"
 
+> **Note 2026-07-28:** a second paper line now exists and is further
+> along: the *channel factorization* of steering damage
+> (experiments/skop_residual/, FINDINGS K–Q; pre-registered, data
+> frozen 07-28). The two are complementary — this outline is the
+> eval-validity catalog, the factorization paper is the mechanism
+> study — and several catalog entries (KL-vs-capability dissociation,
+> loops-vs-mute metric blindness) gained fresh evidence from the
+> factorization round. Sequencing decision pending.
+
 *Working title:* **How steering evaluations lie: a catalog of failure modes,
 and the discipline that catches them.** (Alt: "Steering with receipts.")
 

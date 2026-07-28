@@ -11,13 +11,21 @@ stop measuring what you think. The findings and the pre-registered plan live
 in [FINDINGS.md](FINDINGS.md), [RESEARCH_PLAN.md](RESEARCH_PLAN.md), and
 [EVAL_PRINCIPLES.md](EVAL_PRINCIPLES.md).
 
-> **Status: work in progress — more playground than product right now.**
-> The instruments are real and `make demo` renders measured data, but
-> several experiments below are still TODO, interfaces move without
-> warning, and results so far cover one model family and a handful of
-> vectors. The stable core is the pre-registered plan
+> **Status: work in progress.** The instruments are real and `make demo`
+> renders measured data; interfaces still move without warning. Coverage
+> as of 2026-07-28: five model families (Qwen3-4B/8B, Qwen2.5-7B,
+> Llama-3.1-8B, Gemma-4-E4B), nine vectors, six pre-registered
+> hypotheses (see below). The stable core is the pre-registered plan
 > ([RESEARCH_PLAN.md](RESEARCH_PLAN.md)) — frozen 2026-07-23; any change
 > to hypotheses or methods gets a dated deviation note there.
+>
+> **Newest line (2026-07-28, data frozen): the channel factorization** —
+> *which computational channel carries steering damage* (attention
+> patterns / values / MLP), measured causally by freeze arms across the
+> five families, with pre-registered hypotheses whose falsifications are
+> part of the record. Start at
+> [experiments/skop_residual/](experiments/skop_residual/) and
+> FINDINGS.md sections K–Q.
 
 Division of labor (why this repo exists):
 
