@@ -1182,3 +1182,37 @@ H4 (Gemma KV-share prediction) remains open — run not yet built.
   of it (both classes affected identically) and the H5 margin was
   wide, but both MWE vectors are being rebaked and remeasured with
   the fix (chain F) so H5 rests on clean construction.
+
+## Q. Closing controls: the all-layer freeze rewrites both headlines honestly (2026-07-28 late; chains D/E/F complete — DATA FREEZE for paper 1)
+
+- **fattn-ALL (freeze attention in EVERY layer above injection) — the
+  P-addendum control, and it was material in BOTH directions:**
+  Qwen3-4B 85% [82,87], Qwen3-8B 85% [83,87] at s3 (band value was
+  72% — late attention carried the difference; true MLP/skip ≈ 15%).
+  Llama-3.1-8B: 50% [46,53] at matched damage (s1.5), 41% at s3, 28%
+  at s5 (band: 39/30/24%). Corrected cross-model statement: **Qwen
+  models are strongly attention-carried (~85%); Llama caps at ~half
+  at matched damage and falls with dose.** "MLP-dominated" (N) was
+  too strong band-relative; "attention-minority, shrinking with dose"
+  is what the all-layer control supports at s3+, with 50/50 at
+  matched damage. The cross-model CONTRAST (85 vs ≤50) stands, CI-
+  separated by a wide margin.
+- **H6 now properly powered and FALSIFIED:** L14 at s8/s16 puts real
+  damage in the denominator (KL 0.32/1.23) — band-attention share
+  46%/44% [39,52], far outside the pre-registered [57,87]. Depth
+  matters; the quadruple stands (this upgrades the P-addendum
+  "underpowered" verdict to a clean falsification at adequate power).
+- **H5 re-confirmed on BOS-fixed MWE vectors:** band-attention 22–33%
+  across the damage range for power-seeking and corrigibility v2
+  bakes — same verdict as v1, now on clean construction. (H5 is
+  band-operationalized per its registration; the all-layer number on
+  Llama above bounds it from the same data family.)
+- **ARC-300 axis (chain D):** working dose is capability-free on all
+  four dense models (±1pp of baseline; 0.82/0.82, 0.82/0.83,
+  0.89/0.89, 0.76/0.77); s5 costs 7–16pp; s8 lands at 44–48%.
+  Together with nonzero KL at s3: low-dose KL is largely distribution
+  shift, not capability loss — one more reason damage needs multiple
+  instruments. Scores: results/arc300_summary.json.
+- **DATA FREEZE:** paper 1 uses FINDINGS K–Q as its data basis; new
+  measurements (concordance, value-side projection) belong to the
+  post-freeze queue.
