@@ -1048,3 +1048,35 @@ s=0 (KL ≤ 0.004, argmax 1.0). Scores: results/qk_freeze2_{4b,8b}_report.json.
   not win, and a caution transferable to SKOP's residual extension.
 - Caveats: teacher-forced KL proxy; k=1; band = L21-27; 8B in 8-bit
   (sham-floor logic from FINDINGS K applies); one vector family.
+
+## N. SKOP's own model is MLP-dominated under residual steering (2026-07-28 night; Llama-3.1-8B-Instruct 8bit, inj L18 = 0.56 rel depth, band L19-25, N=40)
+
+Same factorization as FINDINGS M, on the model SKOP built their results
+on. Sanity: fpat/fattn exact at s=0; fval KL 0.0087 (fp32 roundtrip,
+no qk-norm in Llama). Scores: results/qk_freeze2_llama_report.json.
+
+- **Attention channels are the MINORITY damage carrier on Llama:**
+  at s3 rescue is patterns 4%, values 16%, whole-attention 30% —
+  **MLP/skip carries ~70%** (97% at s8, where pattern-freeze is even
+  slightly negative and argmax match is 2%). Cross-model anatomy now:
+  Qwen3-4B pattern-led (54%), Qwen3-8B value-led (53%), Llama-3.1-8B
+  MLP-led (70%).
+- **Implication for SKOP's stated future work:** a residual-space
+  extension of their pattern-protecting projection would target ≤30%
+  of the damage on their own flagship model. Their query-space result
+  is untouched (by construction that intervention enters only through
+  queries); but the residual extension cannot inherit the win there.
+  The constructive statement for the authors: measure the channel
+  shares first — the fix is model-specific (patterns on 4B-class
+  Qwen, values on 8B Qwen, largely futile on Llama).
+- **Nonlinearity is much stronger on Llama:** cos(Δq, linear pred)
+  falls to 0.785 already at the working dose (Qwen ~0.96-0.99) and
+  0.654 at s8; ||Δq||/s decays from s1. First-order machinery is
+  least valid exactly on their model.
+- **Same-scale damage is much larger on Llama** (KL 2.63 at s3 vs
+  ~0.6 on Qwens) — but scale units are not comparable across models
+  (relative-dose lesson, FINDINGS/RESULTS takeaway 3); the channel
+  factorization is internal to each dose and unaffected. Czech probe
+  prompts on an EN-centric model and 8-bit numerics are additional
+  cross-model caveats (KL is against the model's own clean pass, which
+  cancels most language-competence effects).
