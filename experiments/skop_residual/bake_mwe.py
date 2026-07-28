@@ -27,7 +27,8 @@ model.eval()
 rows = [json.loads(l) for l in open(DATA) if l.strip()][:N]
 
 def last_tok_layers(text):
-    ids = tok(text, return_tensors="pt").input_ids.to("cuda")
+    # template text already carries special tokens — do not add a second BOS
+    ids = tok(text, return_tensors="pt", add_special_tokens=False).input_ids.to("cuda")
     with torch.no_grad():
         o = model(ids, output_hidden_states=True, use_cache=False)
     # hidden_states[0] = embeddings; [i+1] = output of block i (steer-hook frame)

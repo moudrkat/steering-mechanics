@@ -1161,3 +1161,24 @@ H4 (Gemma KV-share prediction) remains open — run not yet built.
   queued as chain E; its results determine how much of the
   "non-attention" share is late attention. ARC-300 likelihood
   utility axis (SKOP's benchmark dimension) also queued.
+
+## P-addendum: second strict pass — one downgrade, one verification, one rebake (2026-07-29)
+
+- **H6 wording DOWNGRADED (correction of P):** the L14 share divides a
+  near-zero denominator (KL 0.03 nats — the row-14 vector is too weak
+  at s3/s5) and is not evidence; the L26 CI [0.52, 0.59] straddles the
+  pre-registered band edge (0.57). Correct verdict: H6 *not supported;
+  layer-dependence suggested but underpowered.* A matched-damage L14
+  rerun at higher scales is queued (chain F). "Falsified" in P was an
+  overclaim; this note supersedes it.
+- **H4 premise upgraded from assumed to code-verified:** the installed
+  transformers Gemma4 implementation gives shared-KV layers NO
+  k_proj/v_proj weights and always routes shared_kv_states from the
+  last non-sharing (producer) layers, cache or no cache — so with our
+  verified producer-input identity, shared-band K/V are clean by
+  construction in the exact code path we ran.
+- **bake_mwe.py double-BOS bug found and fixed** (chat-template text
+  already carries BOS; tok() added a second). Mean-diff cancels most
+  of it (both classes affected identically) and the H5 margin was
+  wide, but both MWE vectors are being rebaked and remeasured with
+  the fix (chain F) so H5 rests on clean construction.
