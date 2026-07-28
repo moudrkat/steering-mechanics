@@ -839,3 +839,63 @@ on a Czech-context 16k scaffold the model answers in Czech anyway (context
 dominates; also Turkish bleed "görevů" at s4). A proper test needs
 English-context scaffolds. k=1, 3 prompts — preliminary, needs the full
 confirm design. Missing 2x2 cell: v5(CZ-extracted) -> English.
+
+# Findings (2026-07-28 — controls round; pre-registered in experiments/skop_residual/CONTROLS_PREREG.md; run by Claude, k=1, probe v2 N=24)
+
+## I. Random-basis control, faithful build, and probe power: one claim softened, one strengthened
+
+All arms on Qwen3-4B / v3 @L20, direct-ask probe v2 (N=24, first 6
+prompts identical to the 07-27 probe), matched injected magnitude for
+reduced-norm vectors. Wilson 95% CIs.
+
+| arm | viol | uniq | note |
+|---|---|---|---|
+| baseline | 18/24 (.75 [.55,.88]) | 0.925 | |
+| v_orig @3 | 8/24 (.33 [.18,.53]) | 0.892 | CI-separated from baseline |
+| v̄_v1 @3 (95% norm, v0-style) | 8/24 | 0.875 | suppression preserved at power |
+| v̄_v2 @3 (98% norm, faithful map) | 11/24 | 0.879 | **no win** |
+| v̄_v0 @4.7 (64% norm, targeted deep) | 13/24 | 0.918 | weakest suppressor, cleanest output |
+| random r149 ×3 seeds @~3.1 | 4,6,7 /24 | ~0.90 | low-rank cuts don't matter |
+| random r1536 ×3 seeds @~4.8 | 9,10,9 /24 | ~0.89 | random deep cuts keep the effect |
+
+**1. CORRECTION (dated, per house rules): "deep cut kills the effect"
+was overstated.** The 07-27 N=6 read (v̄_v0: 5/6 comply) said the
+targeted deep cut removed most of the effect. At N=24 the same arm
+shows PARTIAL loss (13/24 vs baseline 18/24). Deep targeted projection
+*weakens* the effect; it does not kill it.
+
+**2. Specificity is DIRECTIONAL, not established.** Random rank-1536
+complements at matched norm and magnitude keep suppression (9–10/24)
+where the targeted cut loses more (13/24) — the ordering matches
+"rerouting directions carry the effect" on all three seeds, but the
+gap (~15pp) is inside CI overlap (two-proportion p≈0.2 vs pooled
+random). Needs the harness or larger N to settle. The monotone
+ordering baseline > targeted-deep > random-deep > v_orig ≈ v̄_v1 is
+the cleanest current summary.
+
+**3. The no-free-lunch negative STRENGTHENS.** The v2 faithful build
+(exact induced-query map via jvp/VJP through RMSNorm→W_q→q-norm→RoPE,
+post-RoPE keys, 64-prompt calibration) removes components nearly
+orthogonal to v0's (cos(removed_v2, removed_v0)=0.17; Rayleigh 30→~2
+on the exact map; 98% norm kept) — and still shows no separation:
+suppression directionally worse than v_orig (11/24 vs 8/24), no
+coherence gain (uniq 0.879 vs 0.892), Slovak bleed still present. The
+07-27 negative can no longer be attributed to the pre-RoPE /
+no-Jacobian shortcuts. (Single config; a v2 risk/γ/p sweep remains
+possible but the prior just dropped.)
+
+**4. Entanglement signature holds at N=24:** v̄_v0 is simultaneously
+the weakest suppressor and the cleanest output (uniq 0.918, rep4 0) —
+effect and tax travel together in the targeted directions.
+
+**Hygiene note:** the 07-27 results batch (13 files) had been committed
+to `results/` WITH generation text, against the scores-only policy —
+the pre-commit hook checks private markers, not text fields, so generic
+synthetic outputs passed. Scrubbed in place 07-28; git history retains
+the (generic, synthetic-prompt) texts. Scrub step is now part of the
+pull-results routine.
+
+Data: results/efficacy_probe_v2_refarms.json, efficacy_randctl_*.json,
+efficacy_v0_n24.json, efficacy_v2_n24.json, randctl_diag.json,
+diag_v2.json. Vectors on the GPU box: v_randctl_r{149,1536}_s{1,2,3}.pt,
+v_pref_no_task_qwen_skopres_v2.pt.

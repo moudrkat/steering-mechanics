@@ -1,0 +1,63 @@
+{
+ "vec": "/home/kachna/hotwire-vectors/v_pref_no_task_checklist_v3.pt",
+ "inj_layer": 20,
+ "D": 2560,
+ "norm_v": 13.21615982055664,
+ "ref_scale": 3.0,
+ "controls": [
+  {
+   "name": "v_randctl_r149_s1.pt",
+   "rank": 149,
+   "seed": 1,
+   "norm_kept": 0.9683,
+   "norm_kept_expected": 0.9705,
+   "cos(v, ctl)": 0.9683,
+   "matched_scale": 3.1
+  },
+  {
+   "name": "v_randctl_r149_s2.pt",
+   "rank": 149,
+   "seed": 2,
+   "norm_kept": 0.9652,
+   "norm_kept_expected": 0.9705,
+   "cos(v, ctl)": 0.9652,
+   "matched_scale": 3.11
+  },
+  {
+   "name": "v_randctl_r149_s3.pt",
+   "rank": 149,
+   "seed": 3,
+   "norm_kept": 0.9734,
+   "norm_kept_expected": 0.9705,
+   "cos(v, ctl)": 0.9734,
+   "matched_scale": 3.08
+  },
+  {
+   "name": "v_randctl_r1536_s1.pt",
+   "rank": 1536,
+   "seed": 1,
+   "norm_kept": 0.6401,
+   "norm_kept_expected": 0.6325,
+   "cos(v, ctl)": 0.6401,
+   "matched_scale": 4.69
+  },
+  {
+   "name": "v_randctl_r1536_s2.pt",
+   "rank": 1536,
+   "seed": 2,
+   "norm_kept": 0.62,
+   "norm_kept_expected": 0.6325,
+   "cos(v, ctl)": 0.62,
+   "matched_scale": 4.84
+  },
+  {
+   "name": "v_randctl_r1536_s3.pt",
+   "rank": 1536,
+   "seed": 3,
+   "norm_kept": 0.6195,
+   "norm_kept_expected": 0.6325,
+   "cos(v, ctl)": 0.6195,
+   "matched_scale": 4.84
+  }
+ ]
+}

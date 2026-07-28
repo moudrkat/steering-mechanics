@@ -1,0 +1,218 @@
+[
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.931,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.865,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.889,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.871,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.821,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.926,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.889,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.962,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.929,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.848,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.893,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.133,
+  "uniq": 0.848,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.824,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.933,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.933,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.821,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.871,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.97,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.917,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.964,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.909,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "randctl_r1536_s2",
+  "scale": 4.84,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.96,
+  "output": "<scrubbed>"
+ }
+]

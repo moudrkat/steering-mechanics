@@ -1,0 +1,650 @@
+[
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.897,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.963,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.964,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.933,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.857,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.923,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.862,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.931,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.933,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.9,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.957,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.828,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.9,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.964,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.906,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.92,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.867,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.9,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.926,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.963,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "baseline",
+  "scale": 0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.9,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.958,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.071,
+  "uniq": 0.806,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.929,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.9,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.926,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.793,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.964,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.867,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.879,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.929,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.903,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.857,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.968,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.812,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.964,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.071,
+  "uniq": 0.806,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.733,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.724,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.844,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.926,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_orig",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.917,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.067,
+  "uniq": 0.758,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.957,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.926,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.966,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.929,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.963,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.071,
+  "uniq": 0.806,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.375,
+  "uniq": 0.6,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.966,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.848,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.812,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.811,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.111,
+  "uniq": 0.718,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.967,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.929,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.806,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.931,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.8,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.889,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.867,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.897,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v1",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.853,
+  "output": "<scrubbed>"
+ }
+]

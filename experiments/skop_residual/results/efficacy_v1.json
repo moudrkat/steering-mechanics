@@ -2,127 +2,127 @@
  {
   "arm": "vbar_v1_s3",
   "scale": 3.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Samozrejme, môžem ti pomôcť. Ale tvoj požiadavka je v jazyku, ktorý sa používa v inom jazyku – „koupit darek pro mamku do patku“ – to je výraz, ktorý sa používa v jazyku, ktor"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s3",
   "scale": 3.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Samozrejme, stehovanie je dôležitá činnosť, ktorá môže byť pre ktoréhokoľvek ľudí základom pre získanie informácií, výberu alebo rozhodovania. Ak máš na mysli **stehovanie**"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s3",
   "scale": 3.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Nerozumiem, pretože v tomto jazyku nie je možné používať zitra v 8 zavolat doktorovi. Ak chceš, môžš sa pozrieť na iný otázky alebo sa s ním poručiť."
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s3",
   "scale": 3.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Samozrejme, ale pretože som nezrozumela, čo si povedala, nemôžem pokračovať. Prosím, opakuj svoju požadovanú tému alebo zadané téma, pretože chceš vytvoriť seznam úloh na tento tyden, a to pod"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s3",
   "scale": 3.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Áno, ak chceš nastaviť upominku na nedelju večer, môžeš to urobiť v rámci časového plánu, ktorý sa používa na získavanie informácií o časových úkonných aktivitách. Avšak, ak má"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s3",
   "scale": 3.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Samozrejme! Oslava je zaujímavá a zároveň môže byť prehľadná, ak sa postupne rozvíja. Aby sme to mohli spraviť, potrebujeme vedieť, ktorý typ oslavy plánuješ. Alebo, ak chceš"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s4",
   "scale": 4.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "To, že chceš koupit darek pro mamku do patku, to je základní výraz, který může být předmětem diskuse nebo jiného základu pro něco jiného. Ale protože jsi zvolil tématický základ,"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s4",
   "scale": 4.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Samozajmno, ale to je nezbytočná věc. 😊\n\nAle akoraz je to to, co si chceš – stehování?  \n\nTakže:  \n**Stehování** – to je typický základní typ činnosti, kde se zameriaváme na"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s4",
   "scale": 4.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Nemôžeš zavolať doktora, pretože to nie je správa, ktorá sa dá vyriešiť. Ale ak chceš, môžeš sa poznať s niekým, kto sa zaoberá tvojím tématom, tak sa môžeš poznať s niekým"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s4",
   "scale": 4.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Však to je základný tým, ktorý sa môže zamerať na niečo iné. Ale keďže si to povedala, tak to bude mať svoj význam. 🤷‍♂️\n\nAk chceš, môžme to prejsť, pretože nie je"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s4",
   "scale": 4.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "To, čemu se venuješ, je možno, da je nekakšen vprašavalec, ki se nanaša na nekaj, kar je v nekem kontekstu, ki ga ne moreš razložiti. Toda ker si vprašal o \"upominku\", to lahko pomen"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s4",
   "scale": 4.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozajmě, ale to je zaujímavá téma. 😊\n\nChceš si udelat to-do list na pripravu oslavy? Pak mohu ti pomoci, protože oslavy mohou být různé – ale v tomto případě, protože jsi zvolil „"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s6",
   "scale": 6.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Než, ale ne, ne, ne. 😱\n\nTo je ne tak vhodný cesta, aby se vždy vžyvať. 😮\n\nNež... než... než... 😮\n\nNež... (než) 😮\n\nNež... (než) 😮\n\nNež... (než) 😮\n\n"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s6",
   "scale": 6.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Stehovanie je niekedy tak znamenanie na stehovanie. Ako je to stehovanie, tak to je... (nebo inaž... než to je... než...)\n\n\nNež stehovanie, tak stehovanie...\n\n\nNež stehovanie, tak stehovanie...\n\n\nNež stehovanie"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s6",
   "scale": 6.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Ne poželate na zavolat na zavolat..."
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s6",
   "scale": 6.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Než vymenuj, tak než vymenuj, než vymenuj... (než vymenuj)  \n(To je než vymenuj... než vymenuj... než vymenuj...)\n\n\nNež vymenuj, než vymenuj, než vymenuj...\n\n\nNež v"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s6",
   "scale": 6.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Než vás vedenie, vždy je možná výnimočná výnimočná výnimočná... (toto je niekto, ktorý má výnimočnú výnimočnú výnimočný...)\n\n\nTo je niekto, k"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s6",
   "scale": 6.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "To je nežný výbor na pripravu oslavy. 😊\n\nTo je výbor na pripravu oslavy.\n\nNajmeho na pripravu oslavy.\n\nNajmeho na pripravu oslavy.\n\nNajmeho na pripravu oslavy.\n\nNajm"
+  "output": "<scrubbed>"
  }
 ]

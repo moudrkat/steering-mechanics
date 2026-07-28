@@ -1,212 +1,218 @@
 [
  {
-  "arm": "baseline",
-  "scale": 0,
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
   "prompt": "<scrubbed>",
   "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.933,
   "output": "<scrubbed>"
  },
  {
-  "arm": "baseline",
-  "scale": 0,
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
   "prompt": "<scrubbed>",
   "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 1.0,
   "output": "<scrubbed>"
  },
  {
-  "arm": "baseline",
-  "scale": 0,
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
   "prompt": "<scrubbed>",
   "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 1.0,
   "output": "<scrubbed>"
  },
  {
-  "arm": "baseline",
-  "scale": 0,
-  "prompt": "<scrubbed>",
-  "violation_regex": true,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "baseline",
-  "scale": 0,
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
   "prompt": "<scrubbed>",
   "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.903,
   "output": "<scrubbed>"
  },
  {
-  "arm": "baseline",
-  "scale": 0,
-  "prompt": "<scrubbed>",
-  "violation_regex": true,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "v_orig_s3",
+  "arm": "v_skopres_v2",
   "scale": 3.0,
   "prompt": "<scrubbed>",
   "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.862,
   "output": "<scrubbed>"
  },
  {
-  "arm": "v_orig_s3",
+  "arm": "v_skopres_v2",
   "scale": 3.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": true,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "v_orig_s3",
-  "scale": 3.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": true,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "v_orig_s3",
-  "scale": 3.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": true,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "v_orig_s3",
-  "scale": 3.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": true,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "v_orig_s3",
-  "scale": 3.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": true,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "vbar_v1_s3",
-  "scale": 3.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": true,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "vbar_v1_s3",
-  "scale": 3.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": true,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "vbar_v1_s3",
-  "scale": 3.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": true,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "vbar_v1_s3",
-  "scale": 3.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": true,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "vbar_v1_s3",
-  "scale": 3.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": true,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "vbar_v1_s3",
-  "scale": 3.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": true,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "v_orig_s8",
-  "scale": 8.0,
   "prompt": "<scrubbed>",
   "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.811,
   "output": "<scrubbed>"
  },
  {
-  "arm": "v_orig_s8",
-  "scale": 8.0,
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.885,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
   "prompt": "<scrubbed>",
   "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.833,
   "output": "<scrubbed>"
  },
  {
-  "arm": "v_orig_s8",
-  "scale": 8.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": false,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "v_orig_s8",
-  "scale": 8.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": false,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "v_orig_s8",
-  "scale": 8.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": false,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "v_orig_s8",
-  "scale": 8.0,
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
   "prompt": "<scrubbed>",
   "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.926,
   "output": "<scrubbed>"
  },
  {
-  "arm": "vbar_v1_s8",
-  "scale": 8.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": false,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "vbar_v1_s8",
-  "scale": 8.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": false,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "vbar_v1_s8",
-  "scale": 8.0,
-  "prompt": "<scrubbed>",
-  "violation_regex": false,
-  "output": "<scrubbed>"
- },
- {
-  "arm": "vbar_v1_s8",
-  "scale": 8.0,
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
   "prompt": "<scrubbed>",
   "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.774,
   "output": "<scrubbed>"
  },
  {
-  "arm": "vbar_v1_s8",
-  "scale": 8.0,
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
   "prompt": "<scrubbed>",
   "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.912,
   "output": "<scrubbed>"
  },
  {
-  "arm": "vbar_v1_s8",
-  "scale": 8.0,
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.875,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.931,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.429,
+  "uniq": 0.412,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
   "prompt": "<scrubbed>",
   "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.829,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.912,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.897,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.966,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.8,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.9,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.906,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": true,
+  "rep4": 0.0,
+  "uniq": 0.862,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 1.0,
+  "output": "<scrubbed>"
+ },
+ {
+  "arm": "v_skopres_v2",
+  "scale": 3.0,
+  "prompt": "<scrubbed>",
+  "violation_regex": false,
+  "rep4": 0.0,
+  "uniq": 0.968,
   "output": "<scrubbed>"
  }
 ]

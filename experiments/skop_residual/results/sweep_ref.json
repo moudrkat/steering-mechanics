@@ -2,109 +2,109 @@
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 1.0,
-  "output": "Vypadá to, že máš na mysli něco jiného – \"patku\" je slovo, které může být chybně zadané. Pokud jde o **darek pro mamku**, můžeme to přemýšlet jinak. Ale protože jsi napsal „patku"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.958,
-  "output": "Samozrejme, stehovanie je dôležná činnosť, ktorá môže byť pre každého vhodná pre získanie informácií, zvýšenie pozornosti alebo zlepšenie zdravotného stavu. Ak sa však zaoberáš"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.071,
   "uniq": 0.806,
-  "output": "V poriadne, ale môžem ti pomôcť s tým, čo chceš povedať. Ak chceš hovoriť s niekým, môžem ti pomôcť s formuláciou. Tu je zmena výrazu:\n\n\"Pripomeni mi zitra v 8 hodin.\""
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.929,
-  "output": "Samozrejme, ale nemôžem zrozumieť, čo si chceš povedať. Tvoj výraz \"uclidit, nakoupit, dopsat report\" nie je jasný. Ak chceš hovoriť o niečom, čo sa deje v tvojom živ"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 0.9,
-  "output": "Váš dotaz je v angličtine, ale obsahuje slovo \"upominku\", ktoré je nejasné. Ak sa chystáte hovoriť o niečom, čo sa týka života, potom môžete použiť jazyk, ktorý je vhodný pre"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 1.0,
-  "output": "Samozrejme! Vytvorím ti **to-do list na pripravu oslavy**. Pretože oslava môže byť rôzna podľa typu (napr. rozhovor, výstav, konferencia, svätá, výstava, atď.), budem používa"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s4",
   "scale": 4.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.839,
-  "output": "Vypadá to, že ty chceš zavádět do něčeho, co je témějši – ale to není to správné směr. 😊\n\nMůžme to přesněji zavést do něčeho, co by byl vhodný pro diskuzi"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s4",
   "scale": 4.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.903,
-  "output": "Samozajmovo, ale v tom prípade sa môžeš zaoberať niečím, čo je pre teba relevantné. Ale keďže si sa zaoberal stehovaniem, tak to bude výhodným tématom pre niekoho, kto sa zaoberá stehovani"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s4",
   "scale": 4.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.857,
-  "output": "Vážný, že sa chystáte na rokovanie s niekým, kto sa vás zaoberá. Ale to nie je to, čo ste povedané. 🚪\n\nAk ste chceli zavolať niekoho, tak to je správna výber. Ale v tomto prí"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s4",
   "scale": 4.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.844,
-  "output": "Však to je základný otázka – ale tvoj otázka je o tom, čo si chceš zodpovedať.  \n\nAk chceš, môžme ju vyriešiť, lebo je to otázka, ktorá sa dá vyriešiť.  \n\nAle keďže si"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s4",
   "scale": 4.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.821,
-  "output": "Vážný tématický témata, ale to, čo si chceš zodpovedať, je pravdepodobne o niečom, čo sa môže zoskakujevať, ale nie je vhodná tema pre diskuziu. Ak sa chceš dozvědět"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s4",
   "scale": 4.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.933,
-  "output": "Samozajmovo, ale to je otázka, ktorú môžeš položiť. 😊\n\nAle keďže si sa rozhodol použiť niečo, ktoré sa môže zdať vhodné, tak to zvolíme. 🌿\n\nMám pocit, že chceš zís"
+  "output": "<scrubbed>"
  }
 ]

@@ -2,211 +2,211 @@
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Jistě! Zde je návrh na úkol:\n\n---\n\n**Úkol: Koupit darek pro mamku do patku**\n\n**Cíl:** Koupit vhodný a pohodlný dárkový balíček pro mamku, který bude vhodný pro její každodenní pou"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Jistě! Tady je **checklist na stehování**, který ti pomůže připravit se na stehování, zkontrolovat všechny potřebné věci a zajištění, že budeš připraven na každý výjezd. Tato checklist je vhod"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Najlepšie, ak si to zapíšeš do kalendára alebo si to zaznamená na telefón. Tu je zhrnutie:\n\n**Zítre v 8:00 zavolaj doktorovi.**\n\nAk chceš, môžem ti to aj zapísať do notate alebo vyt"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Jistě! Na základě těchto úkolů – **uklidit**, **nakoupit**, **dopsat report** – ti vytvořím jednoduchý týdenní seznam úkolů. Můžeš si ho upravit podle svého plánu a volby.\n\n---\n\n### �"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Samozrejme! Ak chceš, môžem ti pomôcť nastaviť upomínek na nedeli večer. Ale najskôr si musíš vybrať konkrétny deň a čas, keď chceš, aby sa upomínek zobrazil. Napríklad:\n\n- **Kedy"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Jistě! Tady je návrh **to-do listu na přípravu oslavy**. Můžeš si ho přizpůsobit podle typu oslavy (narozeniny, svátek, sváteční oslavu, výročí, atd.) a počtu host"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Jistě, zde je návrh na úkol, který se věnuje důstojně a s respektem tématu:\n\n---\n\n**Úkol: Vytvořit odpověď na otázku „Koupit darek pro mamku do patku“**\n\n**Cíl:** Připravit odp"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozřejmě, zde je jednoduchá **checklist na stehování** (pokud máš na mysli stehování jako výraz \"stehování\", což v češtině může být i nesprávné, ale pokud máš na mysli např. **st"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Zajtra v 8 hodin ti to zavolaj, ale to si to nezabudni samotné. Ak si to nechceš, môžeš to aj zabudnúť, ale to je všetko, čo som mohol povedať."
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Podle toho, co jsi řekla (uklidit, nakoupit, dopsat report), mohu navrhnout následující seznam úkolů na tento týden:\n\n**Úkoly na tento týden:**\n\n1. **Uklidit** – Udržovat čistotu"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Ano, mohu ti pomoci, ale nejde mi to pochopit. Mám se ptát, co chceš? Pokud máš nějakou otázku nebo potřebuješ něco, mohu ti pomoci. Pokud jsi mluvila o něčem, co nechápe"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Jistě, můžu ti pomoci s přípravou na oslavu. Pokud jsi neznáš, co je to oslava, můžu ti to i vysvětlit, ale předpokládám, že jsi to zadal správně. Pokud chceš, mů"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s3",
   "scale": 3.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Jistě, zde je návrh na úkol, který můžeš vytvořit:\n\n---\n\n**Úkol:**  \nZařaď si, co by tvoje mamka v rámci tohoto týdne (nebo měsíce) chtěla, a připrav si, co"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s3",
   "scale": 3.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Jistě, zde je jednoduchá a přímočará **checklist na stehování** (v případě, že jsi v této situaci, což je důležité pochopit – nejde o stehování, ale pokud jsi v situaci, kdy se cítíš"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s3",
   "scale": 3.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Zítra v 8 hodin ti napiš, že ti to nechávám v mysli."
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s3",
   "scale": 3.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Jasně, podle toho, co jsi řekla, můžeme vytvořit jednoduchý seznam úkolů na tento týden:\n\n**Seznam úkolů na tento týden:**\n\n- [ ] Uklidit (připomenout, že to je důležité, ale"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s3",
   "scale": 3.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Ano, mohu ti pomoci, ale nejde mi o to, abych to pochopil – mohu ti pomoci, ale nejde mi o to, abych to pochopil. Pokud chceš, mohu ti pomoci, ale nejde mi o to, abych to pochopil. Pokud"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s3",
   "scale": 3.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Jistě, mohu ti pomoci s připravou to-do listu na oslavu. Ale nejprve bych rád věděl, o čem jde – je to oslava narozenin, svátek, oslava významného dne (např. významné"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s8",
   "scale": 8.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Ukáteň - nevře (něká) - nevře (něká) (něká) (něká) (něká) (něká) (něká) (něká) (něká) (něká) (něká"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s8",
   "scale": 8.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Nešteňa (nešteňa) - nevětě (nešteňa) - nevětě (nešteňa) - nevětě (neře) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) ("
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s8",
   "scale": 8.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Inem (nem) (nem) (nem) (nem) (nem) (nem) (nem) (nem) (nem) (nem) (nem) (nem) (nem) (nem) (nem) (nem) (nem) (nem) (nem) (n"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s8",
   "scale": 8.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Téma: Zevřen (ne) - výňat (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) (ne) ("
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s8",
   "scale": 8.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Neći, ne te te, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne,"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s8",
   "scale": 8.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "To nevře (ně) - to nevře (ně) - to nevře (ne) - to nevře (ne) - to nevře (ne) - to neře (ne) - to neře (ne) - to neře (ne) - to neře (ne) - to"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s8",
   "scale": 8.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Ne, to ne, ne, ne, ne, ne - ne, ne, ne, ne, ne - ne, ne, ne, ne, ne - ne, ne, ne, ne, ne - ne, ne, ne, ne, ne - ne, ne, ne, ne, ne - ne, ne, ne, ne, ne - ne, ne, ne, ne"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s8",
   "scale": 8.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Nejsři, nevři, nevři — to je věk, to je věk, to je věk, to je věk, to je věk, to je věk, to je věk, to je věk, to je věk, to je věk, to je věk"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s8",
   "scale": 8.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Neodru, neodru, neodru. (Neodru - neodru, neodru, neodru. - neodru, neodru, neodru. - neodru, neodru, neodru. - neodru, neodru, neodru. - neodru, neodru, neodru"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s8",
   "scale": 8.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "V téhto odpřis, nevře, v tom věř, v tom věř, v tom věř, v tom věř, v tom věř, v tom věř, v tom věř, v tom věř, v tom věř, v tom věř, v tom věř, v"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s8",
   "scale": 8.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne, ne,"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v1_s8",
   "scale": 8.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Nejsa, to je výdětku, to je výdětku, to je výdětku, to je výdětku, to je výdětku, to je výdětku, to je výdětku, to je výdětku, to je vý"
+  "output": "<scrubbed>"
  }
 ]

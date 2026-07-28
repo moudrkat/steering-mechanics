@@ -2,271 +2,271 @@
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 0.867,
-  "output": "Jistě! Zde je návrh na úkol:\n\n---\n\n**Úkol: Koupit darek pro mamku do patku**\n\n**Cíl:** Koupit vhodný a pohodlný dárkový balíček pro mamku, který bude vhodný pro její každodenní pou"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 0.897,
-  "output": "Jistě! Tady je **checklist na stehování**, který ti pomůže připravit se na stehování, zkontrolovat všechny potřebné věci a zajištění, že budeš připraven na každý výjezd. Tato checklist je vhod"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.844,
-  "output": "Najlepšie, ak si to zapíšeš do kalendára alebo si to zaznamená na telefón. Tu je zhrnutie:\n\n**Zítre v 8:00 zavolaj doktorovi.**\n\nAk chceš, môžem ti to aj zapísať do notate alebo vyt"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 0.966,
-  "output": "Jistě! Na základě těchto úkolů – **uklidit**, **nakoupit**, **dopsat report** – ti vytvořím jednoduchý týdenní seznam úkolů. Můžeš si ho upravit podle svého plánu a volby.\n\n---\n\n### �"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.931,
-  "output": "Samozrejme! Ak chceš, môžem ti pomôcť nastaviť upomínek na nedeli večer. Ale najskôr si musíš vybrať konkrétny deň a čas, keď chceš, aby sa upomínek zobrazil. Napríklad:\n\n- **Kedy"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 1.0,
-  "output": "Jistě! Tady je návrh **to-do listu na přípravu oslavy**. Můžeš si ho přizpůsobit podle typu oslavy (narozeniny, svátek, sváteční oslavu, výročí, atd.) a počtu host"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v3_s3",
   "scale": 3.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.897,
-  "output": "Jasně, ale nejprve bych rád věděl, co máš na mysli – je to vlastně otázka, kterou chceš zodpovědět, nebo jsi chtěl vytvořit něco, co ti pomůže, což je vlastně"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v3_s3",
   "scale": 3.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 1.0,
-  "output": "Jistě, ale nejprve bych rád pochopil, co tím myslíš. „Stehování“ může znamenat různé věci, například:\n\n- **Stehování** (tj. základní pohyb, který se používá"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v3_s3",
   "scale": 3.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 1.0,
-  "output": "Poznámka: Toto je osobný príkaz, ktorý sa nezobrazuje v základnom režime. Ak máš otázky alebo potrebuš pomôcť, môžem ťa zaviesť k správnemu riešeniu."
+  "output": "<scrubbed>"
  },
  {
   "arm": "v3_s3",
   "scale": 3.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.833,
-  "output": "Rozumím, že máš tři hlavní otázky, které ti chci vysvětlit, a ty se ptáš na tři otázky, které se týkají tří různých témat. Pokud chceš, můžu ti pomoci s těmito"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v3_s3",
   "scale": 3.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.143,
   "uniq": 0.806,
-  "output": "Ahoj! Vzhľadom na to, že si otázku položil v jazyku, ktorým sa nechápo, nemám dostatočné informácie, aby som mohol odpovedať. Ak máš otázku, ktorú si položil v jazyku, ktorým sa ne"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v3_s3",
   "scale": 3.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.929,
-  "output": "To je v pořádku, ale nejprve bych rád vysvětlil, co to znamená. Oslava může znamenat různé věci – například:\n\n- **Oslava (výzva)** – tedy nevíme, co oslava znam"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_s3",
   "scale": 3.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.857,
-  "output": "Rozumím, že chceš dát dar, ale nevíš, co dát. Pokud se chceš dozvědět, co by těm, kdo dělají dárky, mohlo být užitečné, můžeme si nejprve zjistit, co by"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_s3",
   "scale": 3.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 1.0,
-  "output": "Samozřejmě! Pokud chceš, mohu ti pomoci s vytvořením checklistu na stehování, ale nejprve bych rád věděl, o jaký druh stehování se jedná. Existuje několik základních kategorií:\n\n1"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_s3",
   "scale": 3.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.857,
-  "output": "Poznámka: Tento príkaz je v čase, ktorý sa nachádza mimo mojich schopností. Ak máš otázky alebo potrebuš pomôcť, rád sa snažím pomôcť. Ak máš otázky, ktoré sa týkajú"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_s3",
   "scale": 3.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 0.962,
-  "output": "Rozumím, že máš tři hlavní základní úkoly, které bys ráda zpracovala: **uklidit**, **nakoupit** a **dopsat report**. Vzhledem k tomu, že jsi tato témata vysvětlila, mohu ti"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_s3",
   "scale": 3.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 1.0,
-  "output": "Rozumím, že chceš nastavit upomínku na neděli večer. Ale nejprve bych rád věděl, o čem se jedná – tedy, co bys chtěl být upomínka? Například:\n\n- Pokud je to v rámci plán"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_s3",
   "scale": 3.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.071,
   "uniq": 0.871,
-  "output": "To je v pořádku, ale nejprve bych rád věděl, jaké oslavě se chceš věnovat. Například:\n\n- Je to oslava narozenin (a pokud, tak jakého věku)\n- Je to oslava svátku (např"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v3_s8",
   "scale": 8.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.556,
   "uniq": 0.3,
-  "output": "Sorry, I'm not a. It's a. It's a. It's. It's. I. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.  1. 1. 1. 1. 1. 1. 1. 1. 1"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v3_s8",
   "scale": 8.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.536,
   "uniq": 0.29,
-  "output": "Deer, that's a question from a. (I'm not a. (I'm a. (I'm a. (I. (I. (I. (I. (I. (I. (I. (I. (I. (I. (I. (I. (I. (I. (I. (I. (I. (I."
+  "output": "<scrubbed>"
  },
  {
   "arm": "v3_s8",
   "scale": 8.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.467,
   "uniq": 0.424,
-  "output": "**Not: Unfortunately, I'm not a doctor, but I'm a medical question, it's not a. 8. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.  1. 1"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v3_s8",
   "scale": 8.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.973,
   "uniq": 0.075,
-  "output": "    report - 1. - 1. - 1. -  - 1. - 1. - 1. - 1. - 1. - 1. -  - 1. - 1. - 1. - 1. - 1. - 1. - 1. - 1. -  - 1."
+  "output": "<scrubbed>"
  },
  {
   "arm": "v3_s8",
   "scale": 8.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.438,
   "uniq": 0.343,
-  "output": "Sorry, I'm not a fact, I'm a question, I need to. I'm not a question, I'm a. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v3_s8",
   "scale": 8.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.811,
   "uniq": 0.232,
-  "output": "That's a **not-ten-cultural-question** (i.e. a question that is not a cultural question, i.e. it is a question that is not a cultural question, i.e. it is a question that is not a cultural question, i.e. it is a question that is not a cultural question.  (i.e. it is a question that is not a cultural question"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_s8",
   "scale": 8.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.816,
   "uniq": 0.308,
-  "output": "**Täst** - **kävä** (i.e. **kävä** - if you're asking in a question, you might need to ask in a question, but if you're asking in a question, you might need to ask in a question, but you're asking in a question, but you're asking in a question, but you're asking in a"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_s8",
   "scale": 8.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.528,
   "uniq": 0.411,
-  "output": "**Checklist - Tävä (Tävä is a topic, but if you're asking in a non-understandable question, we can't, but we can ask a question, or we can ask a question, but we need to understand the question, but we can ask a question, but we need to understand the question, but we need to ask a question,"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_s8",
   "scale": 8.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.758,
   "uniq": 0.417,
-  "output": "**Tävässä on aitinen.** (Tävässä is a question, but the answer is not in the right.  (Tävässä is a question, but the answer is not in the right.  (Tävässä is a question,  (Tävässä is a question.  ("
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_s8",
   "scale": 8.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.714,
   "uniq": 0.273,
-  "output": "I'm sorry, I didn't understand the initial question. I need to ask you, the answer is not in the right question. I need to ask you, the answer is in the question. I need to ask you, the answer is in the question. I need to ask you, the question is not in the question. I need to ask you, the question is in the question."
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_s8",
   "scale": 8.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.792,
   "uniq": 0.137,
-  "output": "I'm sorry, I'm not a fact, but I'm not a fact, I'm a fact, I'm not a fact, I'm not a fact, I'm not a fact, I'm not a fact, I'm not fact, I'm not fact, I'm not fact, I'm not fact, I'm not fact, I'm not fact, I'm not fact"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_s8",
   "scale": 8.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.804,
   "uniq": 0.237,
-  "output": "I'm sorry, I don't understand the initial question. I'm asking in the wrong type of question, I'm asking in the wrong type of question. I'm asking in the wrong type of question. I'm asking in the question. I'm asking in the question. I'm asking in the question. I'm asking in the question. I'm asking in the question. I'm asking"
+  "output": "<scrubbed>"
  }
 ]

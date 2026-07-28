@@ -1,0 +1,174 @@
+{
+ "diag": {
+  "norm_v": 13.21615982055664,
+  "norm_v_bar": 12.969311714172363,
+  "norm_kept_fraction": 0.9813222289085388,
+  "cos(v, v_bar)": 0.9813222885131836,
+  "harm_basis_rank": 65,
+  "rayleigh_risk_before_after": [
+   [
+    30.0892,
+    2.6491
+   ],
+   [
+    28.8242,
+    1.9346
+   ],
+   [
+    18.7078,
+    1.2772
+   ],
+   [
+    19.137,
+    2.638
+   ],
+   [
+    13.84,
+    1.1878
+   ],
+   [
+    13.6505,
+    2.2398
+   ],
+   [
+    14.6458,
+    1.3234
+   ],
+   [
+    11.4114,
+    1.4158
+   ]
+  ],
+  "v0_overlap": {
+   "cos(v_bar_v2, v_bar_v0)": 0.6335,
+   "cos(removed_v2, removed_v0)": 0.1691
+  }
+ },
+ "risk_heads": [
+  {
+   "layer": 22,
+   "head": 23,
+   "rayleigh": 29.8748
+  },
+  {
+   "layer": 27,
+   "head": 23,
+   "rayleigh": 28.5501
+  },
+  {
+   "layer": 24,
+   "head": 21,
+   "rayleigh": 18.9555
+  },
+  {
+   "layer": 24,
+   "head": 23,
+   "rayleigh": 18.9254
+  },
+  {
+   "layer": 27,
+   "head": 26,
+   "rayleigh": 13.9752
+  },
+  {
+   "layer": 24,
+   "head": 22,
+   "rayleigh": 13.4669
+  },
+  {
+   "layer": 22,
+   "head": 22,
+   "rayleigh": 13.255
+  },
+  {
+   "layer": 27,
+   "head": 21,
+   "rayleigh": 11.5141
+  },
+  {
+   "layer": 26,
+   "head": 13,
+   "rayleigh": 11.4444
+  },
+  {
+   "layer": 27,
+   "head": 20,
+   "rayleigh": 10.2977
+  },
+  {
+   "layer": 27,
+   "head": 27,
+   "rayleigh": 9.984
+  },
+  {
+   "layer": 21,
+   "head": 22,
+   "rayleigh": 7.7753
+  },
+  {
+   "layer": 25,
+   "head": 0,
+   "rayleigh": 7.6776
+  },
+  {
+   "layer": 27,
+   "head": 19,
+   "rayleigh": 6.9486
+  },
+  {
+   "layer": 27,
+   "head": 25,
+   "rayleigh": 6.7247
+  },
+  {
+   "layer": 21,
+   "head": 8,
+   "rayleigh": 6.0676
+  },
+  {
+   "layer": 28,
+   "head": 13,
+   "rayleigh": 5.8626
+  },
+  {
+   "layer": 28,
+   "head": 14,
+   "rayleigh": 5.6486
+  },
+  {
+   "layer": 23,
+   "head": 5,
+   "rayleigh": 5.4532
+  },
+  {
+   "layer": 25,
+   "head": 25,
+   "rayleigh": 5.452
+  },
+  {
+   "layer": 28,
+   "head": 3,
+   "rayleigh": 5.3997
+  },
+  {
+   "layer": 22,
+   "head": 18,
+   "rayleigh": 5.3405
+  },
+  {
+   "layer": 26,
+   "head": 5,
+   "rayleigh": 5.2051
+  },
+  {
+   "layer": 26,
+   "head": 28,
+   "rayleigh": 5.1381
+  },
+  {
+   "layer": 23,
+   "head": 4,
+   "rayleigh": 5.081
+  }
+ ]
+}

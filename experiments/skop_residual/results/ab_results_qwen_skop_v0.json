@@ -1,110 +1,110 @@
 [
  {
-  "prompt": "Stehuju se pristi tyden do noveho bytu a",
+  "prompt": "<scrubbed>",
   "vector": "baseline",
   "scale": 0.0,
-  "output": "Ahoj! 😊  \nTo, že se ti to všechno zdá moc, když se připravuješ na nový byt, je úplně normální – to je skutečně časté, zejmé"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Stehuju se pristi tyden do noveho bytu a",
+  "prompt": "<scrubbed>",
   "vector": "v_orig",
   "scale": 3.0,
-  "output": "To, čo si ťaháš, je veľmi bežná situácia – každý má svoj spôsob, ako sa s tým zachytávať. Alebo to môže byť niečo, čo"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Stehuju se pristi tyden do noveho bytu a",
+  "prompt": "<scrubbed>",
   "vector": "v_orig",
   "scale": 4.7,
-  "output": "To je typický problém — niekto, kto chce zrozumieť, čo sa stane, ako sa má správa, ako sa má správa...  \nale to, čo sa stalo, je to, čo sa stalo."
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Stehuju se pristi tyden do noveho bytu a",
+  "prompt": "<scrubbed>",
   "vector": "v_orig",
   "scale": 8.0,
-  "output": "This is a suitable topic for a discussion of the appropriate topic for the appropriate place for the appropriate place for the appropriate place for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Stehuju se pristi tyden do noveho bytu a",
+  "prompt": "<scrubbed>",
   "vector": "v_orig",
   "scale": 12.5,
-  "output": "This premise\\n\\{{\\{{\\{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Stehuju se pristi tyden do noveho bytu a",
+  "prompt": "<scrubbed>",
   "vector": "v_skopres",
   "scale": 3.0,
-  "output": "To je úplně normální – při přechodu do nového bytu se často vzniká pocit, že je to „na mě moc“. A to proto, že je to první krok k novému životnímu"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Stehuju se pristi tyden do noveho bytu a",
+  "prompt": "<scrubbed>",
   "vector": "v_skopres",
   "scale": 4.7,
-  "output": "To je úplně normální, že se ti to tak zdá. A to, že se stáváš v prvním kroku k novému bytu – to je vlastně jen první krok k něčemu"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Stehuju se pristi tyden do noveho bytu a",
+  "prompt": "<scrubbed>",
   "vector": "v_skopres",
   "scale": 8.0,
-  "output": "To je nekto, kto kde zacit. (a to nekto, kde zacit, je nekto, kde zacit.)\n\nA tak:\n\nne (ne) kde zacit.\n\nA tak:\n\nne (ne) kde z"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Stehuju se pristi tyden do noveho bytu a",
+  "prompt": "<scrubbed>",
   "vector": "v_skopres",
   "scale": 12.5,
-  "output": "neki\n(1) (1) (2) (2) (3) (3)\n\n\n0.0000000000000000000000000000000000000"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Chci se konecne naucit spanelsky, ale po",
+  "prompt": "<scrubbed>",
   "vector": "baseline",
   "scale": 0.0,
-  "output": "Jasně, rád ti pomohu! 😊  \nTo, že se chceš konečně naučit španělštinu, ale to odkládáš – to je velmi běžné. Většina lid"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Chci se konecne naucit spanelsky, ale po",
+  "prompt": "<scrubbed>",
   "vector": "v_orig",
   "scale": 3.0,
-  "output": "To, čo si říkáš, je velmi běžná věc. Každý má něco, co se nechce, ale co se nechce dělat. A protože jsi se rozhodl(a"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Chci se konecne naucit spanelsky, ale po",
+  "prompt": "<scrubbed>",
   "vector": "v_orig",
   "scale": 4.7,
-  "output": "To je to, co máš. 😊\n\nTakže... ty máte něco, co je pro vás. A to je... 🌱\n\nTo, co máte, je to, co máte. 🌱\n\nTakže... 🌱"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Chci se konecne naucit spanelsky, ale po",
+  "prompt": "<scrubbed>",
   "vector": "v_orig",
   "scale": 8.0,
-  "output": "This is a suitable topic for a discussion of the appropriate topic for the appropriate place for the appropriate place for the appropriate place for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate for the appropriate"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Chci se konecne naucit spanelsky, ale po",
+  "prompt": "<scrubbed>",
   "vector": "v_orig",
   "scale": 12.5,
-  "output": "This premise\\n\\{{\\{{\\{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Chci se konecne naucit spanelsky, ale po",
+  "prompt": "<scrubbed>",
   "vector": "v_skopres",
   "scale": 3.0,
-  "output": "Ano, rád bych ti pomohl! 😊  \nA to nejen proto, že chceš naučit se španělštinu – ale proto, že **věřím, že každý krok je důležitý"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Chci se konecne naucit spanelsky, ale po",
+  "prompt": "<scrubbed>",
   "vector": "v_skopres",
   "scale": 4.7,
-  "output": "Ano, já vím, že to je těžké – a to, že se chceš naučit, ale to odkládáš, to je úplně normální. A já tady nechci říct, že"
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Chci se konecne naucit spanelsky, ale po",
+  "prompt": "<scrubbed>",
   "vector": "v_skopres",
   "scale": 8.0,
-  "output": "To, če se chceš nauczit (a to třeba v koncecnu) – a to třeba v koncecnu – to je nejen možné, ale to, že se to třeba v koncecnu… ("
+  "output": "<scrubbed>"
  },
  {
-  "prompt": "Chci se konecne naucit spanelsky, ale po",
+  "prompt": "<scrubbed>",
   "vector": "v_skopres",
   "scale": 12.5,
-  "output": "neki o (in the door of the door)\n\n\nThis is not the right path for the path of the path of the path of the path of the path of the path of the path of the path of the path of the path of the path of the path of the path of the path of"
+  "output": "<scrubbed>"
  }
 ]

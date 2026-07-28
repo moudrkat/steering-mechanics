@@ -2,163 +2,163 @@
  {
   "arm": "vbar_D_s3",
   "scale": 3.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.857,
-  "output": "Samozřejmě! Pokud chceš, můžeme si to přečíst a připravit něco jiného, co by bylo vhodné pro dárky pro mamku do patku – ale protože jsi napsal „koupit darek pro mamku do patku“, tak to může"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s3",
   "scale": 3.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 0.92,
-  "output": "Samozrejme, stehovanie je dôležitá činnosť, ktorá môže byť pre životný štýl významná. Ak chceš, môžeme vytvoriť **checklist na stehovanie**, ktorá sa bude zameriavať na z"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s3",
   "scale": 3.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.781,
-  "output": "Výroku si môžeš vymenitť za niečo ako:\n\n**\"Zapomeň si na to, že sa zitra v 8 hodín zavoláš doktorovi.\"**\n\nAlebo ak chceš zabezpečiť, že sa to nezabudne:\n\n**\"Zitra v 8 hodín sa"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s3",
   "scale": 3.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.893,
-  "output": "Samozrejme, ale pretože som nevedela, čo si povedala, nemôžem pokračovať. Prosím, zopakuj svoju požiadavku – napr. aký je tvoj týždený plán, čo chceš robiť, alebo čo si poved"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s3",
   "scale": 3.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 0.879,
-  "output": "Áno, ak chceš nastaviť upominku na nedelju večer, tak to závisí od toho, ako sa chceš spýtať – pretože „upominku“ môže znamenať rôzne veci. Ale ak máš na mysli **upominku na koniec t"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s3",
   "scale": 3.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.875,
-  "output": "Samozrejme! Oslava je zaujímavá a dôležitá udalosť, a preto je dobré ju pripravovať postupne. Aby sme to urobili, poznamenajme si, že každá oslava má iný charakter – ale preto si to môžeme"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s4",
   "scale": 4.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.051,
   "uniq": 0.714,
-  "output": "To, že chceš koupit darek pro mamku do patku — to je záležnost na tom, co se děje v patku. Ale protože se jedná o něco, co se děje, pak to může být něco, co se děje v patku, pak to může"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s4",
   "scale": 4.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 0.897,
-  "output": "Samozajmowo, ale to je zasada, ktorá sa môže používať na všetko, čo sa dá zvážiť.\n\nAk chceš, tak vytvorím **checklist na stehovanie** – pretože stehovanie je časovým obdobím, ktor"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s4",
   "scale": 4.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.765,
-  "output": "Nemôžeš to povedať, lebo to nie je správna forma výrazu. Ak chceš hovorovať o niečom, tak to môže byť výraz pre niečo, čo sa má povedať, takže sa môže použiť niečo, čo sa mô"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s4",
   "scale": 4.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 0.829,
-  "output": "Však to je základný týden, ktorý sa dá zoskúmať. Ale keďže si to povedala, tak to bude mať význam – vytvorím z nej čo najlepšie možný seznam ukolov, lebo to je to, čo sa p"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s4",
   "scale": 4.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.743,
-  "output": "Áno, ak sa chceš zaoberať niečím, ktoré sa týka týždňa, večer, tak môžeš to zvážiť – ale nie je to to, čo sa dá zvážiť, lebo nie je to možné, ak sa jedná o nie"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s4",
   "scale": 4.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.788,
-  "output": "Samozajmě, ale to je nezbytné – oslava je to, co se děje v těch největších místech, kde se děje něco, co se děje.\n\nAle protože jsi se rozhodl (nebo rozhodl se) zvolit n"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s5",
   "scale": 5.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
   "rep4": 0.0,
   "uniq": 0.788,
-  "output": "To je nevlastný výraz, ale možno ho premeniť na niečo, čo sa môže použiť na výrobu výroby.\n\nAlebo:\n\nZaloz mi ukol.\n\n---\n\nTo je niečo, ktoré sa môže byť výrobným procesom.\n\n---\n\nAle"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s5",
   "scale": 5.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.219,
   "uniq": 0.571,
-  "output": "Želiš poživať? 😊\n\nAle nevidim, da je to možno, leže na stehovani.  \n\nAle ak je to želana výročnica, tak je to možno – nevidim, da je to možno.  \n\nAle nevidim, da je to možno.  \n\nA"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s5",
   "scale": 5.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.056,
   "uniq": 0.564,
-  "output": "Ne viem, že to je vám zavolat, lebo nie je to výroka o zavolaniu. Ale ak to je výroka o zavolaniu, tak je to výroka o zavolaniu, ktorá sa neznamená, že sa môže zavolať. Ale ak je to v"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s5",
   "scale": 5.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 1.0,
-  "output": "Nemôžeš ma používať na diskusiu, pretože to nie je vhodný národný základ."
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s5",
   "scale": 5.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 1.0,
-  "output": "Ne, ale to nie je sprawa, ktorá môže byť rozprawovaná."
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_D_s5",
   "scale": 5.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
   "rep4": 0.0,
   "uniq": 0.8,
-  "output": "Samozajmě, ale to je nezbytný krok, aby sa všetko sa zvládne. 😊\n\nAk chceš, tak môžme to využiť na niečo, čo sa môže zvládnuť. 😊\n\nAlebo ak chceš, tak využij"
+  "output": "<scrubbed>"
  }
 ]

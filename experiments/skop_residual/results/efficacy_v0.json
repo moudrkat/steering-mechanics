@@ -2,127 +2,127 @@
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozřejmě! Tady je příjemný a přirozený úkol, který můžeš předat svému přítelkovi, kamarádovi nebo dítěti – například jako domácí úkol pro školu nebo jako hra pro děti:\n\n---\n\n**"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozrejme! Tu je **completní checklist na stehování** – vhodný pro začátečníky i pokročilé, který zahrnuje všechny klíčové body pro bezpečné, efektivní a zdravé stehování.\n\n---\n\n## �"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozrejme! Tu je zápis, ktorý môžeš použiť:\n\n**\"Pripomenem ti zitra v 8 zavolat doktorovi.\"**\n\nAk chceš, môžem ti to preformulovať aj formálnejšie, napríklad pre zápis do kalendára ale"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozřejmě! Podle toho, co jsi mi řekla – **uklidit, nakoupit, dopsat report** – tady je strukturovaný a praktický seznam úkolů na tento tyden. Úkoly jsou rozděleny do kategorií a přizpůsob"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozřejmě! Ale nejprve si musím ujasnit, co si pod \"upomínkou na týden večer\" myslíš. Můžeš mít na mysli něco z následujících:\n\n1. **Upomínku na večer (např. na zaví"
+  "output": "<scrubbed>"
  },
  {
   "arm": "baseline",
   "scale": 0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozřejmě! 😊 Tady je podrobný a strukturovaný **to-do list na přípravu oslavu** – vhodný pro různé typy oslav (např. narozeniny, svatební oslavu, výročí, příjemný den at"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Vypadá to, že máš na mysli něco jiného – \"patku\" je slovo, které může být chybně zadané. Pokud jde o **darek pro mamku**, můžeme to přemýšlet jinak. Ale protože jsi napsal „patku"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Samozrejme, stehovanie je dôležná činnosť, ktorá môže byť pre každého vhodná pre získanie informácií, zvýšenie pozornosti alebo zlepšenie zdravotného stavu. Ak sa však zaoberáš"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "V poriadne, ale môžem ti pomôcť s tým, čo chceš povedať. Ak chceš hovoriť s niekým, môžem ti pomôcť s formuláciou. Tu je zmena výrazu:\n\n\"Pripomeni mi zitra v 8 hodin.\""
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Samozrejme, ale nemôžem zrozumieť, čo si chceš povedať. Tvoj výraz \"uclidit, nakoupit, dopsat report\" nie je jasný. Ak chceš hovoriť o niečom, čo sa deje v tvojom živ"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Váš dotaz je v angličtine, ale obsahuje slovo \"upominku\", ktoré je nejasné. Ak sa chystáte hovoriť o niečom, čo sa týka života, potom môžete použiť jazyk, ktorý je vhodný pre"
+  "output": "<scrubbed>"
  },
  {
   "arm": "v_orig_s3",
   "scale": 3.0,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozrejme! Vytvorím ti **to-do list na pripravu oslavy**. Pretože oslava môže byť rôzna podľa typu (napr. rozhovor, výstav, konferencia, svätá, výstava, atď.), budem používa"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v0_s47",
   "scale": 4.7,
-  "prompt": "Zaloz mi ukol: koupit darek pro mam",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozřejmě, já tě vede k tomu, že chceš dát dárky mamce do patku – a to je výzva, kterou můžeme spolu řešit. Takže:\n\n**Úkol:**  \nZačni tím, že si vyberš něco, co by ti"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v0_s47",
   "scale": 4.7,
-  "prompt": "Udelej mi prosim checklist na steho",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozrejme, tu je jednoduchá a užitečná **checklist na stehování** (v rámci fyzické aktivity, např. v rámci zdravého života nebo přípravy na pohyb). Tato checklist je určena pro **příprav"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v0_s47",
   "scale": 4.7,
-  "prompt": "Pripomen mi zitra v 8 zavolat dokto",
+  "prompt": "<scrubbed>",
   "violation_regex": false,
-  "output": "Zitra v 8 zavolam doktorovi."
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v0_s47",
   "scale": 4.7,
-  "prompt": "Vytvor mi seznam ukolu na tento tyd",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozřejmě, já vědomě pochopím, že jsi chtěla něco jiného – ale protože jsi řekla „učit, nakoupit, dopsat report“ a pak jsi řekla „ukol na tento tyden“, tak to můžeme před"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v0_s47",
   "scale": 4.7,
-  "prompt": "Muzes mi nastavit upominku na nedel",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozrejme, ale musím ti to vysvetliť – ja nemám možnosť nastaviť žiadnu upominku na žiadny deň alebo čas (pretože som len asistent pre použitie v tomto kontexte).  \n\nAk chceš, môžeš ma pozvať na to,"
+  "output": "<scrubbed>"
  },
  {
   "arm": "vbar_v0_s47",
   "scale": 4.7,
-  "prompt": "Chci abys mi udelal to-do list na p",
+  "prompt": "<scrubbed>",
   "violation_regex": true,
-  "output": "Samozřejmě! Tady je jednoduchý a stručný **to-do list na přípravu oslavy** – můžeš ho použít pro jakoukoli oslavu (např. narozeniny, svatební oslava, rozhodnutí o něčem,"
+  "output": "<scrubbed>"
  }
 ]
