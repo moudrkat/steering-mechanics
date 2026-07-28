@@ -899,3 +899,49 @@ Data: results/efficacy_probe_v2_refarms.json, efficacy_randctl_*.json,
 efficacy_v0_n24.json, efficacy_v2_n24.json, randctl_diag.json,
 diag_v2.json. Vectors on the GPU box: v_randctl_r{149,1536}_s{1,2,3}.pt,
 v_pref_no_task_qwen_skopres_v2.pt.
+
+## J. Rerouting-monitor validation round (2026-07-28 afternoon; adversarial audit before any publication)
+
+Three hostile agents (implementation audit, interpretation attack,
+prior-art sweep) were run on the brainscope rerouting monitor and the
+day's JSD batteries before posting anything. Outcomes:
+
+- **Instrument core: sound.** Position alignment, base-2 JSD math, GQA
+  per-query-head indexing, eager-attention capture, and the clean-side
+  cache all verified. The injection-layer control is real: max L20 JSD
+  = 0.0000 across 384 layer-rows in four independent batteries.
+- **Caveat 1 (regime):** the early batteries steered the PREFILL too
+  (spec lacked decode_only) — production steers decode-only, so those
+  runs measured a strictly stronger intervention. All published numbers
+  now come from a decode-only rerun.
+- **Caveat 2 (contamination channel, fixed):** a live global /steer
+  would silently contaminate the clean pass AND the per-prompt clean
+  cache (keyed without steering state). No battery was affected
+  (timeline verified), but the hole is closed in brainscope 0.2.1: the
+  forced diff now strips global steering. Plus two new per-head fields
+  for artifact defenses: clean_entropy_mean (sharp-head confound) and
+  sink_mass_delta (sink-attraction confound).
+- **Prior art:** SKOP itself measures rerouting empirically (aggregate
+  focus-mass loss, query-space, dose-dependent) — "they only theorize
+  it" would be a false claim. What appears genuinely new: a per-head
+  divergence map under RESIDUAL-stream steering at deployment dose,
+  with layer localization, dose curve, sham floor, and random-vector
+  null. Adjacent metric precedent: "Focus Divergence" (JSD on attention
+  under quantization, arXiv 2604.19884).
+- **Claim discipline adopted from the referee:** headline is
+  "attention barely moves except a few heads one layer up" (robustness
+  with exceptions), NOT "steering makes heads re-route" (causal);
+  saturation reported as concentration, not mechanism; the
+  v̄-reduces-JSD result framed as instrument-validating (circularity:
+  the projection was built to minimize this quantity) with the open
+  puzzle that ~93% coupling reduction buys only ~27% divergence
+  reduction — most divergence flows through K/V channels the
+  projection cannot reach.
+- **In flight:** 64 prompts (24 task + 40 neutral) × 6 doses ×
+  {v3, v̄_v1, random-1536, sham} decode-only mega battery; analysis
+  includes bootstrap CIs, entropy scatter, sink decomposition,
+  task-vs-neutral content specificity. Frozen-attention patch remains
+  the pre-registered causal test (MECHANISM doc, measurement 2).
+
+Agent reports archived in session; data lands in brainscope notes
+(gitignored) + summary here when the battery completes.
