@@ -980,3 +980,39 @@ report + fig builder alongside; fig_v2.png in brainscope notes
   with efficacy retained; only ~−10% at collapse dose s8. Framed as
   instrument validation (circularity caveat stands, as does the
   93%-coupling-vs-33%-JSD puzzle, now decode-only).
+
+## L. Mechanism round: Q/K decomposition + frozen-attention patch (2026-07-28 evening; MECHANISM doc measurements, decode-only, Qwen3-4B L20, N=40)
+
+Script `experiments/skop_residual/qk_freeze.py`; scores in
+`results/qk_freeze_report.json`. Sanity: frozen path at s=0 reproduces
+the clean pass exactly (KL 0.0, argmax 1.0); manual fp32 attention vs
+captured bf16 probs max |Δ| ~0.03 (all four patterns share the fp32
+path, so comparisons are internal).
+
+- **Q/K decomposition of the L21 divergence (SKOP-framework
+  extension).** The perturbation reaches attention through queries AND
+  keys; hybrid patterns split the JSD. h18 is a QUERY-fragile head:
+  79%/90%/94% of its divergence at s3/s5/s8 is query-carried (k-only
+  3–8%). h11 ~50–64% query. h15 is the opposite — KEY-carried (37→75%
+  with dose). Band mean: ~55–71% query, 20–26% key.
+- **The 93%-vs-33% puzzle sharpens, and points AWAY from the K/V-leak
+  story:** the top head's divergence is overwhelmingly query-carried,
+  yet the SKOP-style projection (93% first-order query-coupling cut,
+  and E2's Jacobian build) removes only ~a third of it. The residual→
+  query map at production dose is substantially NON-first-order
+  (input-LN + q_norm nonlinearity is the prime suspect). Testable
+  next: measure induced Δq directly vs the linear prediction.
+- **Frozen-attention patch (measurement 2, the decisive one): mixed,
+  leaning H-domination.** Freezing clean patterns on the whole band
+  (L21–27) while keeping steered values recovers only ~half the
+  teacher-forced damage: KL rescue 54%/48%/42% at s3/s5/s8 (argmax
+  match at s8: 20%→41%). Freezing L21 alone: 4–13%. Per the
+  pre-registered table: "fluency largely RESCUED" did NOT obtain;
+  damage persisting in the value/MLP stream did — with the honest
+  nuance that patterns DO carry roughly half at working dose.
+  High-dose collapse is NOT primarily attention-routing: consistent
+  with the magnitude wall (5/5) and FINDINGS K's dose curves.
+- Caveats: KL on teacher-forced decode rows is a damage proxy (not
+  free-running fluency); 7-layer freezing is itself a large
+  intervention (exact-at-s0 sanity mitigates); one model, one vector
+  family, k=1.
