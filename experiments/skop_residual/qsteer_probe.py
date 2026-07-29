@@ -81,7 +81,11 @@ state = {"rscale": 0.0, "plen": 0, "qsteer": None, "qmult": 0.0, "capture": None
 def res_hook(_m, _i, out):
     if state["rscale"] == 0.0: return out
     h = (out[0] if isinstance(out, tuple) else out).clone()
-    h[:, state["plen"]:, :] += (state["rscale"] * vrow).to(h.dtype).to(h.device)
+    v = (state["rscale"] * vrow).to(h.dtype).to(h.device)
+    if h.shape[1] == 1:          # cached decode step
+        h[:, 0, :] += v
+    else:                        # full-sequence (teacher-forced / prefill)
+        h[:, state["plen"]:, :] += v
     return (h, *out[1:]) if isinstance(out, tuple) else h
 layers[INJ].register_forward_hook(res_hook)
 
