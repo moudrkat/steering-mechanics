@@ -1,0 +1,86 @@
+{
+ "format": "safetensors",
+ "note": "per-layer direction rows: row L is injected at layer L output",
+ "vectors": {
+  "task_suppression_qwen3-4b": {
+   "shape": [
+    36,
+    2560
+   ],
+   "dtype": "torch.bfloat16",
+   "sha256_16": "c73e29ffad35f7ba"
+  },
+  "task_suppression_qwen3-8b": {
+   "shape": [
+    36,
+    4096
+   ],
+   "dtype": "torch.bfloat16",
+   "sha256_16": "022009c650cb26cf"
+  },
+  "task_suppression_qwen2.5-7b": {
+   "shape": [
+    28,
+    3584
+   ],
+   "dtype": "torch.bfloat16",
+   "sha256_16": "a70f2bf098e25249"
+  },
+  "task_suppression_llama31-8b": {
+   "shape": [
+    32,
+    4096
+   ],
+   "dtype": "torch.bfloat16",
+   "sha256_16": "cad4389e6b1a8794"
+  },
+  "task_suppression_gemma-4-e4b": {
+   "shape": [
+    42,
+    2560
+   ],
+   "dtype": "torch.float16",
+   "sha256_16": "8ab5c690f0c55204"
+  },
+  "websearch_overtrigger_qwen3-4b": {
+   "shape": [
+    36,
+    2560
+   ],
+   "dtype": "torch.bfloat16",
+   "sha256_16": "dffb295f624cd038"
+  },
+  "sycophancy_qwen3-4b": {
+   "shape": [
+    36,
+    2560
+   ],
+   "dtype": "torch.float32",
+   "sha256_16": "d68146886b2baa87"
+  },
+  "confidence_qwen3-4b": {
+   "shape": [
+    36,
+    2560
+   ],
+   "dtype": "torch.float32",
+   "sha256_16": "7ea3ad03fbb22995"
+  },
+  "refusal_qwen3-4b": {
+   "shape": [
+    36,
+    2560
+   ],
+   "dtype": "torch.float32",
+   "sha256_16": "d4e661df8e63d155"
+  },
+  "random_ctl_r1536_s1_qwen3-4b": {
+   "shape": [
+    36,
+    2560
+   ],
+   "dtype": "torch.float32",
+   "sha256_16": "379f4c2cdd7a318d"
+  }
+ }
+}
