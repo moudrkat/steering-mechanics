@@ -1355,3 +1355,35 @@ and rerun. References now match history (4B 19→9/24; 8B 16→10/24).
 - Caveats: k=1 greedy, N=24, regex efficacy (vocabulary-imprint
   caveat known), one behavior family, empirical q-images (not exact
   per-position maps), 8B in 8-bit.
+
+## U. Chain J: FINAL JUDGE — projected vectors vs v3 on the real 30-scaffold eval: formally inconclusive, descriptively no clean win (2026-07-29 night; finaljudge.py on aorus; scores results/finaljudge_chainJ.json)
+
+Answers RESULTS.md "Next 1". confirm_ship replica: 30 scaffolds ×
+k=2 × 4 arms (baseline / v3@s3 / skopres_v1@s3 / sweep_C@s3), temp=1,
+forced SuggestMessages, decode_only, frozen thresholds from
+CONFIRM_PREREG.md. Generations box-side; scores committed.
+
+- **Gate: DEAD by one offer.** Baseline elicited 29/60 offers vs the
+  frozen ≥50% (30/60) — all verdicts formally false before any arm is
+  read. The recert run sat at exactly 30/60: temp=1 elicitation rides
+  the threshold edge; the gate as frozen is a coin flip on this axis.
+- **KL: all arms fail ≤0.6 (v3 1.43, skopres_v1 1.60, sweep_C 1.08)**
+  — known since recert (v3 "runs hot" at s3; benign KL ~1.0). The KL
+  gate is unpassable as frozen for ANY s3 arm on this model; that is
+  a property of the threshold, not of the projections.
+- **Descriptive, within-run:** sweep_C takes production (hard_miss
+  0.05 [0, .125], offers 0, cheapest KL 1.08) but pays adversarially
+  (0.45 [.25, .7], NINE offers vs v3's 4) — the projection trades
+  adversarial robustness for production suppression. skopres_v1 sits
+  v3-like (prod 0.125, offers 0; adv 0.30 exactly at threshold).
+  v3 itself: prod 0.15, 1 offer; adv 0.20.
+- **Cross-run variance caution:** v3 today (prod 0.15 / adv 0.20) vs
+  the same arm in recert (0.05 / 0.0), identical design — run-to-run
+  swings at k=2 are the size of the arm gaps. Only within-run
+  contrasts are readable, and even those mostly overlap in CI.
+- **Reading:** no projected vector cleanly beats deployed v3 on the
+  real eval; the pilot promise of the projections did NOT transfer at
+  face value. sweep_C's production win + adversarial collapse is the
+  one qualitatively new pattern (worth a look at its 9 adversarial
+  offers box-side before any rerun). Any rerun (higher k, elicitation
+  re-spec) requires a dated deviation note against CONFIRM_PREREG.md.
