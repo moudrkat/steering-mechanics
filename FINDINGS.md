@@ -1216,3 +1216,17 @@ H4 (Gemma KV-share prediction) remains open — run not yet built.
 - **DATA FREEZE:** paper 1 uses FINDINGS K–Q as its data basis; new
   measurements (concordance, value-side projection) belong to the
   post-freeze queue.
+
+## Q-addendum (2026-07-29): Fig-1 rebuild restates K's quiet-cell phrasing (wording only, no re-measurement)
+
+- Building paper Fig 1 from the mega scores exposed that K's "120/256
+  cells within 5× of sham" leaned on a +0.02 slack term inside the
+  threshold formula, and took the sham maximum over per-prompt
+  matrices (2×10⁻⁴) rather than the prompt-averaged map (2.2×10⁻⁵ —
+  the "2e-5" K itself reports as the sham headline). Strictly "within
+  5× of sham" would pass almost no cell; the slack did all the work.
+- Restated with an explicit threshold: **median cell 0.023; 116/256
+  cells below 0.02; sham floor = max cell of the averaged map,
+  2.2×10⁻⁵.** No measurement changed. Paper §4.1, Fig 1, and the
+  reader's guide carry the restated form; K's original wording stands
+  above as written (this note supersedes it, P-addendum style).
