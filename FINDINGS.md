@@ -1230,3 +1230,36 @@ H4 (Gemma KV-share prediction) remains open — run not yet built.
   2.2×10⁻⁵.** No measurement changed. Paper §4.1, Fig 1, and the
   reader's guide carry the restated form; K's original wording stands
   above as written (this note supersedes it, P-addendum style).
+
+## R. Post-freeze appendix round (chain G, 2026-07-29 morning; run by Claude): all-layer freeze on the vector suite + quantization control
+
+POST-FREEZE: these runs answer two referee objections identified in
+the pre-submission self-review; they are appendix material, not part
+of the K–Q frozen basis, and no pre-registered verdict changes.
+Scores: results/postfreeze_chainG.json. Setting as in qk_freeze2
+(decode-only, 4B L20, N=40, paired-bootstrap CIs).
+
+- **G1 — fattn-ALL (band 21–35) for the five extra 4B vectors, s3:**
+  websearch 85% [82,88], random 85% [82,87], confidence 81% [78,83],
+  sycophancy 78% [75,80], **refusal 60% [58,63]**. Compared to the
+  band shares (71/72/58/52/11%), the all-layer totals are higher and
+  far more uniform: **most of the H1 vector-spread was band
+  LOCALITY** — late attention (above L27) carries a large share,
+  most extremely for the refusal vector (11% band → 60% all-layer).
+  The vector-dependence claim survives at reduced magnitude: 60 vs
+  85% remains CI-separated, and H1's falsification is untouched (it
+  was registered on the band protocol). Table-1 protocol gap closed:
+  every 4B row now has both band and all-layer numbers.
+- **G2 — same-model precision control (4B in 8-bit, checklist v3):**
+  8-bit reproduces bf16 within ~2pp on every share — s3 band:
+  patterns 53% [47,59] vs 54%, values 43% [37,48] vs 42%, attn 70%
+  [66,74] vs 72%; fattn-ALL 84% [81,86] vs 85%; kl_steered 0.63 vs
+  ~0.6 — and the dose trends match through s8. **Damage anatomy is
+  not visibly quantization-dependent on the one model where both
+  precisions fit the GPU**; the cross-model contrast (Qwen ~85 vs
+  Llama ≤50, both 8-bit-involved) is not attributable to 8-bit
+  numerics on this evidence.
+- Caveats: the precision control is one model, one vector (16 GB
+  ceiling: bf16 Llama-8B does not fit); fattn-ALL suite at s3/s5
+  only; same instrument caveats as K–Q (teacher-forced KL proxy,
+  k=1).

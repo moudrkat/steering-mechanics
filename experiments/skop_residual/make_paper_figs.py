@@ -69,29 +69,44 @@ ax.set_title("How much steering damage flows through attention — per model"
              loc="left", fontsize=BASE + (3 if SLIDES else 1.5), pad=10)
 save(fig, "fig2_channels")
 
-# ---------- Fig 3: vector dependence on one model (Qwen3-4B, band) ----------
+# ---------- Fig 3: vector dependence on one model (Qwen3-4B, band + all-layer) ----------
 rf = jload("rigor_factorizations.json")
 r4 = jload("qk_freeze2_4b_report.json")
-vec_rows = [
-    ("task-suppression", r4["doses"]["3.0"]),
-    ("websearch-overtrigger", rf["4b_websearch"]["doses"]["3.0"]),
-    ("random control", rf["4b_rand"]["doses"]["3.0"]),
-    ("confidence", cb["4b_confident"]["doses"]["3.0"]),
-    ("sycophancy", cb["4b_sycophant"]["doses"]["3.0"]),
-    ("refusal", cb["4b_refusal"]["doses"]["3.0"]),
+pg = jload("postfreeze_chainG.json")
+vec_rows = [  # (label, band dose row, all-layer dose row)
+    ("task-suppression", r4["doses"]["3.0"], ef["fattnall_4b"]["3.0"]),
+    ("websearch-overtrigger", rf["4b_websearch"]["doses"]["3.0"],
+     pg["4b_fattnall_websearch"]["doses"]["3.0"]),
+    ("random control", rf["4b_rand"]["doses"]["3.0"],
+     pg["4b_fattnall_rand"]["doses"]["3.0"]),
+    ("confidence", cb["4b_confident"]["doses"]["3.0"],
+     pg["4b_fattnall_confident"]["doses"]["3.0"]),
+    ("sycophancy", cb["4b_sycophant"]["doses"]["3.0"],
+     pg["4b_fattnall_sycophant"]["doses"]["3.0"]),
+    ("refusal", cb["4b_refusal"]["doses"]["3.0"],
+     pg["4b_fattnall_refusal"]["doses"]["3.0"]),
 ]
-fig, ax = plt.subplots(figsize=(10, 4.4) if SLIDES else (7.0, 3.1))
-ypos = range(len(vec_rows))[::-1]
-for y, (lab, d) in zip(ypos, vec_rows):
-    v = d["rescue_fattn"]; lo, hi = d.get("rescue_fattn_ci", (v, v))
-    ax.barh(y, v * 100, height=0.62, color=C["q4b"], zorder=3)
-    ax.errorbar(v * 100, y, xerr=[[100 * (v - lo)], [100 * (hi - v)]],
-                fmt="none", ecolor=INK, elinewidth=1.1, capsize=3, zorder=4)
-    ax.text(max(hi * 100, 0) + 2.2, y, f"{v:.0%}", va="center", color=INK,
-            fontsize=BASE + 1, fontweight="bold")
+C_ALL = "#a5c6ec"  # lighter tint of the model blue for the all-layer bar
+fig, ax = plt.subplots(figsize=(10, 5.0) if SLIDES else (7.0, 3.6))
+ypos = [i * 1.0 for i in range(len(vec_rows))][::-1]
+for y, (lab, band, allr) in zip(ypos, vec_rows):
+    for dy, d, col, h in ((0.19, allr, C_ALL, 0.34), (-0.19, band, C["q4b"], 0.34)):
+        v = d["rescue_fattn"]; lo, hi = d.get("rescue_fattn_ci", (v, v))
+        ax.barh(y + dy, v * 100, height=h, color=col, zorder=3)
+        ax.errorbar(v * 100, y + dy, xerr=[[100 * (v - lo)], [100 * (hi - v)]],
+                    fmt="none", ecolor=INK, elinewidth=1.0, capsize=2.5, zorder=4)
+        ax.text(max(hi * 100, 0) + 2.0, y + dy, f"{v:.0%}", va="center",
+                color=INK if col == C["q4b"] else INK2,
+                fontsize=BASE - (0 if col == C["q4b"] else 1),
+                fontweight="bold" if col == C["q4b"] else "normal")
 ax.set_yticks(list(ypos)); ax.set_yticklabels([r[0] for r in vec_rows], color=INK)
-ax.set_xlim(0, 100); ax.set_xlabel("attention-carried share of damage (%, 7-layer band, s3)")
+ax.set_xlim(0, 100); ax.set_xlabel("attention-carried share of damage (%, s3)")
 ax.xaxis.grid(True, color=GRID, linewidth=0.7, zorder=0)
+import matplotlib.patches as mpatches
+ax.legend(handles=[mpatches.Patch(color=C["q4b"], label="7-layer band (registered protocol)"),
+                   mpatches.Patch(color=C_ALL, label="all layers above injection")],
+          loc="upper center", bbox_to_anchor=(0.5, -0.16), ncol=2,
+          frameon=False, fontsize=BASE - 1, labelcolor=INK2)
 style_ax(ax)
 ax.set_title("Same model, different vector — the share is not a model constant"
              + ("" if SLIDES else " (Qwen3-4B, six vectors, 95% CI)"),

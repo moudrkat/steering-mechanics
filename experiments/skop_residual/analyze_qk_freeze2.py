@@ -51,11 +51,15 @@ for label, d in DIRS.items():
         row = {"kl_steered": round(sum(ks) / len(ks), 4),
                "kl_steered_ci": [round(v, 4) for v in boot_ci(ks)]}
         for arm in ("fpat", "fval", "fattn"):
+            if f"kl_{arm}" not in ds[0]:
+                continue
             ka = [x[f"kl_{arm}"] for x in ds]
             lo, hi = boot_ratio_ci(ka, ks)
             row[f"rescue_{arm}"] = round(1 - sum(ka) / sum(ks), 4)
             row[f"rescue_{arm}_ci"] = [round(lo, 4), round(hi, 4)]
         for k in ("match_steered", "match_fattn"):
+            if k not in ds[0]:
+                continue
             vals = [x[k] for x in ds]
             row[k] = round(sum(vals) / len(vals), 4)
         entry["doses"][s] = row
