@@ -67,7 +67,13 @@ def hook(_m, _i, out):
     if state["scale"] == 0.0: return out
     h = out[0] if isinstance(out, tuple) else out
     return (h + state["scale"] * v,) + tuple(out[1:]) if isinstance(out, tuple) else h + state["scale"] * v
-model.model.layers[INJ].register_forward_hook(hook)
+layers = None
+for _name, _mod in model.named_modules():
+    if _name.endswith(".layers") and hasattr(_mod, "__len__") and len(_mod) >= 24:
+        layers = _mod
+        break
+assert layers is not None, "no decoder layer stack found"
+layers[INJ].register_forward_hook(hook)
 
 def metrics(txt):
     w = txt.split()

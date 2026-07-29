@@ -43,12 +43,13 @@ def save(fig, name):
 ef = jload("final_chainEF.json")
 cb = jload("rigor_chainB.json")
 gm = jload("gemma_h4_summary.json")
+ph = jload("postfreeze_chainH.json")
 rows = [  # (label, share, ci, color, note)
     ("Qwen3-4B",  ef["fattnall_4b"]["3.0"],  C["q4b"],  "all layers, s3"),
     ("Qwen3-8B",  ef["fattnall_8b"]["3.0"],  C["q8b"],  "all layers, s3"),
-    ("Qwen2.5-7B", cb["qwen25"]["doses"]["3.0"], C["q25"], "7-layer band, s3"),
-    ("Llama-3.1-8B", ef["fattnall_llama"]["1.5"], C["llama"], "all layers, matched damage"),
-    ("Gemma-4-E4B", gm["4.0"], C["gemma"], "query channel by construction, s4"),
+    ("Qwen2.5-7B", ph["q25_fattnall"]["doses"]["3.0"], C["q25"], "all layers, s3"),
+    ("Llama-3.1-8B", ef["fattnall_llama"]["1.5"], C["llama"], "all layers, matched degradation"),
+    ("Gemma-4-E4B", ph["gemma_fattnall"]["doses"]["4.0"], C["gemma"], "query channel by construction, s4"),
 ]
 fig, ax = plt.subplots(figsize=(10, 4.4) if SLIDES else (7.0, 3.1))
 ypos = range(len(rows))[::-1]
@@ -64,8 +65,8 @@ ax.set_yticks(list(ypos)); ax.set_yticklabels([r[0] for r in rows], color=INK)
 ax.set_xlim(0, 100); ax.set_xlabel("share of steering damage removed by freezing attention (%)")
 ax.xaxis.grid(True, color=GRID, linewidth=0.7, zorder=0)
 style_ax(ax)
-ax.set_title("How much steering damage flows through attention — per model"
-             + ("" if SLIDES else " (task-suppression vector, working dose, 95% CI)"),
+ax.set_title("How much steering degradation flows through attention — per model"
+             + ("" if SLIDES else " (task-suppression vector, deployment scale, 95% CI)"),
              loc="left", fontsize=BASE + (3 if SLIDES else 1.5), pad=10)
 save(fig, "fig2_channels")
 
@@ -123,30 +124,36 @@ for key, (lab, col) in labels.items():
     ys = [arc[key][f"{d:.1f}"] * 100 for d in doses]
     ax.plot(doses, ys, color=col, linewidth=2.2, zorder=3, label=lab,
             marker="o", markersize=7, markeredgecolor=SURF, markeredgewidth=1.2)
+gd = sorted(ph["arc_gemma"], key=float)
+ax.plot([float(s) for s in gd], [ph["arc_gemma"][s]["acc"] * 100 for s in gd],
+        color=C["gemma"], linewidth=2.2, zorder=3, label="Gemma-4-E4B",
+        marker="o", markersize=7, markeredgecolor=SURF, markeredgewidth=1.2)
 ax.legend(loc="lower left", frameon=False, fontsize=BASE - 1,
           labelcolor=INK2, handlelength=1.6, bbox_to_anchor=(0.02, 0.14))
 ax.axhline(25, color=MUT, linewidth=1, linestyle=(0, (3, 3)))
 ax.text(8.9, 26.5, "chance (4 options)", color=MUT, fontsize=BASE - 2, ha="right")
 ax.axvspan(2.7, 3.3, color=GRID, alpha=0.55, zorder=0)
-ax.text(3, 98, "working dose", ha="center", color=INK2, fontsize=BASE - 1)
+ax.text(3, 98, "deployment scale\n(dense models)", ha="center", color=INK2,
+        fontsize=BASE - 2, linespacing=1.3)
 ax.set_xlim(-0.3, 9.6); ax.set_ylim(0, 103)
 ax.set_xticks(doses); ax.set_xlabel("steering scale (decode-only)")
 ax.set_ylabel("ARC-Challenge accuracy (%, n=300)")
 ax.yaxis.grid(True, color=GRID, linewidth=0.7, zorder=0)
 style_ax(ax)
-ax.set_title("The deployment window is capability-free — and the wall is real",
+ax.set_title("Benchmark accuracy under steering, five models",
              loc="left", fontsize=BASE + (3 if SLIDES else 1.5), pad=10)
 save(fig, "fig4_arc")
 
 # ---------- Fig 5: saturation of the residual->query map ----------
 lads = {"Qwen3-4B": (jload("qk_freeze2_4b_report.json")["ladder"], C["q4b"]),
         "Qwen3-8B": (jload("qk_freeze2_8b_report.json")["ladder"], C["q8b"]),
+        "Qwen2.5-7B": (ph["q25_ladder"]["ladder"], C["q25"]),
         "Llama-3.1-8B": (jload("qk_freeze2_llama_report.json")["ladder"], C["llama"])}
 fig, (a1, a2) = plt.subplots(2, 1, sharex=True,
                              figsize=(10, 6.2) if SLIDES else (7.0, 4.6),
                              gridspec_kw={"hspace": 0.12})
 ss = [0.5, 1.0, 2.0, 3.0, 5.0, 8.0]
-dodge = {"Qwen3-4B": 5, "Qwen3-8B": -7, "Llama-3.1-8B": 0}
+dodge = {"Qwen3-4B": 5, "Qwen3-8B": -7, "Qwen2.5-7B": 12, "Llama-3.1-8B": 0}
 for lab, (lad, col) in lads.items():
     norm = [lad[str(s)]["dqband_per_s"] for s in ss]
     rel = [n / norm[0] for n in norm]
@@ -171,8 +178,48 @@ for ax_ in (a1, a2):
     ax_.yaxis.grid(True, color=GRID, linewidth=0.7, zorder=0); style_ax(ax_)
 a1.axvspan(2.7, 3.3, color=GRID, alpha=0.55, zorder=0)
 a2.axvspan(2.7, 3.3, color=GRID, alpha=0.55, zorder=0)
-a1.set_title("The residual→query map saturates before the working dose"
+a1.set_title("The residual→query map saturates below the deployment scale"
              + ("" if SLIDES else " (band mean over heads, N=40)"),
              loc="left", fontsize=BASE + (3 if SLIDES else 1.5), pad=10)
 save(fig, "fig5_ladder")
+
+# ---------- Fig 6: localization replicates on five model families ----------
+panels = [("Qwen3-4B", "map_4b", C["q4b"]), ("Qwen3-8B", "map_8b", C["q8b"]),
+          ("Qwen2.5-7B", "map_qwen25", C["q25"]),
+          ("Llama-3.1-8B", "map_llama", C["llama"]),
+          ("Gemma-4-E4B", "map_gemma", C["gemma"])]
+fig, axes = plt.subplots(1, 5, figsize=(13.5, 3.2) if SLIDES else (11.0, 2.4),
+                         gridspec_kw={"wspace": 0.3})
+for ax, (lab, key, col) in zip(axes, panels):
+    m = ph[key]
+    inj, L = m["inj"], m["layers"]
+    offs = [l - inj for l in L]
+    st = m["arms"]["steered"]["layer_profile_max"]
+    keep = [(o, v) for o, v in zip(offs, st) if o >= 1 and o <= 8 and v is not None]
+    ax.plot([o for o, _ in keep], [v for _, v in keep], color=col,
+            linewidth=2.0, marker="o", markersize=4.5, zorder=3,
+            markeredgecolor=SURF, markeredgewidth=0.8)
+    if "rand" in m["arms"]:
+        rd = m["arms"]["rand"]["layer_profile_max"]
+        keep_r = [(o, v) for o, v in zip(offs, rd) if 1 <= o <= 8 and v is not None]
+        ax.plot([o for o, _ in keep_r], [v for _, v in keep_r], color=MUT,
+                linewidth=1.6, linestyle=(0, (4, 2)), zorder=2)
+    ax.set_title(lab, fontsize=BASE - (0 if SLIDES else 0.5), color=INK)
+    ax.set_xticks([1, 4, 8]); ax.set_xlim(0.6, 8.4)
+    ax.set_ylim(0, max(v for _, v in keep) * 1.18)
+    ax.yaxis.grid(True, color=GRID, linewidth=0.7, zorder=0)
+    style_ax(ax)
+axes[0].set_ylabel("max-head JSD")
+axes[2].set_xlabel("layers above injection")
+axes[-1].text(0.97, 0.82, "no rand arm", transform=axes[-1].transAxes,
+              ha="right", color=MUT, fontsize=BASE - 2.5)
+fig.suptitle("The largest attention divergence sits one layer above the injection on all five families"
+             + ("" if SLIDES else "  (solid: steered, deployment scale; dashed: norm-matched random vector)"),
+             x=0.01, ha="left", fontsize=BASE + (3 if SLIDES else 1.5), color=INK)
+fig.subplots_adjust(top=0.72)
+for ext in ("png", "pdf"):
+    fig.savefig(os.path.join(OUT, f"fig6_localization.{ext}"), dpi=300,
+                bbox_inches="tight", facecolor=SURF)
+plt.close(fig)
+print("saved fig6_localization")
 print("ALL FIGURES DONE ->", OUT)

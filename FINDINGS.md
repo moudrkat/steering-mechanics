@@ -1263,3 +1263,50 @@ Scores: results/postfreeze_chainG.json. Setting as in qk_freeze2
   ceiling: bf16 Llama-8B does not fit); fattn-ALL suite at s3/s5
   only; same instrument caveats as K–Q (teacher-forced KL proxy,
   k=1).
+
+## S. Post-freeze chain H: the five-model grid completed (2026-07-29 afternoon; run by Claude; scores results/postfreeze_chainH.json)
+
+POST-FREEZE appendix material; no pre-registered verdict changes.
+New instrument jsd_map.py (generic per-head JSD map, any model, arms
+steered/sham/matched-norm-random, decode-only teacher-forced, N=40).
+
+- **Localization replicates on ALL FIVE families.** Top divergence
+  sits ONE layer above injection everywhere: 4B L21 h18/h11 (mega),
+  8B L21 h8=0.474/h11=0.460, Qwen2.5 L17 h0=0.459, Llama L19
+  h13=0.751/h12/h15, Gemma L26 (0.49, from the H-chain band capture).
+  Sham floor exactly 0 on every new model (40 prompts each). The
+  random arm lights the same layer everywhere; the steered/random
+  amplitude ratio THINS across models (4B ~4×, 8B ~2.3×, Qwen2.5
+  ~1.7×, Llama ~1.6×), and head overlap with the random arm is
+  partial on 8B/Q2.5/Llama — "which heads respond is a property of
+  the model" holds; "the vector only sets amplitude" was
+  4B-specific in strength. Notable dissociation: Llama's attention
+  divergence is sharply localized even though attention carries ≤50%
+  of its damage — where attention moves and what carries damage are
+  different questions.
+- **Qwen2.5 fattn-ALL: 72% [70,75] at s3, 71% at s5** (band was
+  65%). The all-layer ladder is now 85/85/72/≤50 (Qwen3-4B/8B,
+  Qwen2.5, Llama matched-damage) — Qwen2.5 stays the middle case at
+  the correct protocol level; dose trend flat (unlike its rising
+  band share).
+- **Gemma all-shared-band freeze (26–41): 18/22/27% at s1.5/2.5/4**
+  [CIs ±4pp], producer-input maxdiff 0.0 — consistent with H4's
+  16–26% band reading, now on every layer above injection.
+- **Qwen2.5 ladder saturates like the others:** ‖Δq‖/s 3.21→1.57
+  (s0.5→8), cos 1.00→0.91; at s3 cos 0.97 (Qwen-like, not
+  Llama-like). Fourth model with the same saturation shape.
+- **Qwen2.5 free-gen: a THIRD collapse phenotype.** Suppression
+  works (viol 62.5%→1.4% by s3, N=72/dose). At s8: loop-rate only
+  2.8%, median length RISES to 73 words, uniqueness 0.96→0.41 —
+  long repetitive ramble that a loop metric misses and a length
+  metric reads as healthy. (4B/8B: loops; Llama: mute; Qwen2.5:
+  ramble.) One more failure phenotype that only the uniqueness
+  metric catches.
+- **Gemma ARC-300: NOT capability-free at its working scale.**
+  0.863 baseline → 0.833 @s2.5 → 0.813 @s4 (−3/−5pp; the four dense
+  models were ±1pp at their working scale) → 0.697 @s6, 0.507 @s8.
+  The capability-free window is model-dependent too.
+- Fig line: fig6_localization (5-panel layer-offset profiles);
+  fig2/fig4/fig5 updated (Q2.5 all-layer bar, Gemma ARC curve, Q2.5
+  ladder curve). Gemma free-gen rerun in flight after a
+  layer-lookup fix in freegen_probe.py (Gemma4 module path).
