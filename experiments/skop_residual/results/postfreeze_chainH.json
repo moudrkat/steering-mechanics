@@ -4478,5 +4478,49 @@
     ]
    }
   }
+ },
+ "freegen_gemma": {
+  "0.0": {
+   "n": 72,
+   "viol_rate": 0.514,
+   "loop_rate": 0.0,
+   "median_words": 37.0,
+   "uniq_mean": 0.916
+  },
+  "1.0": {
+   "n": 72,
+   "viol_rate": 0.375,
+   "loop_rate": 0.0,
+   "median_words": 37.0,
+   "uniq_mean": 0.925
+  },
+  "1.5": {
+   "n": 72,
+   "viol_rate": 0.472,
+   "loop_rate": 0.0,
+   "median_words": 37.5,
+   "uniq_mean": 0.928
+  },
+  "2.5": {
+   "n": 72,
+   "viol_rate": 0.431,
+   "loop_rate": 0.0,
+   "median_words": 38.5,
+   "uniq_mean": 0.903
+  },
+  "4.0": {
+   "n": 72,
+   "viol_rate": 0.153,
+   "loop_rate": 0.0,
+   "median_words": 43.0,
+   "uniq_mean": 0.851
+  },
+  "6.0": {
+   "n": 72,
+   "viol_rate": 0.014,
+   "loop_rate": 0.0,
+   "median_words": 45.0,
+   "uniq_mean": 0.772
+  }
  }
 }

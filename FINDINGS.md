@@ -1308,5 +1308,13 @@ steered/sham/matched-norm-random, decode-only teacher-forced, N=40).
   The capability-free window is model-dependent too.
 - Fig line: fig6_localization (5-panel layer-offset profiles);
   fig2/fig4/fig5 updated (Q2.5 all-layer bar, Gemma ARC curve, Q2.5
-  ladder curve). Gemma free-gen rerun in flight after a
-  layer-lookup fix in freegen_probe.py (Gemma4 module path).
+  ladder curve).
+- **Gemma free-gen (rerun after Gemma4 layer-lookup fix): a FOURTH
+  degradation shape — gradual erosion.** Suppression late (viol
+  51%→15% @s4, 1.4% @s6, N=72/scale); NO loops, NO muteness in the
+  probed range (≤s6); uniqueness slides 0.92→0.77 while length
+  RISES 37→45 words. Together with ARC (−5pp @s4, −17pp @s6): Gemma
+  trades behavior for a diffuse fluency/capability tax instead of a
+  sharp collapse — consistent with the July campaign's "fluency is
+  unguarded" verdict. Phenotype tally: loops (Qwen3), mute (Llama),
+  ramble (Qwen2.5), erosion (Gemma).
