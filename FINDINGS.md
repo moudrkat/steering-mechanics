@@ -1318,3 +1318,40 @@ steered/sham/matched-norm-random, decode-only teacher-forced, N=40).
   sharp collapse — consistent with the July campaign's "fluency is
   unguarded" verdict. Phenotype tally: loops (Qwen3), mute (Llama),
   ramble (Qwen2.5), erosion (Gemma).
+
+## T. Chain I: query-space steering — the channel-matched dissociation lands (2026-07-29 evening; qsteer_probe.py; scores results/postfreeze_chainI.json)
+
+POST-FREEZE constructive arm. Q-only steering: per-(layer,head)
+directions = empirical q-images of v (direction from residual s0.5,
+magnitude matched to the ACTUAL saturated |Δq| at s3), injected at
+q_proj outputs of the 7-layer band, decode-only; KV cache stays clean
+by construction (queries are not cached). Arms: baseline / residual
+s3 reference / q-only at ×1, ×2, ×4 matched magnitude. N=24 CZ
+probe prompts, regex + coherence + teacher-forced KL; generations in
+steermech-private/campaign/chainI_qsteer_*.json for human read.
+Instrument note: the first launch's reference arm was unsteered
+during cached decode (hook applied to an empty slice on 1-token
+forwards) — caught because baseline == reference; fixed (047cf8c)
+and rerun. References now match history (4B 19→9/24; 8B 16→10/24).
+
+- **4B (pattern-led damage): q-only steering PARTIALLY works.**
+  ×1 (matched Δq): 18/24 — no effect. ×4: **12/24 @ KL 0.40** vs
+  residual 9/24 @ 0.67 — per-nat damage efficiency comparable
+  (−7/0.40 vs −10/0.67). Query space is an inefficient-at-matched-
+  magnitude but damage-cheap channel on this model.
+- **8B (value-led damage): q-only steering does NOTHING.**
+  16/17/18 out of 24 at ×1/×2/×4 (baseline 16) while KL climbs to
+  0.39 — damage without behavior. The value-led sibling is immune
+  to query-side steering across a 4× magnitude range.
+- **Reading:** the residual vector's behavioral effect is NOT
+  mediated by its induced query perturbation (matched-magnitude ×1
+  is a null on both models); and whether OVERDRIVEN query steering
+  can buy the behavior at all tracks the damage factorization
+  (pattern-led 4B: yes; value-led 8B: no). "Measure the channel,
+  then steer the channel" has its first causal, predictive
+  demonstration. Natural next: the OV-space analogue on 8B
+  (value-side injection) — post-freeze queue item -1 — and the
+  joint-work proposal for the SKOP authors.
+- Caveats: k=1 greedy, N=24, regex efficacy (vocabulary-imprint
+  caveat known), one behavior family, empirical q-images (not exact
+  per-position maps), 8B in 8-bit.

@@ -1,0 +1,112 @@
+{
+ "qwen3_4b": {
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "inj": 20,
+  "band": [
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27
+  ],
+  "s_ref": 3.0,
+  "calib_mean_dq_sref": {
+   "21": 6.531,
+   "22": 7.156,
+   "23": 6.0417,
+   "24": 6.453,
+   "25": 4.2031,
+   "26": 5.1613,
+   "27": 4.6994
+  },
+  "summary": {
+   "baseline": {
+    "viol": "19/24",
+    "kl_mean": 0.0,
+    "rep4_mean": 0.0,
+    "uniq_mean": 0.927
+   },
+   "res_ref": {
+    "viol": "9/24",
+    "kl_mean": 0.6707,
+    "rep4_mean": 0.022,
+    "uniq_mean": 0.899
+   },
+   "qsteer_x1": {
+    "viol": "18/24",
+    "kl_mean": 0.0501,
+    "rep4_mean": 0.006,
+    "uniq_mean": 0.92
+   },
+   "qsteer_x2": {
+    "viol": "17/24",
+    "kl_mean": 0.1587,
+    "rep4_mean": 0.0,
+    "uniq_mean": 0.913
+   },
+   "qsteer_x4": {
+    "viol": "12/24",
+    "kl_mean": 0.4036,
+    "rep4_mean": 0.037,
+    "uniq_mean": 0.879
+   }
+  }
+ },
+ "qwen3_8b": {
+  "model": "Qwen/Qwen3-8B",
+  "inj": 20,
+  "band": [
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27
+  ],
+  "s_ref": 3.0,
+  "calib_mean_dq_sref": {
+   "21": 6.9253,
+   "22": 7.8226,
+   "23": 6.0966,
+   "24": 7.0687,
+   "25": 4.9982,
+   "26": 6.3288,
+   "27": 5.8353
+  },
+  "summary": {
+   "baseline": {
+    "viol": "16/24",
+    "kl_mean": 0.0,
+    "rep4_mean": 0.003,
+    "uniq_mean": 0.899
+   },
+   "res_ref": {
+    "viol": "10/24",
+    "kl_mean": 0.5382,
+    "rep4_mean": 0.008,
+    "uniq_mean": 0.889
+   },
+   "qsteer_x1": {
+    "viol": "16/24",
+    "kl_mean": 0.0451,
+    "rep4_mean": 0.008,
+    "uniq_mean": 0.911
+   },
+   "qsteer_x2": {
+    "viol": "17/24",
+    "kl_mean": 0.1506,
+    "rep4_mean": 0.008,
+    "uniq_mean": 0.89
+   },
+   "qsteer_x4": {
+    "viol": "18/24",
+    "kl_mean": 0.3921,
+    "rep4_mean": 0.032,
+    "uniq_mean": 0.882
+   }
+  }
+ }
+}
