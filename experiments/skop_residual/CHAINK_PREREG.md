@@ -22,6 +22,19 @@ of Σ_Δk; apply only to the top 20% of heads by their Rayleigh-quotient
 risk score. If Appendix D.1 fixes p, use theirs and record it; if not,
 frozen fallback: smallest p capturing 90% of Σ_Δk variance per head.
 
+*Amendment (2026-07-29, before any data): the paper does not state
+whether steering and keys live pre- or post-RoPE. Frozen
+interpretation: both in the pre-RoPE frame (steering injected at
+q_proj output, Σ_Δk built from k_proj output) — one consistent frame,
+the same injection point our chain-I instrument validated. Exact
+key-orthogonality under position-dependent rotation is not preserved
+cross-position in either frame and their text gives no handling, so
+this is recorded as an interpretation choice, not a deviation. GQA
+note (Llama-3.1 has 8 KV heads): focus/tail sets are selected per
+query head from its own attention pattern; key differences are taken
+in the shared KV head's key space; projections applied per query
+head.*
+
 ## K1 — replication in their setting
 
 - **Model:** Llama-3.1-8B-Instruct (their model), 8-bit (our hardware;
