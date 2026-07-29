@@ -16,7 +16,11 @@ MODEL = os.environ.get("GH4_MODEL", "google/gemma-4-E4B-it")
 VEC = os.path.expanduser(os.environ.get("GH4_VEC",
       "~/projects/science/private-vectors/gemma-4-e4b/v_pref_no_task_v3.pt"))
 INJ = int(os.environ.get("GH4_INJ", "25"))
-BAND = list(range(INJ + 1, INJ + 8))
+if os.environ.get("GH4_BAND"):
+    _a, _b = os.environ["GH4_BAND"].split("-")
+    BAND = list(range(int(_a), int(_b) + 1))
+else:
+    BAND = list(range(INJ + 1, INJ + 8))
 SCALES = [float(x) for x in os.environ.get("GH4_SCALES", "1.5,2.5,4").split(",")]
 PRODUCERS = [22, 23]
 MAXTOK = 48
