@@ -14,7 +14,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 MODEL = os.environ.get("GH4_MODEL", "google/gemma-4-E4B-it")
 VEC = os.path.expanduser(os.environ.get("GH4_VEC",
-      "~/projects/science/private-vectors/gemma-4-e4b/v_pref_no_task_v3.pt"))
+      os.environ.get("VECTORS_DIR", "vectors") + "/gemma-4-e4b/v_pref_no_task_v3.pt"))
 INJ = int(os.environ.get("GH4_INJ", "25"))
 if os.environ.get("GH4_BAND"):
     _a, _b = os.environ["GH4_BAND"].split("-")

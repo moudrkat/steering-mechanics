@@ -6,7 +6,7 @@
 export HF_HOME=~/projects/science/instruct-steer/hf-cache HF_HUB_OFFLINE=1
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export SKOP_MODEL="Qwen/Qwen3-4B-Instruct-2507"
-export SKOP_VEC="~/hotwire-vectors/v_pref_no_task_checklist_v3.pt"
+export SKOP_VEC="${VECTORS_DIR:?set VECTORS_DIR to your vector store}/v_pref_no_task_checklist_v3.pt"
 export SKOP_INJ=20
 PY=~/tmp/vllm-lens-test/.venv/bin/python
 
@@ -31,7 +31,7 @@ done; done
 
 echo "=== E2: fidelity build v2 (shakedown expected on first run) ==="
 SKOP_OUT="v_pref_no_task_qwen_skopres_v2.pt" \
-SKOP_COMPARE="~/hotwire-vectors/v_pref_no_task_qwen_skopres.pt" \
+SKOP_COMPARE="${VECTORS_DIR:?set VECTORS_DIR to your vector store}/v_pref_no_task_qwen_skopres.pt" \
 SKOP_RISK=0.10 SKOP_GAMMA=0.7 SKOP_PCAP=8 \
 $PY /tmp/skop_residual_build_v2.py 2>&1 | grep -E "^\{|SAVED|Error|Traceback"
 echo "NOTE: check diag_v2.json v0_overlap first — run a v2 sweep only if"

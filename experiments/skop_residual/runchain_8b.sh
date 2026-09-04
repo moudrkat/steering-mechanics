@@ -2,7 +2,7 @@
 export HF_HOME=~/projects/science/instruct-steer/hf-cache HF_HUB_OFFLINE=1
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export SKOP_MODEL="Qwen/Qwen3-8B-FP8"
-export SKOP_VEC="~/projects/science/private-vectors/qwen3-8b/v_pref_no_task_checklist_v4.pt"
+export SKOP_VEC="${VECTORS_DIR:?set VECTORS_DIR to your vector store}/qwen3-8b/v_pref_no_task_checklist_v4.pt"
 export SKOP_WQ_SRC="~/projects/science/instruct-steer/hf-cache/hub/models--Qwen--Qwen3-8B/snapshots/*/*.safetensors"
 export SKOP_INJ=20
 export SKOP_NOTHINK=1

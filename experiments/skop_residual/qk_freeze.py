@@ -23,7 +23,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.models.qwen3.modeling_qwen3 import apply_rotary_pos_emb
 
 MODEL = os.environ.get("QKF_MODEL", "Qwen/Qwen3-4B-Instruct-2507")
-VEC = os.path.expanduser(os.environ.get("QKF_VEC", "~/hotwire-vectors/v_pref_no_task_checklist_v3.pt"))
+VEC = os.path.expanduser(os.environ.get("QKF_VEC", os.environ.get("VECTORS_DIR", "vectors") + "/v_pref_no_task_checklist_v3.pt"))
 INJ = 20            # steering layer (hook on block 20 output)
 ATTN_L = 21         # decomposition layer (the divergence band)
 FREEZE_SETS = {"f21": [21], "fband": list(range(21, 28))}

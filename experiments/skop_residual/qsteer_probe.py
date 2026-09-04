@@ -20,7 +20,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 MODEL = os.environ.get("QSP_MODEL", "Qwen/Qwen3-4B-Instruct-2507")
 VEC = os.path.expanduser(os.environ.get("QSP_VEC",
-      "~/hotwire-vectors/v_pref_no_task_checklist_v3.pt"))
+      os.environ.get("VECTORS_DIR", "vectors") + "/v_pref_no_task_checklist_v3.pt"))
 INJ = int(os.environ.get("QSP_INJ", "20"))
 S_REF = float(os.environ.get("QSP_SREF", "3"))
 S_CAL = float(os.environ.get("QSP_SCAL", "0.5"))

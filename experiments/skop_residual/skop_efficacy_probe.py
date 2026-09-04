@@ -8,8 +8,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 MODEL = os.environ.get("SKOP_MODEL", "Qwen/Qwen3-4B-Instruct-2507")
 INJ = int(os.environ.get("SKOP_INJ", "20"))
-V_ORIG = os.path.expanduser(os.environ.get("SKOP_VEC", "~/hotwire-vectors/v_pref_no_task_checklist_v3.pt"))
-V_PROJ = os.path.expanduser("~/hotwire-vectors/" + os.environ.get("SKOP_OUT", "v_pref_no_task_qwen_skopres.pt"))
+V_ORIG = os.path.expanduser(os.environ.get("SKOP_VEC", os.environ.get("VECTORS_DIR", "vectors") + "/v_pref_no_task_checklist_v3.pt"))
+V_PROJ = os.path.expanduser(os.environ.get("VECTORS_DIR", "vectors") + "/" + os.environ.get("SKOP_OUT", "v_pref_no_task_qwen_skopres.pt"))
 ARMS = json.loads(os.environ.get("SKOP_ARMS", '[["baseline",null,0],["v_orig","orig",3.0],["v_skopres","proj",4.7]]'))
 MAXTOK = 80
 OUT = os.path.expanduser("~/skop_residual/" + os.environ.get("SKOP_EFF_OUT", "efficacy_probe.json"))

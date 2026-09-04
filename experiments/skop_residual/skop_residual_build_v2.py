@@ -18,7 +18,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 MODEL = os.environ.get("SKOP_MODEL", "Qwen/Qwen3-4B-Instruct-2507")
 assert "gemma" not in MODEL.lower(), "v2 build is Qwen3-only (dual/p-RoPE unhandled)"
-VEC_PATH = os.path.expanduser(os.environ.get("SKOP_VEC", "~/hotwire-vectors/v_pref_no_task_checklist_v3.pt"))
+VEC_PATH = os.path.expanduser(os.environ.get("SKOP_VEC", os.environ.get("VECTORS_DIR", "vectors") + "/v_pref_no_task_checklist_v3.pt"))
 OUT_DIR = os.path.expanduser("~/skop_residual")
 INJ = int(os.environ.get("SKOP_INJ", "20"))
 WINDOW = list(range(INJ + 1, INJ + 9))
@@ -263,7 +263,7 @@ print(json.dumps(diag))
 
 vec_out = vec.clone(); vec_out[INJ] = v_bar
 name = os.environ.get("SKOP_OUT", "v_pref_no_task_qwen_skopres_v2.pt")
-for dst in (OUT_DIR, os.path.expanduser("~/hotwire-vectors")):
+for dst in (OUT_DIR, os.path.expanduser(os.environ.get("VECTORS_DIR", "vectors"))):
     torch.save(vec_out, os.path.join(dst, name))
 with open(os.path.join(OUT_DIR, "diag_v2.json"), "w") as f:
     json.dump({"diag": diag, "risk_heads": [{"layer": x["layer"],

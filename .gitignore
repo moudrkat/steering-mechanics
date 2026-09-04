@@ -10,3 +10,5 @@ CLAUDE.local.md
 .claude/*.local.md
 TOMORROW.md
 .idea/
+*.egg-info/
+results/autonomous_steer.md

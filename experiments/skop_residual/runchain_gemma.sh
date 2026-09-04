@@ -1,8 +1,8 @@
 #!/bin/bash
-export HF_HOME=~/hf-cache2 HF_HUB_OFFLINE=0
+export HF_HOME=${HF_HOME:?set HF_HOME} HF_HUB_OFFLINE=0
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export SKOP_MODEL="google/gemma-4-E4B-it"
-export SKOP_VEC="~/hotwire-vectors/v_pref_no_task_gemma.pt"
+export SKOP_VEC="${VECTORS_DIR:?set VECTORS_DIR to your vector store}/v_pref_no_task_gemma.pt"
 export SKOP_INJ=25
 export SKOP_8BIT=1
 export SKOP_WQ_SRC="~/projects/science/instruct-steer/hf-cache/hub/models--google--gemma-4-E4B-it/snapshots/*/*.safetensors"

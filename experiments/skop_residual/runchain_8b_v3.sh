@@ -1,8 +1,8 @@
 #!/bin/bash
-export HF_HOME=~/hf-cache2 HF_HUB_OFFLINE=0
+export HF_HOME=${HF_HOME:?set HF_HOME} HF_HUB_OFFLINE=0
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export SKOP_MODEL="Qwen/Qwen3-8B-FP8"
-export SKOP_VEC="~/projects/science/private-vectors/qwen3-8b/v_pref_no_task_checklist_v3.pt"
+export SKOP_VEC="${VECTORS_DIR:?set VECTORS_DIR to your vector store}/qwen3-8b/v_pref_no_task_checklist_v3.pt"
 export SKOP_NOTHINK=1
 export SKOP_WQ_SRC="~/projects/science/instruct-steer/hf-cache/hub/models--Qwen--Qwen3-8B/snapshots/*/*.safetensors"
 PY=~/tmp/vllm-lens-test/.venv/bin/python

@@ -140,7 +140,7 @@ though the vector demonstrably suppresses task-offering in production.
 
 Why the proxy fails here:
 - it does not reproduce the deployment conditions (no task-nudge, no forced
-  SuggestMessages tool) — so the unsteered baseline may not form the avoid
+  app tool) — so the unsteered baseline may not form the avoid
   concepts at all, leaving nothing to suppress;
 - J-lens dispositions are not the behavioral event. The real eval generates
   the tool call and checks its *content* for a task offer; the proxy reads
@@ -701,7 +701,7 @@ key-difference second moments on 8 utility prompts (layers 21–28, 256
 heads), projected v_pref_no_task_checklist_v3[L20] orthogonal to top-γ=0.9
 eigendirections of the top-20% risk heads (Rayleigh 40.8→0.87 after).
 v0 is over-aggressive: harm basis rank 1536/2560, norm kept 64%
-(‖v̄‖=8.46 vs 13.22). Vector: GPU box `~/hotwire-vectors/
+(‖v̄‖=8.46 vs 13.22). Vector: GPU box `$VECTORS_DIR/
 v_pref_no_task_qwen_skopres.pt`. Script: scratchpad skop_residual_build.py
 (v0 approximations: pre-RoPE keys, LN Jacobian ignored, 8-prompt calib).
 
@@ -773,7 +773,7 @@ kernels installed into the venv, writable HF cache shim at ~/hf-cache2
 because the original cache has root-owned entries from docker
 extractions), W_q for the projection read lazily from the bf16
 checkpoint's safetensors (FP8 packed weights can't be read naively),
-/no_think enforced. Vector: private-vectors/qwen3-8b/
+/no_think enforced. Vector: the private vector store, qwen3-8b/
 v_pref_no_task_checklist_v4.pt (L20 ‖V‖=20.24). Projection v1-settings:
 norm kept 96.7%, harm rank 179, risk-head Rayleigh 29.1→2.8.
 
@@ -810,7 +810,7 @@ N≥16 harness with the checker, not more k=1 probes. At s8 both v and v̄
 collapse ("ne, ne, ne…" loops) — **the magnitude wall is now 4/4
 configurations** (4B/v3, 4B/v̄_v1, 8B/v4, 8B/v5nt), each with a
 different collapse flavor, all at the same dose regime. Artifacts:
-`experiments/skop_residual/results/efficacy_8b_v5nt.json`, vector `v_pref_no_task_8b_v5nt_skopres.pt`. Vector inventory note: private-vectors/ holds per-model
+`experiments/skop_residual/results/efficacy_8b_v5nt.json`, vector `v_pref_no_task_8b_v5nt_skopres.pt`. Vector inventory note: the private vector store holds per-model
 dirs (qwen3-8b v3/v4/v5/v5_nothink, llama31-8b, qwen2.5-7b, gemma,
 thinking) + document_overrequest and websearch_overtrigger recipes —
 MAP.md does not know about this treasury; update it.
@@ -951,10 +951,10 @@ Agent reports archived in session; data lands in brainscope notes
 Run interrupted mid-flight by a local machine reboot (chain scripts
 lived in a session scratchpad — lost with /tmp); recovered from the
 session transcript, moved to steermech-private/campaign/rerouting/,
-and rerun AORUS-SIDE under setsid nohup. 1216/1216 cells, 0 skips.
+and rerun on the GPU box under setsid nohup. 1216/1216 cells, 0 skips.
 64 prompts (24 task/40 neutral) × {1, 1.5, 2, 3, 5, 8} ×
 {v3, v̄_v1, rand1536} + sham(1e-6), decode-only, L20 injection,
-k=1/cell. Scores in steermech-private/campaign/rerouting/mega/;
+k=1/cell. Scores in the private score store;
 report + fig builder alongside; fig_v2.png in brainscope notes
 (gitignored).
 
@@ -1328,7 +1328,7 @@ q_proj outputs of the 7-layer band, decode-only; KV cache stays clean
 by construction (queries are not cached). Arms: baseline / residual
 s3 reference / q-only at ×1, ×2, ×4 matched magnitude. N=24 CZ
 probe prompts, regex + coherence + teacher-forced KL; generations in
-steermech-private/campaign/chainI_qsteer_*.json for human read.
+the private score store (chainI_qsteer_*.json) for human read.
 Instrument note: the first launch's reference arm was unsteered
 during cached decode (hook applied to an empty slice on 1-token
 forwards) — caught because baseline == reference; fixed (047cf8c)
@@ -1356,12 +1356,12 @@ and rerun. References now match history (4B 19→9/24; 8B 16→10/24).
   caveat known), one behavior family, empirical q-images (not exact
   per-position maps), 8B in 8-bit.
 
-## U. Chain J: FINAL JUDGE — projected vectors vs v3 on the real 30-scaffold eval: formally inconclusive, descriptively no clean win (2026-07-29 night; finaljudge.py on aorus; scores results/finaljudge_chainJ.json)
+## U. Chain J: FINAL JUDGE — projected vectors vs v3 on the real 30-scaffold eval: formally inconclusive, descriptively no clean win (2026-07-29 night; finaljudge.py on the GPU box; scores in the private score store)
 
 Answers RESULTS.md "Next 1". confirm_ship replica: 30 scaffolds ×
 k=2 × 4 arms (baseline / v3@s3 / skopres_v1@s3 / sweep_C@s3), temp=1,
-forced SuggestMessages, decode_only, frozen thresholds from
-CONFIRM_PREREG.md. Generations box-side; scores committed.
+the forced app tool, decode_only, frozen thresholds from
+CONFIRM_PREREG.md (private). Generations box-side; scores in the private store.
 
 - **Gate: DEAD by one offer.** Baseline elicited 29/60 offers vs the
   frozen ≥50% (30/60) — all verdicts formally false before any arm is

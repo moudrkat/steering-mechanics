@@ -99,11 +99,11 @@ Line 2 (channel factorization, 2026-07-28):
   safetensors instead.
 - Gemma-4-E4B does NOT fit bf16 on 16GB (≈14.7GB + activations) — runs
   used the 8-bit route.
-- HF cache shim (`~/hf-cache2` with model symlinks) works around
+- HF cache shim (a second `HF_HOME` with model symlinks) works around
   root-owned entries left in the main cache by docker extractions.
 - On the GPU box, outputs land in `~/skop_residual/` (mirrored into
   `results/` here) and projected vectors in
-  `~/hotwire-vectors/*_skopres*.pt`.
+  `$VECTORS_DIR/*_skopres*.pt`.
 
 No private data: calibration and probe prompts are generic and live
 inside the scripts.

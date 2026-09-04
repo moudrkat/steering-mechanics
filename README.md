@@ -13,9 +13,10 @@ in [FINDINGS.md](FINDINGS.md), [RESEARCH_PLAN.md](RESEARCH_PLAN.md), and
 
 > **Status: work in progress.** The instruments are real and `make demo`
 > renders measured data; interfaces still move without warning. Coverage
-> as of 2026-07-28: five model families (Qwen3-4B/8B, Qwen2.5-7B,
-> Llama-3.1-8B, Gemma-4-E4B), nine vectors, six pre-registered
-> hypotheses (see below). The stable core is the pre-registered plan
+> as of 2026-07-29: five models across four families (Qwen3-4B/8B,
+> Qwen2.5-7B, Llama-3.1-8B, Gemma-4-E4B), nine behavior vectors plus one
+> random control, six pre-registered hypotheses
+> ([PREREG_CHANNELS.md](experiments/skop_residual/PREREG_CHANNELS.md)). The stable core is the pre-registered plan
 > ([RESEARCH_PLAN.md](RESEARCH_PLAN.md)) — frozen 2026-07-23; any change
 > to hypotheses or methods gets a dated deviation note there.
 >
@@ -25,7 +26,7 @@ in [FINDINGS.md](FINDINGS.md), [RESEARCH_PLAN.md](RESEARCH_PLAN.md), and
 > five families, with pre-registered hypotheses whose falsifications are
 > part of the record. Start at
 > [experiments/skop_residual/](experiments/skop_residual/) and
-> FINDINGS.md sections K–Q.
+> FINDINGS.md sections K–U.
 
 Division of labor (why this repo exists):
 
@@ -91,7 +92,7 @@ refutation attempt, and the ones that didn't are listed as refuted in
 **Install** (Python ≥ 3.10):
 
 ```bash
-pip install -e .        #  or:  make install
+pip install -e .        #  or:  make install   (the tug-of-war gif also needs ffmpeg on PATH)
 ```
 
 **Then:**
@@ -151,10 +152,12 @@ GPU and runs the whole thing: [`colab_demo.ipynb`](colab_demo.ipynb).
 3. **Component attribution** — which sublayer (attn vs MLP) at L21 amplifies
    the injected delta (the peak lands one layer after injection). Needs a
    small brainscope extension to the forced pass (record probe norms per
-   forced position). TODO.
+   forced position). Done — `experiments/component_attribution.py`,
+   data in `examples/component_attribution.json`.
 4. **Head-level** — which attention heads move the vector's content between
    positions; where "why did the concept survive at position X" gets its
-   real answer. TODO.
+   real answer. Done — `experiments/head_attribution.py`, `head_dose.py`,
+   data in `examples/head_attribution.json`.
 5. **Activation patching** — steered L20 residual patched into the clean run
    at single positions; which position's patch flips the output token. The
    forced-pass scaffolding is ~80 % of this harness. TODO.
@@ -162,54 +165,6 @@ GPU and runs the whole thing: [`colab_demo.ipynb`](colab_demo.ipynb).
    key-orthogonal projection (their stated future work), swept across
    projection depths on two models. Scripts + one-page results:
    [`experiments/skop_residual/`](experiments/skop_residual/RESULTS.md).
-
-## Runbook: how to continue tomorrow
-
-Everything below assumes a GPU box reachable as `$GPU_HOST` (set `BRAINSCOPE_BASE=http://$GPU_HOST:8010` for the experiment scripts; concrete personal values live in `notes/local-runbook.md`, which is gitignored). **The GPU runs ONE
-thing at a time** — hotwire-vLLM (the app backend) or brainscope (the lab).
-
-```bash
-# 0) what is on the GPU right now?
-ssh $GPU_HOST 'nvidia-smi --query-compute-apps=pid,process_name --format=csv,noheader'
-
-# 1) stop whatever holds the GPU
-ssh $GPU_HOST 'nvidia-smi --query-compute-apps=pid --format=csv,noheader | xargs -r kill -9'
-
-# 2a) start BRAINSCOPE (lab: replay, forced diff, unembed) — port 8010
-ssh $GPU_HOST 'cd $BRAINSCOPE_DIR && setsid nohup env \
-  HF_HOME=$HF_CACHE HF_HUB_OFFLINE=1 \
-  PYTHONPATH=. .venv/bin/python launch_bs.py > ~/bs_replay.log 2>&1 < /dev/null &'
-curl -s http://$GPU_HOST:8010/info          # wait until it answers
-curl -s -X POST http://$GPU_HOST:8010/jlens -d '{"on": true}' \
-  -H 'Content-Type: application/json'          # J-lens on for disposition diffs
-
-# 2b) or start HOTWIRE-VLLM (app backend) — port 8001
-ssh $GPU_HOST 'setsid nohup env HF_HOME=$HF_CACHE \
-  HF_HUB_OFFLINE=1 VLLM_USE_FLASHINFER_SAMPLER=0 \
-  HOTWIRE_VECTORS=$VECTORS_DIR HOTWIRE_SLOTS=128 \
-  $VLLM_VENV/bin/vllm serve Qwen/Qwen3-4B-Instruct-2507 \
-  --port 8001 --served-model-name qwen3-8b qwen3-4b --max-model-len 32768 \
-  --gpu-memory-utilization 0.85 --enable-auto-tool-choice \
-  --tool-call-parser hermes > ~/hotwire-serve.log 2>&1 < /dev/null &'
-
-# 3) run an experiment (brainscope must be up)
-python3 experiments/dose_response.py --scales 0.5 1.5 3 6
-python3 experiments/direct_logit.py
-
-# 4) IMPORTANT: hand the GPU back to the app when done (repeat 1 + 2b)
-```
-
-Key locations:
-- vectors served to both backends: `$GPU_HOST:$VECTORS_DIR/*.pt`
-  (+ source of truth `$GPU_HOST:$DIRS_JSON`)
-- brainscope deploy on $GPU_HOST: rsync `brainscope/server.py` →
-  `$GPU_HOST:tmp/brainscope-test/brainscope/server.py`, then restart (step 1+2a)
-- figures & their HTML sources: `<brainscope>/notes/steering_*.{html,png}`
-  (re-render: `google-chrome --headless=new --screenshot=X.png
-  --window-size=1200,H --force-device-scale-factor=2 file://$PWD/X.html`)
-- application-side evals and parity live in the application's own
-  (private) repo — this repo stays app-agnostic
-
 
 ## Auto-calibration (heretic-grade, for any vector)
 

@@ -7,8 +7,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 MODEL = os.environ.get("SKOP_MODEL", "google/gemma-4-E4B-it")
 INJ = int(os.environ.get("SKOP_INJ", "25"))
-V_ORIG = os.path.expanduser(os.environ.get("SKOP_VEC", "~/hotwire-vectors/v_pref_no_task_gemma.pt"))
-V_PROJ = os.path.expanduser("~/hotwire-vectors/" + os.environ.get("SKOP_OUT", "v_pref_no_task_gemma_skopres.pt"))
+V_ORIG = os.path.expanduser(os.environ.get("SKOP_VEC", os.environ.get("VECTORS_DIR", "vectors") + "/v_pref_no_task_gemma.pt"))
+V_PROJ = os.path.expanduser(os.environ.get("VECTORS_DIR", "vectors") + "/" + os.environ.get("SKOP_OUT", "v_pref_no_task_gemma_skopres.pt"))
 SCALES = [float(x) for x in os.environ.get("SKOP_SCALES", "3,6").split(",")]
 MAXTOK = 60
 

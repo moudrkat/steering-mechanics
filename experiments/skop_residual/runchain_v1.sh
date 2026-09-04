@@ -2,7 +2,7 @@
 export HF_HOME=~/projects/science/instruct-steer/hf-cache HF_HUB_OFFLINE=1
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export SKOP_MODEL="Qwen/Qwen3-4B-Instruct-2507"
-export SKOP_VEC="~/hotwire-vectors/v_pref_no_task_checklist_v3.pt"
+export SKOP_VEC="${VECTORS_DIR:?set VECTORS_DIR to your vector store}/v_pref_no_task_checklist_v3.pt"
 export SKOP_INJ=20
 PY=~/tmp/vllm-lens-test/.venv/bin/python
 echo "=== STAGE A: efficacy probe v0 (baseline, v@3, vbar_v0@4.7) ==="

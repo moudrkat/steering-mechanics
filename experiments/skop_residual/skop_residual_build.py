@@ -15,7 +15,7 @@ import torch, json, os, math
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 MODEL = os.environ.get("SKOP_MODEL", "google/gemma-4-E4B-it")
-VEC_PATH = os.path.expanduser(os.environ.get("SKOP_VEC", "~/hotwire-vectors/v_pref_no_task_gemma.pt"))
+VEC_PATH = os.path.expanduser(os.environ.get("SKOP_VEC", os.environ.get("VECTORS_DIR", "vectors") + "/v_pref_no_task_gemma.pt"))
 OUT_DIR = os.path.expanduser("~/skop_residual")
 INJ_LAYER = int(os.environ.get("SKOP_INJ", "25"))
 WINDOW = list(range(INJ_LAYER + 1, INJ_LAYER + 9))  # layers whose attention we protect
@@ -192,7 +192,7 @@ print(json.dumps(diag))
 # --- save: full vector file with row 25 replaced ---
 vec_out = vec.clone(); vec_out[INJ_LAYER] = v_bar
 torch.save(vec_out, os.path.join(OUT_DIR, os.environ.get("SKOP_OUT", "v_pref_no_task_gemma_skopres.pt")))
-torch.save(vec_out, os.path.expanduser("~/hotwire-vectors/" + os.environ.get("SKOP_OUT", "v_pref_no_task_gemma_skopres.pt")))
+torch.save(vec_out, os.path.expanduser(os.environ.get("VECTORS_DIR", "vectors") + "/" + os.environ.get("SKOP_OUT", "v_pref_no_task_gemma_skopres.pt")))
 with open(os.path.join(OUT_DIR, "diag.json"), "w") as f:
     json.dump({"diag": diag, "risk_heads": [{"layer": x["layer"], "head": x["head"],
         "rayleigh": x["rayleigh"]} for x in risk]}, f, indent=1)

@@ -44,7 +44,7 @@ def dose_curve():
     dr = ImageDraw.Draw(img)
     f1, f2, f3 = font("DejaVuSans-Bold.ttf", 26), font("DejaVuSans.ttf", 15), font("DejaVuSansMono.ttf", 13)
     dr.text((W//2, 34), "Dose-response: more dose, more suppression", font=f1, fill=(20,24,28), anchor="mm")
-    dr.text((W//2, 62), "steering vector v_pref_no_task_checklist_v3 @ L20, teacher-forced", font=f2, fill=(95,103,112), anchor="mm")
+    dr.text((W//2, 62), "task-suppression vector @ L20, teacher-forced", font=f2, fill=(95,103,112), anchor="mm")
     scales = [r["scale"] for r in rows]
     pos = [r["suppressed_positions"] for r in rows]
     xmax, ymax = max(scales)*1.05, max(pos)*1.15
@@ -113,6 +113,12 @@ def tug_of_war():
 
 
 def main():
+    import sys
+    if any(a in ("-h", "--help") for a in sys.argv[1:]):
+        print("steermech-plot: re-render every figure in fig/ from the shipped "
+              "example data (no GPU, no server). Takes no arguments; it "
+              "overwrites fig/*.png, so run it from a clean checkout or diff after.")
+        return
     FIG.mkdir(exist_ok=True)
     made = []
     for fn in (dose_curve, component_bars, tug_of_war, calibration_landscape,

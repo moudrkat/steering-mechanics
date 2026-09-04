@@ -2,7 +2,7 @@
 
 All runs pilot-grade (k=1, N=6 probes, Wilson CIs in FINDINGS). Full
 narrative: FINDINGS.md sections A–E. Scripts: this directory. Raw
-outputs: `results/`. Vectors: GPU box `~/hotwire-vectors/*_skopres*.pt`.
+outputs: `results/`. Vectors: `$VECTORS_DIR/*_skopres*.pt` on the GPU box.
 
 ## The question
 

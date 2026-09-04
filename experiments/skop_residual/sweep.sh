@@ -1,8 +1,8 @@
 #!/bin/bash
-export HF_HOME=~/hf-cache2 HF_HUB_OFFLINE=0
+export HF_HOME=${HF_HOME:?set HF_HOME} HF_HUB_OFFLINE=0
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export SKOP_MODEL="Qwen/Qwen3-4B-Instruct-2507"
-export SKOP_VEC="~/hotwire-vectors/v_pref_no_task_checklist_v3.pt"
+export SKOP_VEC="${VECTORS_DIR:?set VECTORS_DIR to your vector store}/v_pref_no_task_checklist_v3.pt"
 export SKOP_INJ=20
 PY=~/tmp/vllm-lens-test/.venv/bin/python
 echo "=== REFERENCE ARMS (v@3, v@4) ==="

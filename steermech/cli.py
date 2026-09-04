@@ -8,7 +8,14 @@ EXP = Path(__file__).resolve().parent.parent / "experiments"
 
 def _run(script):
     sys.argv[0] = str(EXP / script)
-    runpy.run_path(str(EXP / script), run_name="__main__")
+    try:
+        runpy.run_path(str(EXP / script), run_name="__main__")
+    except ModuleNotFoundError as e:
+        if e.name and e.name.split(".")[0] == "hidden_directions":
+            sys.exit("this command needs the vector factory: "
+                     "pip install 'steering-mechanics[calibrate]'  "
+                     "(or pip install 'hidden-directions[calibrate]')")
+        raise
 
 
 def calibrate_cli():

@@ -23,7 +23,7 @@ else:
     from transformers.models.qwen3.modeling_qwen3 import apply_rotary_pos_emb
 
 MODEL = os.environ.get("QKF2_MODEL", "Qwen/Qwen3-4B-Instruct-2507")
-VEC = os.path.expanduser(os.environ.get("QKF2_VEC", "~/hotwire-vectors/v_pref_no_task_checklist_v3.pt"))
+VEC = os.path.expanduser(os.environ.get("QKF2_VEC", os.environ.get("VECTORS_DIR", "vectors") + "/v_pref_no_task_checklist_v3.pt"))
 INJ, ATTN_L = int(os.environ.get("QKF2_INJ", "20")), int(os.environ.get("QKF2_INJ", "20")) + 1
 if os.environ.get("QKF2_BAND"):
     _a, _b = os.environ["QKF2_BAND"].split("-")

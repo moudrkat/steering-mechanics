@@ -11,7 +11,7 @@ skop_efficacy_probe.py (see runchain_controls.sh).
 """
 import torch, json, os
 
-VEC_PATH = os.path.expanduser(os.environ.get("SKOP_VEC", "~/hotwire-vectors/v_pref_no_task_checklist_v3.pt"))
+VEC_PATH = os.path.expanduser(os.environ.get("SKOP_VEC", os.environ.get("VECTORS_DIR", "vectors") + "/v_pref_no_task_checklist_v3.pt"))
 INJ = int(os.environ.get("SKOP_INJ", "20"))
 RANKS = [int(r) for r in os.environ.get("SKOP_CTL_RANKS", "149,1536").split(",")]
 SEEDS = [int(s) for s in os.environ.get("SKOP_CTL_SEEDS", "1,2,3").split(",")]
@@ -32,7 +32,7 @@ for rank in RANKS:
         v_ctl = v - Q @ (Q.T @ v)
         name = f"v_randctl_r{rank}_s{seed}.pt"
         vec_out = vec.clone(); vec_out[INJ] = v_ctl
-        for dst in (OUT_DIR, os.path.expanduser("~/hotwire-vectors")):
+        for dst in (OUT_DIR, os.path.expanduser(os.environ.get("VECTORS_DIR", "vectors"))):
             torch.save(vec_out, os.path.join(dst, name))
         entry = {
             "name": name, "rank": rank, "seed": seed,

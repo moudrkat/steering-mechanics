@@ -13,7 +13,8 @@ authors = [{name = "Katerina Fajmanova"}]
 dependencies = ["pillow>=9.0"]
 
 [project.optional-dependencies]
-calibrate = ["hidden-directions[calibrate] @ git+https://github.com/moudrkat/hidden-directions"]
+calibrate = ["hidden-directions[calibrate]>=0.1.4"]
+dev = ["pytest"]
 
 [project.urls]
 Homepage = "https://github.com/moudrkat/steering-mechanics"
