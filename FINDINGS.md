@@ -950,7 +950,7 @@ Agent reports archived in session; data lands in brainscope notes
 
 Run interrupted mid-flight by a local machine reboot (chain scripts
 lived in a session scratchpad — lost with /tmp); recovered from the
-session transcript, moved to steermech-private/campaign/rerouting/,
+session transcript, moved to the private score store,
 and rerun on the GPU box under setsid nohup. 1216/1216 cells, 0 skips.
 64 prompts (24 task/40 neutral) × {1, 1.5, 2, 3, 5, 8} ×
 {v3, v̄_v1, rand1536} + sham(1e-6), decode-only, L20 injection,
