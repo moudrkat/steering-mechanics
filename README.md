@@ -1,266 +1,52 @@
 # steering-mechanics
 
-**Mechanistic inspection of steering vectors**, driven
-through [brainscope](https://github.com/moudrkat/brainscope)'s HTTP API.
-Scripts here are thin clients — the GPU work happens on the $GPU_HOST box, this
-repo holds experiments, aggregated results, and notes.
+How steering vectors behave inside the model: how strong is too strong, and where the damage comes from.
+Experiments run against a live model through [brainscope](https://github.com/moudrkat/brainscope)'s HTTP API.
 
-For researchers and engineers who want to know *how* steering actually
-behaves — dose–response, cross-model transfer, and when the evals you trust
-stop measuring what you think. The findings and the pre-registered plan live
-in [FINDINGS.md](FINDINGS.md), [RESEARCH_PLAN.md](RESEARCH_PLAN.md), and
-[EVAL_PRINCIPLES.md](EVAL_PRINCIPLES.md).
+> Work in progress. Lab notebook with every result and its caveats: [FINDINGS.md](FINDINGS.md).
 
-> **Status: work in progress.** The instruments are real and `make demo`
-> renders measured data; interfaces still move without warning. Coverage
-> as of 2026-07-29: five models across four families (Qwen3-4B/8B,
-> Qwen2.5-7B, Llama-3.1-8B, Gemma-4-E4B), nine behavior vectors plus one
-> random control, six pre-registered hypotheses
-> ([PREREG_CHANNELS.md](experiments/skop_residual/PREREG_CHANNELS.md)). The stable core is the pre-registered plan
-> ([RESEARCH_PLAN.md](RESEARCH_PLAN.md)) — frozen 2026-07-23; any change
-> to hypotheses or methods gets a dated deviation note there.
->
-> **Newest line (2026-07-28, data frozen): the channel factorization** —
-> *which computational channel carries steering damage* (attention
-> patterns / values / MLP), measured causally by freeze arms across the
-> five families, with pre-registered hypotheses whose falsifications are
-> part of the record. Start at
-> [experiments/skop_residual/](experiments/skop_residual/) and
-> FINDINGS.md sections K–U.
+## Dose: compare steering strength in relative units
 
-Division of labor (why this repo exists):
+The raw scale of a steering vector means nothing across layers or models: it multiplies a vector with its own
+norm, added to a residual stream with its own norm. The comparable unit is the fraction of the residual stream
+you perturb:
 
-- **brainscope** (OSS) — generic *instruments*: `/replay {forced: true}`
-  teacher-forced causal diff, `/directions/{name}/unembed` direct logit
-  attribution, per-token cos & J-lens capture.
-- **[hidden-directions](https://github.com/moudrkat/hidden-directions)** —
-  the *factory*: extract, auto-calibrate (`hidden-directions calibrate` —
-  the optimizer this repo prototyped), bake, audit.
-- **this repo** — *experiments on specific vectors*: dose–response
-  curves, direct-vs-circuit splits, component attribution, patching studies.
-- app-specific eval scaffolds and traces never enter this repo — experiments
-  either use the neutral prompts baked into scripts, or reference private
-  scaffold files at runtime via `$SCAFFOLD_JSON` (results derived from them
-  land in `results/`, which is gitignored for text-bearing files).
+    relative_dose(L) = ‖scale · V[L]‖ / ‖h[L]‖
 
+Measured on Qwen3-4B-Instruct, layer 20 (‖V‖ = 13.2, ‖h‖ = 54.9 over a 12k-token context):
 
-## 🔭 The research program
+| relative dose | what happens |
+|---|---|
+| 0.72 | working point |
+| 1.13–1.44 | degradation starts |
+| 1.93 | collapse |
 
-This repo is moving from *instrument-building* to a single pre-registered
-question: **when does a steering vector generalize from calibration to
-deployment — and what do steering evals actually measure?** Hypotheses,
-baselines, N, and what would falsify them: **[RESEARCH_PLAN.md](RESEARCH_PLAN.md)**.
-Findings so far: [FINDINGS.md](FINDINGS.md).
+Measure ‖h‖ at the context length you deploy at. On short prompts a few sink tokens dominate the mean: the same
+layer reads 375 on five short prompts and 54.9 at 12k tokens, which makes every dose look seven times smaller
+than it is.
 
-## 📚 Related work — what this builds on
+Whether the same relative dose means the same thing on other models is not settled yet.
 
-The steering-critique literature is taken seriously here: before the plan
-was frozen, it was stress-tested against that literature in an
-adversarially verified pass — every claim below survived a 3-vote
-refutation attempt, and the ones that didn't are listed as refuted in
-**[LITERATURE.md](LITERATURE.md)**. The short version:
-
-- **Steering unreliability is established, not news** — up to ~half of
-  inputs per dataset can steer the *wrong* way even when the mean effect
-  is positive ([Tan et al.](https://arxiv.org/abs/2407.12404),
-  independently replicated by
-  [Braun et al.](https://arxiv.org/abs/2505.22637)). That's why the plan
-  reports per-sample steerability distributions, not just means.
-- **Forced-choice eval artifacts are documented** (Tan et al. §5) — RQ2
-  extends the eval-validity question from forced-choice formats to
-  disposition proxies vs open-ended behavior at deployment context
-  lengths.
-- **Extraction-data generation is adopted prior art** — LLM-written,
-  judge-filtered contrastive pairs to the
-  [persona_vectors](https://arxiv.org/abs/2507.21509) standard (CAA's
-  GPT-4-written sets made this established practice). The work here
-  starts *after* extraction: deployment-length calibration and
-  production round-trips.
-- **The open question this program sits inside** — how steering's
-  *behavioral reliability* holds up under production conditions
-  (long-context scaffolds, serving workloads, real traffic). The nearest
-  published work: [SKOP](https://arxiv.org/abs/2605.06342) measures
-  long-context steering degradation on synthetic haystacks;
-  [EasySteer](https://arxiv.org/abs/2509.25175) puts steering inside
-  vLLM and reports throughput; Rakuten×Goodfire ran interpretability on
-  real traffic via SAE *probing*. How far each of these reaches — and
-  what the literature pass could and couldn't find beyond them — is
-  worked through in [LITERATURE.md](LITERATURE.md).
-
-## ⚡ Run in 30 s (no GPU)
-
-**Install** (Python ≥ 3.10):
+## Run it
 
 ```bash
-pip install -e .        #  or:  make install   (the tug-of-war gif also needs ffmpeg on PATH)
+pip install -e .
+make demo        # renders the measured results in examples/ into fig/, no GPU
 ```
 
-**Then:**
+Live experiments need a running brainscope:
 
 ```bash
-make demo               #  == python -m steermech.plot
-```
-
-renders real measured results into `fig/` from the shipped `examples/`:
-the L21 attention-head tug-of-war (`tug_of_war.gif`), the dose-response
-curve, and the attn-vs-MLP component split. This is the whole point in one
-picture before you set anything up.
-
-## Live experiments (needs a GPU)
-
-The experiments measure a *live* model through
-[brainscope](https://github.com/moudrkat/brainscope)'s HTTP API — that is
-where the GPU work happens. Start one and point the scripts at it:
-
-```bash
-# on a GPU box:
-pip install brainscope   # or clone the repo
-brainscope --model Qwen/Qwen3-4B-Instruct-2507 --jlens <lens.pt> --port 8010
-
-# then, anywhere:
+pip install brainscope
+brainscope --model Qwen/Qwen3-4B-Instruct-2507 --port 8010     # on a GPU box
 export BRAINSCOPE_BASE=http://<gpu-host>:8010
 ```
 
-**No private data required.** brainscope loads example directions on start
-(and can mint one from a word via `/jlens/direction`), so you can calibrate
-and dissect a public vector immediately:
+## Related
 
-```bash
-# discover what any loaded direction does, then calibrate it:
-hidden-directions discover-intent --key mine --id <direction-name> --layer 20
-hidden-directions calibrate --key mine --id <direction-name> --trials 40
-# (steermech-discover / steermech-calibrate still work as aliases)
-```
+- [hidden-directions](https://github.com/moudrkat/hidden-directions): make, calibrate and audit a steering vector
+- [hotwire-vllm](https://github.com/moudrkat/hotwire-vllm): serve it per request in vLLM
 
-Prefer zero setup? A Colab notebook that spins up brainscope on a rented
-GPU and runs the whole thing: [`colab_demo.ipynb`](colab_demo.ipynb).
+## License
 
-## The program (in order of depth)
-
-1. **Dose–response** (`experiments/dose_response.py`) — forced diff at
-   scales 0.5→6: does suppression scale linearly, then saturate? Measures
-   the vector's operating range instead of guessing it.
-2. **Direct vs circuit** (`experiments/direct_logit.py`) — `W_U·v` top
-   movers vs what steering actually suppressed at matched positions. The
-   overlap ratio is the single most informative number about *how* the
-   vector works: direct logit push vs circuit-mediated suppression.
-2b. **Tuned-lens quantification** — replace the top-5 set-membership
-   readout with tuned-lens Δ log-prob per layer/position (brainscope has a
-   fitted tuned lens for Qwen3-4B in `lenses/`). Continuous instead of
-   binary: no rank-6 blindness, and dose–response gets a real y-axis.
-   Needs the forced pass to expose tuned-lens readouts. TODO.
-3. **Component attribution** — which sublayer (attn vs MLP) at L21 amplifies
-   the injected delta (the peak lands one layer after injection). Needs a
-   small brainscope extension to the forced pass (record probe norms per
-   forced position). Done — `experiments/component_attribution.py`,
-   data in `examples/component_attribution.json`.
-4. **Head-level** — which attention heads move the vector's content between
-   positions; where "why did the concept survive at position X" gets its
-   real answer. Done — `experiments/head_attribution.py`, `head_dose.py`,
-   data in `examples/head_attribution.json`.
-5. **Activation patching** — steered L20 residual patched into the clean run
-   at single positions; which position's patch flips the output token. The
-   forced-pass scaffolding is ~80 % of this harness. TODO.
-6. **Rerouting vs domination** — a residual-space analogue of SKOP's
-   key-orthogonal projection (their stated future work), swept across
-   projection depths on two models. Scripts + one-page results:
-   [`experiments/skop_residual/`](experiments/skop_residual/RESULTS.md).
-
-## Auto-calibration (heretic-grade, for any vector)
-
-> **Moved to the factory.** The calibration core (client, efficacy/damage
-> eval, intent discovery, the Optuna loop) now lives in
-> [hidden-directions](https://github.com/moudrkat/hidden-directions) as
-> `hidden_directions.calibrate` — calibration is part of *making* a vector,
-> so the factory owns it end-to-end (`extract → calibrate → bake → audit`).
-> The scripts below still work as thin wrappers; install the core with
-> `pip install "hidden-directions[calibrate] @ git+https://github.com/moudrkat/hidden-directions"`
-> (or use this repo's `pip install -e ".[calibrate]"`). The canonical entry
-> point is `hidden-directions calibrate`.
-
-The method, in one line — the same way [heretic](https://github.com/p-e-w/heretic)
-calibrates abliteration — co-minimizing two axes on **two separate
-datasets**, so efficacy and model-damage never get conflated:
-
-    objective = efficacy_miss  +  lambda * damage_KL
-
-- **efficacy** — did the vector achieve its intent? Measured on a small
-  set of *eliciting* prompts against the vector's `avoid`/`target` concepts.
-  Per-vector: `data/vectors/<key>.intent.json`.
-- **damage** — did steering break normal behavior? Mean **KL divergence**
-  from the unsteered model on one shared, vector-agnostic **benign set**
-  (`data/benign_prompts.txt`). This is heretic's key trick: KL on benign
-  inputs is a fast proxy for "did I damage general capability", no
-  benchmark run needed.
-
-Bring your own vector — the intent is **auto-discoverable**, no hand-labeling:
-
-    # 1. discover what the vector suppresses/promotes -> intent file
-    hidden-directions discover-intent --key myvec --id my_direction --layer 20
-    # 2. calibrate (layer, scale) by co-minimizing miss + lambda*KL
-    hidden-directions calibrate --key myvec --id my_direction --trials 40
-
-`make_intent.py` runs the vector strongly over the benign prompts and
-harvests the concepts it most reliably removes — turning *any* vector into
-a calibratable one. (heretic knows a priori it targets refusals; here the
-target is discovered from the vector itself.)
-
-Pure scoring logic is unit-tested server-free — in hidden-directions
-(`tests/test_calibrate.py`), next to the code.
-
-## External methods
-
-Not everything here is home-grown. [heretic](https://github.com/p-e-w/heretic)
-(automatic directional ablation / "abliteration", Arditi et al. 2024, with
-Optuna-driven parameter search co-minimizing refusals and KL divergence)
-plugs in at four points:
-
-1. **The inverse experiment** — this repo studies *adding* a direction;
-   heretic *removes* one from the weights. Running the forced-diff program
-   on an ablated model asks whether the circuit's self-repair is symmetric.
-2. **KL divergence as the damage metric** — adopting heretic's
-   quality-control idea as the dose–response y-axis ("what a dose costs in
-   intelligence"), replacing coarse coherence heuristics.
-3. **TPE auto-calibration** *(implemented — now shipped as `hidden-directions calibrate`)*
-   — heretic's Optuna loop, pointed at a steering eval: (layer, scale) found
-   by co-minimizing behavioral miss + KL divergence, the same principled
-   damage guardrail heretic uses for abliteration. Manual sweep → optimizer.
-4. **A community reference vector** — the Arditi-style refusal direction as
-   an externally defined subject for the whole program: is the MLP
-   self-repair universal, or vector-specific?
-## Where this sits in the lab
-
-```mermaid
-flowchart LR
-    hd["🧭 hidden-directions<br/>behavior → vector"]
-    bs(["🧠 brainscope<br/>watch the model think"])
-    hw["🔥 hotwire-vllm<br/>steering in production"]
-    st["🕹️ steeropathy<br/>agents talk via activations"]
-    tm["⚖️ in-two-minds<br/>agent hesitating between tools"]
-    sm["🧪 steering-mechanics<br/>how steering actually works"]
-    on["📰 old-news<br/>stale history vs system prompt"]
-
-    hd -->|vectors| bs
-    hd -->|vector + passport| hw
-    bs --> st
-    bs --> tm
-    bs -->|causal replay| sm
-    bs --> on
-    hw -.->|vector under study| sm
-
-    click hd "https://github.com/moudrkat/hidden-directions"
-    click bs "https://github.com/moudrkat/brainscope"
-    click hw "https://github.com/moudrkat/hotwire-vllm"
-    click st "https://github.com/moudrkat/steeropathy"
-    click tm "https://github.com/moudrkat/in-two-minds"
-    click sm "https://github.com/moudrkat/steering-mechanics"
-    click on "https://github.com/moudrkat/old-news"
-
-    classDef dim fill:#f6f8fa,stroke:#d0d7de,color:#57606a;
-    classDef here fill:#8957e5,stroke:#6e40c9,color:#ffffff;
-    class hd,bs,hw,st,tm,sm,on dim;
-    class sm here;
-```
-
-*Highlighted = this repo. The full lab map (with the two other repos' stories) lives on [moudrkat](https://github.com/moudrkat).*
-
+MIT
